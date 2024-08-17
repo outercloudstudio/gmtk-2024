@@ -3,40 +3,26 @@ extends Node2D
 
 @export var rotation_origin: Node2D
 
-@export var forward_sprite: Sprite2D
-@export var right_sprite: Sprite2D
-@export var left_sprite: Sprite2D
-
 
 var _direction: Vector2i = Vector2i.RIGHT
-var _facing: Vector2i = Vector2i.RIGHT
+var _location: Vector2i = Vector2i.ZERO
+var _world: World
 
 
-func place(direction: Vector2i, facing: Vector2i):
+func setup(location: Vector2i, direction: Vector2i, world: World):
+	_location = location
 	_direction = direction
-	_facing = facing
-
-	forward_sprite.visible = false
-	left_sprite.visible = false
-	right_sprite.visible = false
+	_world = world
 
 	rotation_origin.look_at(global_position + Vector2.ONE * 8 + Vector2(direction))
-	
-	if Vector2i(direction.y, -direction.x) == facing:
-		# left
 
-		left_sprite.visible = true
+	modulate = Color("#ffffff88")
 
-		pass
-	elif  Vector2i(-direction.y, direction.x) == facing:
-		# right
 
-		right_sprite.visible = true
+func place():
+	modulate = Color("#ffffffff")
 
-		pass
-	else:
-		# foward
+	if _world.tilemap.has(_location):
+		_world.tilemap[_location].queue_free()
 
-		forward_sprite.visible = true
-
-		pass
+	_world.tilemap[_location] = self

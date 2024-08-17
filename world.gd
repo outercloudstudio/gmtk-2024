@@ -1,128 +1,77 @@
 extends Node2D
+class_name World
 
 
 @export var conveyor_scene: PackedScene
 
 
 var is_placing = false
+var start_placing_position: Vector2
 
 var tilemap = {}
 
-var last_placed_position: Vector2i = Vector2i.RIGHT
-var last_placed_direction: Vector2i = Vector2i.RIGHT
-var placed_tiles = 0
-var last_placed_tile = null
-
-var placed_positions = []
+var preview_tiles = []
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("place"):
-		is_placing = true
+		start_placing()
 
 	if event.is_action_released("place"):
-		is_placing = false
+		reset_placing()
+		
 
-		last_placed_position = Vector2i.RIGHT
-		placed_tiles = 0
+func start_placing():
+	is_placing = true
 
-		placed_positions = []
+	start_placing_position = get_global_mouse_position()
+
+
+func reset_placing():
+	is_placing = false
+
+	for tile in preview_tiles:
+		tile.place()
+
+	preview_tiles = []
 
 
 func _process(delta: float) -> void:
 	if is_placing:
-		var target_position: Vector2 = floor(get_global_mouse_position() / 16)
-
-		var distance = target_position - Vector2(last_placed_position)
-
-		if distance.length() <= 1 || placed_tiles == 0:
-			place_tile(target_position, conveyor_scene)
-
-		else:
-			var current_position: Vector2 = Vector2(last_placed_position)
-
-			var offset = target_position - current_position
-			
-			var direction = Vector2(offset.x, 0).normalized()
-			
-			if direction.length() == 0:
-				direction = Vector2(0, offset.y).normalized()
-
-			print("direction 1 ", direction)
-
-			while (target_position - current_position).x != 0 && (target_position - current_position).y != 0:
-				place_tile(current_position, conveyor_scene)
-
-				current_position += direction
-
-			offset = target_position - current_position
-			
-			direction = Vector2(offset.x, 0).normalized()
-
-			if direction.length() == 0:
-				direction = Vector2(0, offset.y).normalized()
-
-			print("direction 2 ", direction)
-
-			while (target_position - current_position).x != 0 || (target_position - current_position).y != 0:
-				place_tile(current_position, conveyor_scene)
-
-				current_position += direction
-
-		
+		update_placing()
 
 
-func place_tile(tile_position: Vector2i, tile_scene: PackedScene):
-	if placed_positions.has(tile_position):
-		return
+func update_placing():
+	for tile in preview_tiles:
+		tile.queue_free()
 
-	placed_positions.push_back(tile_position)
+	preview_tiles = []
 
-	var place_position = tile_position * 16
-	var tile: Node2D = tile_scene.instantiate()
+	var target = get_global_mouse_position()
 
-	if tilemap.has(tile_position):
-		var other_tile: Node2D = tilemap[tile_position]
-		other_tile.queue_free()
+	var offset = target - start_placing_position
 
-	tilemap[tile_position] = tile
+	var corrected_offset = Vector2(offset.x, 0)
 
-	add_child(tile)
+	if abs(offset.y) > abs(offset.x):
+		corrected_offset = Vector2(0, offset.y)
 
-	tile.global_position = place_position
+	var start_tile = floor(start_placing_position / 16)
+	var end_tile = floor((start_placing_position + corrected_offset) / 16)
 
-	if placed_tiles == 0:
-		tile.place(Vector2i.RIGHT, Vector2i.RIGHT)
+	var direction = corrected_offset.normalized()
 
-		last_placed_direction = Vector2i.RIGHT
+	if direction == Vector2.ZERO:
+		direction = Vector2.RIGHT
 
-		print("place first")
+	for index in range((end_tile - start_tile).length() + 1):
+		var tile_location = start_tile + direction * index
 
-	elif placed_tiles == 1:
-		var direction = tile_position - last_placed_position
+		var tile = conveyor_scene.instantiate()
+		add_child(tile)
 
-		last_placed_tile.place(direction, direction)
+		tile.global_position = tile_location * 16
 
-		tile.place(direction, direction)
+		tile.setup(tile_location, direction, self)
 
-		last_placed_direction = direction
-
-		print("place second ", direction)
-
-	else:
-		var direction = tile_position - last_placed_position
-
-		last_placed_tile.place(last_placed_direction, direction)
-
-		tile.place(direction, direction)
-
-		last_placed_direction = direction
-
-		print("place next ", direction)
-
-
-	last_placed_tile = tile
-
-	last_placed_position = tile_position
-
-	placed_tiles += 1
+		preview_tiles.push_back(tile)
