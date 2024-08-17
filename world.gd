@@ -65,7 +65,10 @@ func update_placing():
 		direction = Vector2.RIGHT
 
 	for index in range((end_tile - start_tile).length() + 1):
-		var tile_location = start_tile + direction * index
+		var tile_location: Vector2i = Vector2i(start_tile + direction * index)
+
+		if tilemap.has(tile_location) && !tilemap[tile_location].can_be_replaced:
+			continue
 
 		var tile = conveyor_scene.instantiate()
 		add_child(tile)

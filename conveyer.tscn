@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvsr0owx3rnh7"]
 
-[ext_resource type="Script" path="res://conveyor.gd" id="1_0h8bq"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_rqyjv"]
+[ext_resource type="Script" path="res://tile.gd" id="3_s7vo0"]
 
 [node name="Conveyer" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
-script = ExtResource("1_0h8bq")
+script = ExtResource("3_s7vo0")
 rotation_origin = NodePath("RotationOrigin")
 
 [node name="RotationOrigin" type="Node2D" parent="."]
