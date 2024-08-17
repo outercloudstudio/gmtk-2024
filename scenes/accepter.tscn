@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0i841hejuca6"]
 
-[ext_resource type="Script" path="res://tile.gd" id="1_lbjgo"]
-[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_6tslh"]
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_3ep7l"]
+[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_7aylf"]
 
 [node name="Accepter" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
-script = ExtResource("1_lbjgo")
+script = ExtResource("1_3ep7l")
 rotation_origin = NodePath("RotationOrigin")
 
 [node name="RotationOrigin" type="Node2D" parent="."]
 position = Vector2(8, 8)
 
 [node name="FowardSprite" type="Sprite2D" parent="RotationOrigin"]
-texture = ExtResource("2_6tslh")
+texture = ExtResource("2_7aylf")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)

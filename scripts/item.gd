@@ -26,7 +26,8 @@ func _physics_process(delta: float) -> void:
 	if global_position == _target:
 		var tile = get_tile()
 
-		_target = global_position + Vector2(tile.direction) * 16
+		if tile != null:
+			_target = global_position + Vector2(tile.direction) * 16
 
 	global_position = global_position.move_toward(_target, 50 * delta)
 

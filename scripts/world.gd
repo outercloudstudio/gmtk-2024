@@ -5,7 +5,8 @@ class_name World
 @export var conveyor_scene: PackedScene
 @export var spawner_scene: PackedScene
 @export var accepter_scene: PackedScene
-@export var level: Node2D
+
+@export var level_scene: PackedScene
 
 
 var is_placing = false
@@ -15,10 +16,13 @@ var tilemap = {}
 
 var preview_tiles = []
 
+var _level: Node2D
+
+var _selected_tile: PackedScene
+
 
 func cleanup():
-	for child in level.get_children():
-		child.queue_free()
+	_level.queue_free()
 
 	tilemap = {}
 
@@ -27,40 +31,9 @@ func cleanup():
 
 
 func start():
-	var possible_place_locations = []
+	_level = level_scene.instantiate()
 
-	for x in range(-5, 5):
-		for y in range(-5, 5):
-			possible_place_locations.push_back(Vector2i(x, y))
-
-	var place_location = possible_place_locations.pick_random()
-	
-	for offset in [ Vector2i.ZERO, Vector2i(-1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, -1) ]:
-		if possible_place_locations.has(place_location + offset):
-			possible_place_locations.remove_at(possible_place_locations.find(place_location + offset))
-
-	var spawner: Node2D = spawner_scene.instantiate()
-	level.add_child(spawner)
-
-	spawner.global_position = place_location * 16
-
-	var possible_rotations = [ Vector2i.RIGHT, Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN ]
-
-	if place_location.x == -5:
-		possible_rotations.remove_at(possible_rotations.find(Vector2i.LEFT))
-
-	if place_location.x == 4:
-		possible_rotations.remove_at(possible_rotations.find(Vector2i.RIGHT))
-
-	if place_location.y == -5:
-		possible_rotations.remove_at(possible_rotations.find(Vector2i.UP))
-
-	if place_location.x == 4:
-		possible_rotations.remove_at(possible_rotations.find(Vector2i.DOWN))
-
-	spawner.setup(place_location, possible_rotations.pick_random(), self)
-
-	spawner.place()
+	add_child(_level)
 	
 
 func _input(event: InputEvent) -> void:
@@ -86,6 +59,10 @@ func reset_placing():
 	preview_tiles = []
 
 
+func _ready() -> void:
+	_selected_tile = conveyor_scene
+
+
 func _process(delta: float) -> void:
 	if is_placing:
 		update_placing()
@@ -98,6 +75,17 @@ func update_placing():
 	preview_tiles = []
 
 	var target = get_global_mouse_position()
+
+	if _selected_tile == null:
+		var tile_location: Vector2i = Vector2i(floor(target / 16))
+
+		print(tile_location)
+
+		if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
+			tilemap[tile_location].queue_free()
+			tilemap.erase(tile_location)
+
+		return
 
 	var offset = target - start_placing_position
 
@@ -124,10 +112,19 @@ func update_placing():
 			continue
 
 		var tile = conveyor_scene.instantiate()
-		level.add_child(tile)
+		_level.add_child(tile)
 
 		tile.global_position = tile_location * 16
 
 		tile.setup(tile_location, direction, self)
 
 		preview_tiles.push_back(tile)
+
+
+
+func select_conveyor():
+	_selected_tile = conveyor_scene
+
+
+func select_delete():
+	_selected_tile = null

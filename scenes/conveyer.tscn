@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvsr0owx3rnh7"]
 
-[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_rqyjv"]
-[ext_resource type="Script" path="res://tile.gd" id="3_s7vo0"]
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_avke4"]
+[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_yeveh"]
 
 [node name="Conveyer" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
-script = ExtResource("3_s7vo0")
+script = ExtResource("1_avke4")
 rotation_origin = NodePath("RotationOrigin")
 
 [node name="RotationOrigin" type="Node2D" parent="."]
 position = Vector2(8, 8)
 
 [node name="FowardSprite" type="Sprite2D" parent="RotationOrigin"]
-texture = ExtResource("1_rqyjv")
+texture = ExtResource("2_yeveh")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)

@@ -32,5 +32,5 @@ func place():
 
 func _ready() -> void:
 	if place_on_start:
-		setup(floor(global_position / 16), place_on_start_direction, get_parent())
+		setup(floor(global_position / 16), place_on_start_direction, get_parent().get_parent())
 		place()

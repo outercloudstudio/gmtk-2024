@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxr5gdfq0hexh"]
 
-[ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://world.tscn" id="1_i4p5l"]
-[ext_resource type="Script" path="res://game.gd" id="1_kd6lh"]
+[ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_label")]
 texture_filter = 1
