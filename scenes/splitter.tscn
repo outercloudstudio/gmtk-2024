@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_8boq8"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_phmuw"]
-[ext_resource type="Script" path="res://scenes/split_move_area.gd" id="3_yk8ir"]
+[ext_resource type="Script" path="res://scripts/split_move_area.gd" id="3_yk8ir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
 size = Vector2(16, 16)

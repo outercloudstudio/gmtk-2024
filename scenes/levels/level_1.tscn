@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkt44rix7wkpr"]
 
 [ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="1_fhm3t"]
-[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_gv3ho"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_gv3ho"]
 [ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="2_0apis"]
 [ext_resource type="PackedScene" uid="uid://b4j40uckcw8c6" path="res://scenes/items/battery.tscn" id="3_ddoj3"]
 [ext_resource type="PackedScene" uid="uid://dqyhtuc360avi" path="res://scenes/items/wire.tscn" id="4_dr060"]

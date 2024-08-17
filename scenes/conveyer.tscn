@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_avke4"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_yeveh"]
-[ext_resource type="Script" path="res://scenes/move_area.gd" id="3_782rx"]
+[ext_resource type="Script" path="res://scripts/move_area.gd" id="3_782rx"]
 
 [sub_resource type="Animation" id="Animation_podfa"]
 length = 0.001

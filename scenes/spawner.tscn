@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/item_spawner.gd" id="3_kuivt"]
 [ext_resource type="Script" path="res://scripts/tile.gd" id="3_sw0ft"]
 [ext_resource type="PackedScene" uid="uid://c7ym0w7fg023r" path="res://scenes/items/rod.tscn" id="4_y6yrs"]
-[ext_resource type="Script" path="res://scenes/move_area.gd" id="5_gfjjc"]
+[ext_resource type="Script" path="res://scripts/move_area.gd" id="5_gfjjc"]
 
 [sub_resource type="Animation" id="Animation_podfa"]
 length = 0.001
