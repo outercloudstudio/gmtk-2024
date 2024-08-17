@@ -1,11 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvd6dr6c3ny7"]
+[gd_scene load_steps=8 format=3 uid="uid://cvd6dr6c3ny7"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_tbfce"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_38m13"]
 [ext_resource type="Script" path="res://scripts/constuctor_move_area.gd" id="3_uhan4"]
+[ext_resource type="Script" path="res://scripts/rotation_visibility.gd" id="4_gamep"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
 size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_641hu"]
+colors = PackedColorArray(0, 0, 0, 0.596078, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aiqad"]
+gradient = SubResource("Gradient_641hu")
+width = 20
+height = 128
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
 
 [node name="Constructor" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
 script = ExtResource("1_tbfce")
@@ -52,12 +63,68 @@ texture = ExtResource("2_38m13")
 region_enabled = true
 region_rect = Rect2(62, 64, 20, 2)
 
-[node name="Snap" type="Node2D" parent="."]
+[node name="RotationVisibility" type="Node2D" parent="." node_paths=PackedStringArray("tile")]
 position = Vector2(8, 5)
+script = ExtResource("4_gamep")
+tile = NodePath("..")
 
-[node name="Cover" type="Sprite2D" parent="Snap" groups=["camera_snapping"]]
+[node name="Up" type="Node2D" parent="RotationVisibility"]
+
+[node name="Cover" type="Sprite2D" parent="RotationVisibility/Up" groups=["camera_snapping"]]
 z_index = 5
 texture = ExtResource("2_38m13")
 offset = Vector2(0, 0.5)
 region_enabled = true
 region_rect = Rect2(160, 27, 16, 21)
+
+[node name="Right" type="Node2D" parent="RotationVisibility"]
+visible = false
+
+[node name="Cover" type="Sprite2D" parent="RotationVisibility/Right" groups=["camera_snapping"]]
+z_index = 5
+texture = ExtResource("2_38m13")
+offset = Vector2(0, 0.5)
+region_enabled = true
+region_rect = Rect2(224, 11, 16, 21)
+
+[node name="Left" type="Node2D" parent="RotationVisibility"]
+visible = false
+
+[node name="Cover" type="Sprite2D" parent="RotationVisibility/Left" groups=["camera_snapping"]]
+z_index = 5
+texture = ExtResource("2_38m13")
+offset = Vector2(0, 0.5)
+flip_h = true
+region_enabled = true
+region_rect = Rect2(224, 11, 16, 21)
+
+[node name="Down" type="Node2D" parent="RotationVisibility"]
+visible = false
+
+[node name="Cover" type="Sprite2D" parent="RotationVisibility/Down" groups=["camera_snapping"]]
+z_index = 5
+texture = ExtResource("2_38m13")
+offset = Vector2(0, 0.5)
+region_enabled = true
+region_rect = Rect2(224, 43, 16, 21)
+
+[node name="Shadow" type="Node2D" parent="."]
+
+[node name="ColorRect3" type="TextureRect" parent="Shadow"]
+z_index = -30
+offset_left = -2.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 22.0
+texture = SubResource("GradientTexture2D_aiqad")
+expand_mode = 1
+
+[node name="ColorRect4" type="TextureRect" parent="Shadow"]
+z_index = -1
+offset_left = -2.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 20.0
+scale = Vector2(1, -1)
+texture = SubResource("GradientTexture2D_aiqad")
+expand_mode = 1

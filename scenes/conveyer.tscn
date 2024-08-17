@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvsr0owx3rnh7"]
+[gd_scene load_steps=10 format=3 uid="uid://dvsr0owx3rnh7"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_avke4"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_yeveh"]
@@ -45,6 +45,16 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
 size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_i4xpy"]
+colors = PackedColorArray(0, 0, 0, 0.596078, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sakbc"]
+gradient = SubResource("Gradient_i4xpy")
+width = 20
+height = 128
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
 
 [node name="Conveyer" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
 script = ExtResource("1_avke4")
@@ -95,3 +105,24 @@ position = Vector2(8, 17)
 texture = ExtResource("2_yeveh")
 region_enabled = true
 region_rect = Rect2(62, 64, 20, 2)
+
+[node name="Shadow" type="Node2D" parent="."]
+
+[node name="ColorRect3" type="TextureRect" parent="Shadow"]
+z_index = -30
+offset_left = -2.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 22.0
+texture = SubResource("GradientTexture2D_sakbc")
+expand_mode = 1
+
+[node name="ColorRect4" type="TextureRect" parent="Shadow"]
+z_index = -1
+offset_left = -2.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 20.0
+scale = Vector2(1, -1)
+texture = SubResource("GradientTexture2D_sakbc")
+expand_mode = 1

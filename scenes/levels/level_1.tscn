@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dqyhtuc360avi" path="res://scenes/items/wire.tscn" id="4_dr060"]
 
 [node name="Level" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_gv3ho")
 quota = {
 "lightbulb": 10,

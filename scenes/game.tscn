@@ -24,7 +24,7 @@ script = ExtResource("1_kd6lh")
 world = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World")
 timer_label = NodePath("CanvasLayer/Timer")
 performance_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/Label2")
-quota_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/QuotaItems")
+quota_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/QuotaDisplay/QuotaItems")
 quota_item_scene = ExtResource("2_qx52i")
 level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0")]
 main_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Main Menu/AnimationPlayer")
@@ -61,6 +61,18 @@ render_target_update_mode = 4
 
 [node name="World" parent="CanvasLayer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("game") instance=ExtResource("1_i4p5l")]
 game = NodePath("../../../..")
+
+[node name="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/World/QuotaDisplay" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 36.0
+offset_bottom = 23.0
+
+[node name="QuotaItems" parent="CanvasLayer/SubViewportContainer/SubViewport/World/QuotaDisplay" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 135.0
 
 [node name="Timer" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
