@@ -106,7 +106,7 @@ func update_placing():
 		if tilemap.has(tile_location) && !tilemap[tile_location].can_be_replaced:
 			continue
 
-		if tile_location.x < -5 || tile_location.x >= 5 || tile_location.y < -5 || tile_location.y >= 5:
+		if tile_location.x < -4 || tile_location.x >= 4 || tile_location.y < -4 || tile_location.y >= 4:
 			continue
 
 		var tile = conveyor_scene.instantiate()

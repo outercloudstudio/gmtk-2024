@@ -8,8 +8,8 @@ size = Vector2(9, 12)
 
 [node name="Battery" type="CharacterBody2D"]
 z_index = 1
-collision_layer = 0
-collision_mask = 0
+collision_layer = 2
+collision_mask = 2
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_r6xnn")

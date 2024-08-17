@@ -1,9 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://crehmacysesud"]
+[gd_scene load_steps=10 format=3 uid="uid://crehmacysesud"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_jixw1"]
 [ext_resource type="Script" path="res://scripts/item_spawner.gd" id="3_kuivt"]
 [ext_resource type="Script" path="res://scripts/tile.gd" id="3_sw0ft"]
 [ext_resource type="PackedScene" uid="uid://c7ym0w7fg023r" path="res://scenes/items/rod.tscn" id="4_y6yrs"]
+[ext_resource type="Script" path="res://scenes/move_area.gd" id="5_gfjjc"]
+
+[sub_resource type="Animation" id="Animation_podfa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 32, 16, 16)]
+}
 
 [sub_resource type="Animation" id="Animation_u6les"]
 resource_name = "conveyor"
@@ -23,26 +39,14 @@ tracks/0/keys = {
 "values": [Rect2(0, 32, 16, 16), Rect2(16, 32, 16, 16), Rect2(32, 32, 16, 16), Rect2(0, 48, 16, 16)]
 }
 
-[sub_resource type="Animation" id="Animation_podfa"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 32, 16, 16)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bdqcj"]
 _data = {
 "RESET": SubResource("Animation_podfa"),
 "conveyor": SubResource("Animation_u6les")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pa8e"]
+size = Vector2(16, 16)
 
 [node name="Spawner" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
 script = ExtResource("3_sw0ft")
@@ -66,6 +70,17 @@ libraries = {
 "": SubResource("AnimationLibrary_bdqcj")
 }
 autoplay = "conveyor"
+
+[node name="MoveArea" type="Area2D" parent="RotationOrigin" node_paths=PackedStringArray("tile")]
+process_priority = -1
+process_physics_priority = -1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_gfjjc")
+tile = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RotationOrigin/MoveArea"]
+shape = SubResource("RectangleShape2D_6pa8e")
 
 [node name="Border" type="Sprite2D" parent="."]
 z_index = -2

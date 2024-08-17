@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkt44rix7wkpr"]
 
-[ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/accepter.tscn" id="1_fhm3t"]
+[ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="1_fhm3t"]
 [ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="2_0apis"]
 
 [node name="Level" type="Node2D"]
@@ -12,6 +12,6 @@ place_on_start_direction = Vector2i(-1, 0)
 can_be_replaced = false
 
 [node name="Spawner" parent="." instance=ExtResource("2_0apis")]
-position = Vector2(-32, -16)
+position = Vector2(-64, -16)
 place_on_start = true
 can_be_replaced = false

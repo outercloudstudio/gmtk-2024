@@ -22,14 +22,14 @@ func get_tile():
 	return _world.tilemap[tile_location]
 
 
+func fixed_lerp(a, b, decay: float, delta: float):
+	return b + (a - b) * exp(-decay * delta)
+
+
 func _physics_process(delta: float) -> void:
-	if global_position == _target:
-		var tile = get_tile()
-
-		if tile != null:
-			_target = global_position + Vector2(tile.direction) * 16
-
-	global_position = global_position.move_toward(_target, 50 * delta)
-
 	if get_tile() == null:
 		queue_free()
+
+	move_and_slide()
+
+	velocity = fixed_lerp(velocity, Vector2.ZERO, 6, delta)

@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0i841hejuca6"]
+
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_ckrhm"]
+[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_oc1xf"]
+[ext_resource type="Script" path="res://scenes/collect_area.gd" id="3_1bf2t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agt5h"]
+size = Vector2(16, 16)
+
+[node name="Collector" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
+script = ExtResource("1_ckrhm")
+rotation_origin = NodePath("RotationOrigin")
+
+[node name="RotationOrigin" type="Node2D" parent="."]
+position = Vector2(8, 8)
+
+[node name="Sprite" type="Sprite2D" parent="RotationOrigin" groups=["camera_snapping"]]
+texture = ExtResource("2_oc1xf")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Border" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(8, 7)
+texture = ExtResource("2_oc1xf")
+region_enabled = true
+region_rect = Rect2(62, 30, 20, 18)
+
+[node name="Bottom" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(8, 17)
+texture = ExtResource("2_oc1xf")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 2)
+
+[node name="BorderBottom" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(8, 17)
+texture = ExtResource("2_oc1xf")
+region_enabled = true
+region_rect = Rect2(62, 64, 20, 2)
+
+[node name="Snap" type="Node2D" parent="."]
+position = Vector2(8, 8)
+
+[node name="Sprite2" type="Sprite2D" parent="Snap" groups=["camera_snapping"]]
+texture = ExtResource("2_oc1xf")
+region_enabled = true
+region_rect = Rect2(82, 2, 12, 12)
+
+[node name="CollectArea" type="Area2D" parent="." node_paths=PackedStringArray("tile")]
+process_priority = 1
+process_physics_priority = 1
+position = Vector2(8, 8)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_1bf2t")
+tile = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("RectangleShape2D_agt5h")
