@@ -63,11 +63,11 @@ func _physics_process(delta: float) -> void:
 
 			item.velocity = velocity.normalized() * 50
 
-	if len(process_queue) > 1:
+	if len(process_queue) > 0:
 		while !is_instance_valid(process_queue[0]):
 			process_queue.remove_at(0)
 
-	if len(process_queue) > 1 && len(items_to_output) == 0:
+	if len(process_queue) > 0 && len(items_to_output) == 0:
 		var possible_recipes = [
 			{ 
 				ingredients = ["rod", "wire"],

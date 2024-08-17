@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=17 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://dkwsiub2vom3j" path="res://scenes/items/sheet.tscn" id="6_4vqmn"]
 [ext_resource type="PackedScene" uid="uid://da04sxttxh32p" path="res://scenes/items/terminal.tscn" id="8_85gxy"]
 [ext_resource type="PackedScene" uid="uid://dcjyrcih86taq" path="res://scenes/items/keyboard.tscn" id="9_nhx82"]
+[ext_resource type="PackedScene" uid="uid://klr4x8neu77" path="res://scenes/items/scrap.tscn" id="13_e3kum"]
+[ext_resource type="PackedScene" uid="uid://c5cmco0uh1kg5" path="res://scenes/items/copper_bit.tscn" id="14_6we5e"]
+[ext_resource type="PackedScene" uid="uid://cq6retbue18cv" path="res://scenes/items/plastic_blob.tscn" id="15_a2wpi"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_label", "performance_label", "quota_holder", "main_menu_animation_player", "results_menu_animation_player")]
 texture_filter = 1
@@ -33,6 +36,9 @@ sheet_scene = ExtResource("6_4vqmn")
 button_scene = ExtResource("3_mpqfi")
 terminal_scene = ExtResource("8_85gxy")
 keyboard_scene = ExtResource("9_nhx82")
+scrap_scene = ExtResource("13_e3kum")
+copper_bit_scene = ExtResource("14_6we5e")
+plastic_blob_bit_scene = ExtResource("15_a2wpi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
