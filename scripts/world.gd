@@ -19,7 +19,7 @@ var tilemap = {}
 
 var preview_tiles = []
 
-var _level: Node2D
+var _level: Level
 
 var _selected_tile: PackedScene
 
@@ -37,6 +37,12 @@ func start():
 	_level = level_scene.instantiate()
 
 	add_child(_level)
+
+	Static.quota = _level.quota
+
+	Static.collected_quota = {}
+	for identifier in Static.quota:
+		Static.collected_quota[identifier] = 0
 	
 
 func _input(event: InputEvent) -> void:

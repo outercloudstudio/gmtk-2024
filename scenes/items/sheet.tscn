@@ -15,11 +15,9 @@ script = ExtResource("1_2pyqq")
 identifier = "sheet"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_ph1tp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["camera_snapping"]]
 texture = ExtResource("2_go621")
-offset = Vector2(0.5, 0.5)
 region_enabled = true
 region_rect = Rect2(89, 71, 20, 21)

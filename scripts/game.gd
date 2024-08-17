@@ -1,9 +1,11 @@
 extends Node2D
+class_name Game
 
 
 @export var world: World
 @export var timer_label: Label
-@export var quota_label: Label
+@export var quota_holder: Control
+@export var quota_item_scene: PackedScene
 
 @export_category("Items")
 @export var rod_scene: PackedScene
@@ -17,7 +19,6 @@ extends Node2D
 
 
 var round_timer = 60
-var quota = 40
 
 
 func _enter_tree() -> void:
@@ -31,7 +32,7 @@ func _enter_tree() -> void:
 		terminal = terminal_scene,
 		keyboard = keyboard_scene,
 	}
-	
+
 
 func _ready() -> void:
 	start()
@@ -41,7 +42,7 @@ func _process(delta: float) -> void:
 	round_timer -= delta
 
 	timer_label.text = str(floor(round_timer))
-	quota_label.text = str(Static.collected_quota) + " / " + str(quota)
+	update_quota_display()
 
 	if round_timer <= 0:
 		round_timer = 60
@@ -58,3 +59,19 @@ func cleanup():
 
 func start():
 	world.start()
+
+
+func update_quota_display():
+	for child in quota_holder.get_children():
+		child.queue_free()
+
+	for identifier in Static.quota:
+		var quota_item: QuotaItem = quota_item_scene.instantiate()
+		quota_holder.add_child(quota_item)
+
+		quota_item.identifier = identifier
+		quota_item.amount = Static.quota[identifier] - Static.collected_quota[identifier]
+
+		quota_item.setup()
+
+	pass

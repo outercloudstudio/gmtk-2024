@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg1h01f2r2skm"]
+
+[ext_resource type="Script" path="res://scenes/quota_item.gd" id="1_fva78"]
+[ext_resource type="FontFile" uid="uid://de0tcxurw6m1g" path="res://monogram.ttf" id="1_vqn5n"]
+[ext_resource type="Texture2D" uid="uid://dlb7nv028m0m7" path="res://sprites/sprite_terminal.tres" id="2_dvf8y"]
+[ext_resource type="Texture2D" uid="uid://bw2x1b3i22hns" path="res://sprites/sprite_sheet.tres" id="3_1k3a6"]
+[ext_resource type="Texture2D" uid="uid://cy761bw4rwjov" path="res://sprites/sprite_lightbulb.tres" id="3_wdj8e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ux6ee"]
+font = ExtResource("1_vqn5n")
+
+[node name="QuotaItem" type="Control"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fva78")
+texture_map = {
+"lightbulb": ExtResource("3_wdj8e"),
+"rod": ExtResource("2_dvf8y"),
+"sheet": ExtResource("3_1k3a6")
+}
+
+[node name="Control" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 2
+texture = ExtResource("3_wdj8e")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -5.0
+offset_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "x10"
+label_settings = SubResource("LabelSettings_ux6ee")
+vertical_alignment = 1

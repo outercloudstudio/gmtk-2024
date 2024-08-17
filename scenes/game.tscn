@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=12 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
 [ext_resource type="PackedScene" uid="uid://c7ym0w7fg023r" path="res://scenes/items/rod.tscn" id="2_5xd64"]
 [ext_resource type="PackedScene" uid="uid://b4j40uckcw8c6" path="res://scenes/items/battery.tscn" id="2_527w3"]
+[ext_resource type="PackedScene" uid="uid://dg1h01f2r2skm" path="res://scenes/quota_item.tscn" id="2_qx52i"]
 [ext_resource type="PackedScene" uid="uid://dqyhtuc360avi" path="res://scenes/items/wire.tscn" id="3_bim1w"]
 [ext_resource type="PackedScene" uid="uid://cuh04ynvla5pn" path="res://scenes/items/button.tscn" id="3_mpqfi"]
 [ext_resource type="PackedScene" uid="uid://brkrslby7c8rj" path="res://scenes/items/lightbulb.tscn" id="5_wqxjt"]
@@ -11,12 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://da04sxttxh32p" path="res://scenes/items/terminal.tscn" id="8_85gxy"]
 [ext_resource type="PackedScene" uid="uid://dcjyrcih86taq" path="res://scenes/items/keyboard.tscn" id="9_nhx82"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_label", "quota_label")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_label", "quota_holder")]
 texture_filter = 1
 script = ExtResource("1_kd6lh")
 world = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World")
 timer_label = NodePath("CanvasLayer/Timer")
-quota_label = NodePath("CanvasLayer/Quota")
+quota_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/QuotaItems")
+quota_item_scene = ExtResource("2_qx52i")
 rod_scene = ExtResource("2_5xd64")
 wire_scene = ExtResource("3_bim1w")
 battery_scene = ExtResource("2_527w3")
@@ -57,14 +59,4 @@ grow_horizontal = 2
 text = "123"
 horizontal_alignment = 1
 
-[node name="Quota" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.0
-offset_top = 22.0
-offset_right = 105.0
-offset_bottom = 45.0
-grow_horizontal = 2
-text = "123"
-horizontal_alignment = 1
+[editable path="CanvasLayer/SubViewportContainer/SubViewport/World"]

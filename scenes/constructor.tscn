@@ -53,7 +53,6 @@ region_enabled = true
 region_rect = Rect2(62, 64, 20, 2)
 
 [node name="Snap" type="Node2D" parent="."]
-visible = false
 position = Vector2(8, 5)
 
 [node name="Cover" type="Sprite2D" parent="Snap" groups=["camera_snapping"]]
