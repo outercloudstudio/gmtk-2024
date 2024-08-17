@@ -79,8 +79,6 @@ func update_placing():
 	if _selected_tile == null:
 		var tile_location: Vector2i = Vector2i(floor(target / 16))
 
-		print(tile_location)
-
 		if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
 			tilemap[tile_location].queue_free()
 			tilemap.erase(tile_location)

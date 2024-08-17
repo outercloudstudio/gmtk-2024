@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://brkrslby7c8rj"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_r6xnn"]
+[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_55uf2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eiyny"]
+size = Vector2(9, 12)
+
+[node name="Battery" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_r6xnn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_eiyny")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["camera_snapping"]]
+texture = ExtResource("2_55uf2")
+offset = Vector2(0.5, 0)
+region_enabled = true
+region_rect = Rect2(13, 79, 9, 12)

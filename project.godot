@@ -23,6 +23,10 @@ Static="*res://scripts/static.gd"
 
 project/assembly_name="GMTK 2024"
 
+[global_group]
+
+camera_snapping=""
+
 [input]
 
 place={
@@ -34,3 +38,4 @@ place={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.0784314, 0.0627451, 0.0745098, 1)
