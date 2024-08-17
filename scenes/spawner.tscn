@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_jixw1"]
 [ext_resource type="Script" path="res://scripts/item_spawner.gd" id="3_kuivt"]
 [ext_resource type="Script" path="res://scripts/tile.gd" id="3_sw0ft"]
-[ext_resource type="PackedScene" uid="uid://c7ym0w7fg023r" path="res://scenes/apple.tscn" id="4_y6yrs"]
+[ext_resource type="PackedScene" uid="uid://c7ym0w7fg023r" path="res://scenes/items/byte.tscn" id="4_y6yrs"]
 
 [node name="Spawner" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
 script = ExtResource("3_sw0ft")
