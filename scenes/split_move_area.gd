@@ -1,5 +1,6 @@
 extends Area2D
 
+
 @export var tile: Node2D
 
 
@@ -39,6 +40,11 @@ func _physics_process(delta: float) -> void:
 	var item_move_directions = {}
 
 	for item: CharacterBody2D in get_overlapping_bodies():
+		var item_tile_position = Vector2i(floor(item.global_position / 16))
+		
+		if item_tile_position != tile_position:
+			continue
+
 		if last_item_move_directions.has(item):
 			item_move_directions[item] = last_item_move_directions[item]
 
@@ -54,11 +60,6 @@ func _physics_process(delta: float) -> void:
 			move_direction = rotate_vector_left(move_direction)
 		else:
 			move_direction = rotate_vector_right(move_direction)
-
-		var item_tile_position = Vector2i(floor(item.global_position / 16))
-
-		if item_tile_position != tile_position:
-			continue
 
 		var velocity = move_direction
 

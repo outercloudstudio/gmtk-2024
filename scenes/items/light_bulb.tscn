@@ -6,13 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eiyny"]
 size = Vector2(9, 12)
 
-[node name="Battery" type="CharacterBody2D"]
+[node name="Battery" type="CharacterBody2D" groups=["item"]]
 z_index = 1
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_r6xnn")
+identifier = "lightbulb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

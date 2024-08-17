@@ -6,7 +6,7 @@ extends Node2D
 @export var quota_label: Label
 
 
-var round_timer = 30
+var round_timer = 60
 var quota = 40
 
 
@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	quota_label.text = str(Static.collected_quota) + " / " + str(quota)
 
 	if round_timer <= 0:
-		round_timer = 30
+		round_timer = 60
 
 		cleanup()
 		start()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=12 format=4 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c1enkdsrxm1q5" path="res://scenes/splitter.tscn" id="3_4yost"]
 [ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="3_a71ki"]
 [ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="4_ac2pr"]
+[ext_resource type="PackedScene" uid="uid://cvd6dr6c3ny7" path="res://scenes/constructor.tscn" id="4_m5fe8"]
 [ext_resource type="PackedScene" uid="uid://dkt44rix7wkpr" path="res://scenes/levels/level_1.tscn" id="5_jsqkt"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="6_ihc8j"]
 
@@ -27,6 +28,7 @@ texture_filter = 1
 script = ExtResource("1_gejag")
 conveyor_scene = ExtResource("2_tssqo")
 splitter_scene = ExtResource("3_4yost")
+constructor_scene = ExtResource("4_m5fe8")
 spawner_scene = ExtResource("3_a71ki")
 accepter_scene = ExtResource("4_ac2pr")
 level_scene = ExtResource("5_jsqkt")
@@ -61,6 +63,20 @@ offset_right = 110.0
 offset_bottom = 36.0
 text = "S"
 
+[node name="ConstructorButton" type="Button" parent="."]
+offset_left = 122.0
+offset_top = -53.0
+offset_right = 153.0
+offset_bottom = -22.0
+text = "CR"
+
+[node name="DeconstructorButton" type="Button" parent="."]
+offset_left = 122.0
+offset_top = -14.0
+offset_right = 153.0
+offset_bottom = 17.0
+text = "DR"
+
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 offset_left = -70.0
 offset_top = -85.0
@@ -78,3 +94,5 @@ axis_stretch_vertical = 1
 [connection signal="pressed" from="ConveyorButton" to="." method="select_conveyor"]
 [connection signal="pressed" from="DeleteButton" to="." method="select_delete"]
 [connection signal="pressed" from="SplitterButton" to="." method="select_splitter"]
+[connection signal="pressed" from="ConstructorButton" to="." method="select_constructor"]
+[connection signal="pressed" from="DeconstructorButton" to="." method="select_deconstructor"]

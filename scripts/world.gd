@@ -4,6 +4,8 @@ class_name World
 
 @export var conveyor_scene: PackedScene
 @export var splitter_scene: PackedScene
+@export var constructor_scene: PackedScene
+@export var deconstructor_scene: PackedScene
 @export var spawner_scene: PackedScene
 @export var accepter_scene: PackedScene
 
@@ -120,13 +122,20 @@ func update_placing():
 		preview_tiles.push_back(tile)
 
 
-
 func select_conveyor():
 	_selected_tile = conveyor_scene
 
 
 func select_splitter():
 	_selected_tile = splitter_scene
+
+
+func select_constructor():
+	_selected_tile = constructor_scene
+
+
+func select_deconstructor():
+	_selected_tile = deconstructor_scene
 
 
 func select_delete():

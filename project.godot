@@ -26,6 +26,7 @@ project/assembly_name="GMTK 2024"
 [global_group]
 
 camera_snapping=""
+item=""
 
 [input]
 

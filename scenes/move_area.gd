@@ -35,14 +35,14 @@ func _physics_process(delta: float) -> void:
 		if foward == Vector2.RIGHT || foward == Vector2.LEFT:
 			if abs(item.global_position.y - global_position.y) > 1:
 				if item.global_position.y < global_position.y:
-					velocity += Vector2.DOWN
+					velocity += Vector2.DOWN * 2
 				else:
-					velocity += Vector2.UP
+					velocity += Vector2.UP * 2
 		else:
 			if abs(item.global_position.x - global_position.x) > 1:
 				if item.global_position.x < global_position.x:
-					velocity += Vector2.RIGHT
+					velocity += Vector2.RIGHT * 2
 				else:
-					velocity += Vector2.LEFT
+					velocity += Vector2.LEFT * 2
 
 		item.velocity = velocity.normalized() * 50

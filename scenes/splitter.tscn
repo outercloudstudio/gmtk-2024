@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
 size = Vector2(16, 16)
 
-[node name="Conveyer" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
+[node name="Splitter" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
 script = ExtResource("1_8boq8")
 rotation_origin = NodePath("RotationOrigin")
 

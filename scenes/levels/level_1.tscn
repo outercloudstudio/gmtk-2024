@@ -1,17 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkt44rix7wkpr"]
+[gd_scene load_steps=5 format=3 uid="uid://dkt44rix7wkpr"]
 
 [ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="1_fhm3t"]
 [ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="2_0apis"]
+[ext_resource type="PackedScene" uid="uid://b4j40uckcw8c6" path="res://scenes/items/battery.tscn" id="3_ddoj3"]
+[ext_resource type="PackedScene" uid="uid://dqyhtuc360avi" path="res://scenes/items/wire.tscn" id="4_dr060"]
 
 [node name="Level" type="Node2D"]
 
 [node name="Accepter" parent="." instance=ExtResource("1_fhm3t")]
-position = Vector2(32, 16)
+position = Vector2(32, -16)
 place_on_start = true
-place_on_start_direction = Vector2i(-1, 0)
 can_be_replaced = false
 
 [node name="Spawner" parent="." instance=ExtResource("2_0apis")]
-position = Vector2(-64, -16)
+position = Vector2(-48, -48)
 place_on_start = true
 can_be_replaced = false
+
+[node name="Spawner2" parent="." instance=ExtResource("2_0apis")]
+position = Vector2(-48, -16)
+place_on_start = true
+can_be_replaced = false
+
+[node name="ItemSpawner" parent="Spawner2" index="0"]
+item_scene = ExtResource("3_ddoj3")
+
+[node name="Spawner3" parent="." instance=ExtResource("2_0apis")]
+position = Vector2(-48, 16)
+place_on_start = true
+can_be_replaced = false
+
+[node name="ItemSpawner" parent="Spawner3" index="0"]
+item_scene = ExtResource("4_dr060")
+
+[editable path="Spawner"]
+[editable path="Spawner2"]
+[editable path="Spawner3"]

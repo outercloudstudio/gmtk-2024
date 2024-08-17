@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 
+@export var identifier: String
+
+
 var _world: World
 var _target: Vector2
 
