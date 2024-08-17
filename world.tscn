@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://br8dswv6ug16q"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_gejag"]
+[ext_resource type="PackedScene" uid="uid://dvsr0owx3rnh7" path="res://conveyer.tscn" id="2_tssqo"]
+
+[node name="World" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_gejag")
+conveyor_scene = ExtResource("2_tssqo")
+
+[node name="Camera2D" type="Camera2D" parent="."]

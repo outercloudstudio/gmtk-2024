@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvsr0owx3rnh7"]
+
+[ext_resource type="Script" path="res://conveyor.gd" id="1_0h8bq"]
+[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_rqyjv"]
+
+[node name="Conveyer" type="Node2D" node_paths=PackedStringArray("rotation_origin", "forward_sprite", "right_sprite", "left_sprite")]
+script = ExtResource("1_0h8bq")
+rotation_origin = NodePath("RotationOrigin")
+forward_sprite = NodePath("RotationOrigin/FowardSprite")
+right_sprite = NodePath("RotationOrigin/RightSprite")
+left_sprite = NodePath("RotationOrigin/LeftSprite")
+
+[node name="RotationOrigin" type="Node2D" parent="."]
+position = Vector2(8, 8)
+
+[node name="FowardSprite" type="Sprite2D" parent="RotationOrigin"]
+texture = ExtResource("1_rqyjv")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="RightSprite" type="Sprite2D" parent="RotationOrigin"]
+visible = false
+texture = ExtResource("1_rqyjv")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+
+[node name="LeftSprite" type="Sprite2D" parent="RotationOrigin"]
+visible = false
+texture = ExtResource("1_rqyjv")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
