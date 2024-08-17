@@ -4,14 +4,14 @@ extends Node2D
 @export var item_scene: PackedScene
 
 
-var _timer = 1
+var _timer = 0.5
 
 
 func _process(delta: float) -> void:
 	_timer -= delta
 
 	if _timer <= 0:
-		_timer = 1
+		_timer = 0.5
 
 		var item = item_scene.instantiate()
 

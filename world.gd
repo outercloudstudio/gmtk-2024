@@ -3,6 +3,9 @@ class_name World
 
 
 @export var conveyor_scene: PackedScene
+@export var spawner_scene: PackedScene
+@export var accepter_scene: PackedScene
+@export var level: Node2D
 
 
 var is_placing = false
@@ -12,6 +15,53 @@ var tilemap = {}
 
 var preview_tiles = []
 
+
+func cleanup():
+	for child in level.get_children():
+		child.queue_free()
+
+	tilemap = {}
+
+	if is_placing:
+		reset_placing()
+
+
+func start():
+	var possible_place_locations = []
+
+	for x in range(-5, 5):
+		for y in range(-5, 5):
+			possible_place_locations.push_back(Vector2i(x, y))
+
+	var place_location = possible_place_locations.pick_random()
+	
+	for offset in [ Vector2i.ZERO, Vector2i(-1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, -1) ]:
+		if possible_place_locations.has(place_location + offset):
+			possible_place_locations.remove_at(possible_place_locations.find(place_location + offset))
+
+	var spawner: Node2D = spawner_scene.instantiate()
+	level.add_child(spawner)
+
+	spawner.global_position = place_location * 16
+
+	var possible_rotations = [ Vector2i.RIGHT, Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN ]
+
+	if place_location.x == -5:
+		possible_rotations.remove_at(possible_rotations.find(Vector2i.LEFT))
+
+	if place_location.x == 4:
+		possible_rotations.remove_at(possible_rotations.find(Vector2i.RIGHT))
+
+	if place_location.y == -5:
+		possible_rotations.remove_at(possible_rotations.find(Vector2i.UP))
+
+	if place_location.x == 4:
+		possible_rotations.remove_at(possible_rotations.find(Vector2i.DOWN))
+
+	spawner.setup(place_location, possible_rotations.pick_random(), self)
+
+	spawner.place()
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("place"):
@@ -70,8 +120,11 @@ func update_placing():
 		if tilemap.has(tile_location) && !tilemap[tile_location].can_be_replaced:
 			continue
 
+		if tile_location.x < -5 || tile_location.x >= 5 || tile_location.y < -5 || tile_location.y >= 5:
+			continue
+
 		var tile = conveyor_scene.instantiate()
-		add_child(tile)
+		level.add_child(tile)
 
 		tile.global_position = tile_location * 16
 

@@ -6,7 +6,7 @@ var _target: Vector2
 
 
 func _ready() -> void:
-	_world = get_parent()
+	_world = get_parent().get_parent()
 
 
 func setup():
