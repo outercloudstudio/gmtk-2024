@@ -20,6 +20,9 @@ class_name Game
 @export var button_scene: PackedScene
 @export var terminal_scene: PackedScene
 @export var keyboard_scene: PackedScene
+@export var scrap_scene: PackedScene
+@export var copper_bit_scene: PackedScene
+@export var plastic_blob_bit_scene: PackedScene
 
 var _round_timer = 60
 var _level_scene = null
@@ -34,6 +37,9 @@ func _enter_tree() -> void:
 		button = button_scene,
 		terminal = terminal_scene,
 		keyboard = keyboard_scene,
+		scrap = scrap_scene,
+		copper_bit = copper_bit_scene,
+		plastic_blob = plastic_blob_bit_scene
 	}
 
 
