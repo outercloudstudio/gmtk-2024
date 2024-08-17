@@ -3,6 +3,7 @@ class_name World
 
 
 @export var conveyor_scene: PackedScene
+@export var splitter_scene: PackedScene
 @export var spawner_scene: PackedScene
 @export var accepter_scene: PackedScene
 
@@ -109,7 +110,7 @@ func update_placing():
 		if tile_location.x < -4 || tile_location.x >= 4 || tile_location.y < -4 || tile_location.y >= 4:
 			continue
 
-		var tile = conveyor_scene.instantiate()
+		var tile = _selected_tile.instantiate()
 		_level.add_child(tile)
 
 		tile.global_position = tile_location * 16
@@ -122,6 +123,10 @@ func update_placing():
 
 func select_conveyor():
 	_selected_tile = conveyor_scene
+
+
+func select_splitter():
+	_selected_tile = splitter_scene
 
 
 func select_delete():

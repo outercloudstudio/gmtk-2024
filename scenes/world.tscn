@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=11 format=4 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
 [ext_resource type="PackedScene" uid="uid://dvsr0owx3rnh7" path="res://scenes/conveyer.tscn" id="2_tssqo"]
+[ext_resource type="PackedScene" uid="uid://c1enkdsrxm1q5" path="res://scenes/splitter.tscn" id="3_4yost"]
 [ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="3_a71ki"]
 [ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="4_ac2pr"]
 [ext_resource type="PackedScene" uid="uid://dkt44rix7wkpr" path="res://scenes/levels/level_1.tscn" id="5_jsqkt"]
@@ -25,6 +26,7 @@ sources/0 = SubResource("TileSetAtlasSource_y8w0j")
 texture_filter = 1
 script = ExtResource("1_gejag")
 conveyor_scene = ExtResource("2_tssqo")
+splitter_scene = ExtResource("3_4yost")
 spawner_scene = ExtResource("3_a71ki")
 accepter_scene = ExtResource("4_ac2pr")
 level_scene = ExtResource("5_jsqkt")
@@ -40,17 +42,24 @@ tile_set = SubResource("TileSet_ckam4")
 
 [node name="ConveyorButton" type="Button" parent="."]
 offset_left = 79.0
-offset_top = -36.0
+offset_top = -78.0
 offset_right = 110.0
-offset_bottom = -5.0
+offset_bottom = -47.0
 text = "C"
 
 [node name="DeleteButton" type="Button" parent="."]
 offset_left = 79.0
+offset_top = -37.0
+offset_right = 110.0
+offset_bottom = -6.0
+text = "X"
+
+[node name="SplitterButton" type="Button" parent="."]
+offset_left = 79.0
 offset_top = 5.0
 offset_right = 110.0
 offset_bottom = 36.0
-text = "X"
+text = "S"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 offset_left = -70.0
@@ -68,3 +77,4 @@ axis_stretch_vertical = 1
 
 [connection signal="pressed" from="ConveyorButton" to="." method="select_conveyor"]
 [connection signal="pressed" from="DeleteButton" to="." method="select_delete"]
+[connection signal="pressed" from="SplitterButton" to="." method="select_splitter"]

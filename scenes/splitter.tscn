@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1enkdsrxm1q5"]
+
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_8boq8"]
+[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_phmuw"]
+[ext_resource type="Script" path="res://scenes/split_move_area.gd" id="3_yk8ir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
+size = Vector2(16, 16)
+
+[node name="Conveyer" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
+script = ExtResource("1_8boq8")
+rotation_origin = NodePath("RotationOrigin")
+
+[node name="RotationOrigin" type="Node2D" parent="."]
+position = Vector2(8, 8)
+
+[node name="Sprite" type="Sprite2D" parent="RotationOrigin" groups=["camera_snapping"]]
+texture = ExtResource("2_phmuw")
+region_enabled = true
+region_rect = Rect2(144, 64, 16, 16)
+
+[node name="MoveArea" type="Area2D" parent="RotationOrigin" node_paths=PackedStringArray("tile")]
+process_priority = -1
+process_physics_priority = -1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_yk8ir")
+tile = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RotationOrigin/MoveArea"]
+shape = SubResource("RectangleShape2D_c2n17")
+debug_color = Color(0, 0.6, 0.701961, 0.113725)
+
+[node name="Border" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(8, 7)
+texture = ExtResource("2_phmuw")
+region_enabled = true
+region_rect = Rect2(62, 30, 20, 18)
+
+[node name="Bottom" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(8, 17)
+texture = ExtResource("2_phmuw")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 2)
+
+[node name="BorderBottom" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(8, 17)
+texture = ExtResource("2_phmuw")
+region_enabled = true
+region_rect = Rect2(62, 64, 20, 2)
