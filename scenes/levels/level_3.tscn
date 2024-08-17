@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvj7clp1sgar8"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_2vxi8"]
-[ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="2_cfw1s"]
-[ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="3_dy42f"]
+[ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/tiles/collector.tscn" id="2_cfw1s"]
+[ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/tiles/spawner.tscn" id="3_dy42f"]
 [ext_resource type="PackedScene" uid="uid://b4j40uckcw8c6" path="res://scenes/items/battery.tscn" id="4_lsm30"]
 [ext_resource type="PackedScene" uid="uid://dkwsiub2vom3j" path="res://scenes/items/sheet.tscn" id="4_req1j"]
 

@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
-[ext_resource type="PackedScene" uid="uid://dvsr0owx3rnh7" path="res://scenes/conveyer.tscn" id="2_tssqo"]
-[ext_resource type="PackedScene" uid="uid://c1enkdsrxm1q5" path="res://scenes/splitter.tscn" id="3_4yost"]
-[ext_resource type="PackedScene" uid="uid://cvd6dr6c3ny7" path="res://scenes/constructor.tscn" id="4_m5fe8"]
-[ext_resource type="PackedScene" uid="uid://cwksc4ydug47u" path="res://scenes/deconstructor.tscn" id="5_v7qm3"]
+[ext_resource type="PackedScene" uid="uid://dvsr0owx3rnh7" path="res://scenes/tiles/conveyer.tscn" id="2_tssqo"]
+[ext_resource type="PackedScene" uid="uid://c1enkdsrxm1q5" path="res://scenes/tiles/splitter.tscn" id="3_4yost"]
+[ext_resource type="PackedScene" uid="uid://cvd6dr6c3ny7" path="res://scenes/tiles/constructor.tscn" id="4_m5fe8"]
+[ext_resource type="PackedScene" uid="uid://cwksc4ydug47u" path="res://scenes/tiles/deconstructor.tscn" id="5_v7qm3"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="6_ihc8j"]
 [ext_resource type="Shader" path="res://background.gdshader" id="7_pgx5q"]
 [ext_resource type="FontFile" uid="uid://de0tcxurw6m1g" path="res://monogram.ttf" id="10_ajyt0"]
@@ -251,7 +251,7 @@ position = Vector2(0, -8)
 script = ExtResource("6_ihc8j")
 
 [node name="MenuViewArea" type="Control" parent="."]
-z_index = 10
+z_index = 100
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0

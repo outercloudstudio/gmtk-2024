@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1enkdsrxm1q5"]
+[gd_scene load_steps=10 format=3 uid="uid://c1enkdsrxm1q5"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_8boq8"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_phmuw"]
 [ext_resource type="Script" path="res://scripts/split_move_area.gd" id="3_yk8ir"]
+[ext_resource type="Script" path="res://scripts/random_wear.gd" id="4_j8jo2"]
+[ext_resource type="PackedScene" uid="uid://hf54qypoaanr" path="res://scenes/smoke.tscn" id="5_0vkel"]
+[ext_resource type="PackedScene" uid="uid://bdkkpn2spjl74" path="res://scenes/explosion.tscn" id="6_ylihe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
 size = Vector2(16, 16)
@@ -82,3 +85,9 @@ offset_bottom = 20.0
 scale = Vector2(1, -1)
 texture = SubResource("GradientTexture2D_8djw0")
 expand_mode = 1
+
+[node name="RandomWear" type="Node2D" parent="."]
+position = Vector2(8, 8)
+script = ExtResource("4_j8jo2")
+smoke_scene = ExtResource("5_0vkel")
+explosion_scene = ExtResource("6_ylihe")
