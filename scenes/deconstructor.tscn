@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_n02rf"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_m211n"]
-[ext_resource type="Script" path="res://scripts/constuctor_move_area.gd" id="3_uwuwc"]
+[ext_resource type="Script" path="res://scripts/deconstructor_move_area.gd" id="3_xa842"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
 size = Vector2(16, 16)
 
-[node name="Constructor" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
+[node name="Deconstructor" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
 script = ExtResource("1_n02rf")
 rotation_origin = NodePath("RotationOrigin")
 
@@ -24,7 +24,7 @@ process_priority = -1
 process_physics_priority = -1
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("3_uwuwc")
+script = ExtResource("3_xa842")
 tile = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RotationOrigin/MoveArea"]
@@ -60,4 +60,4 @@ z_index = 5
 texture = ExtResource("2_m211n")
 offset = Vector2(0, 0.5)
 region_enabled = true
-region_rect = Rect2(160, 27, 16, 21)
+region_rect = Rect2(128, 27, 16, 21)

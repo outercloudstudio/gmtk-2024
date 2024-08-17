@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=4 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=21 format=4 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
 [ext_resource type="PackedScene" uid="uid://dvsr0owx3rnh7" path="res://scenes/conveyer.tscn" id="2_tssqo"]
 [ext_resource type="PackedScene" uid="uid://c1enkdsrxm1q5" path="res://scenes/splitter.tscn" id="3_4yost"]
 [ext_resource type="PackedScene" uid="uid://cvd6dr6c3ny7" path="res://scenes/constructor.tscn" id="4_m5fe8"]
+[ext_resource type="PackedScene" uid="uid://cwksc4ydug47u" path="res://scenes/deconstructor.tscn" id="5_v7qm3"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="6_ihc8j"]
 [ext_resource type="FontFile" uid="uid://de0tcxurw6m1g" path="res://monogram.ttf" id="10_ajyt0"]
 
@@ -136,6 +137,7 @@ script = ExtResource("1_gejag")
 conveyor_scene = ExtResource("2_tssqo")
 splitter_scene = ExtResource("3_4yost")
 constructor_scene = ExtResource("4_m5fe8")
+deconstructor_scene = ExtResource("5_v7qm3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_priority = 1

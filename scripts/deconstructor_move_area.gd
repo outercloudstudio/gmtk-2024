@@ -70,46 +70,54 @@ func _physics_process(delta: float) -> void:
 	if len(process_queue) > 0 && len(items_to_output) == 0:
 		var possible_recipes = [
 			{ 
-				ingredients = ["rod", "wire"],
-				result = ["sheet", "scrap"]
+				ingredients = ["sheet"],
+				result = ["rod", "rod"]
 			},
 			{ 
-				ingredients = ["rod", "battery"],
-				result = ["lightbulb", "copper_bit"]
+				ingredients = ["lightbulb"],
+				result = ["rod", "battery"],
 			},
 			{ 
-				ingredients = ["battery", "sheet"],
-				result = ["button", "scrap"]
+				ingredients = ["button"],
+				result = ["battery", "sheet"],
 			},
 			{ 
-				ingredients = ["sheet", "lightbulb"],
-				result = ["terminal", "plastic_blob"]
+				ingredients = ["terminal"],
+				result = ["sheet", "lightbulb"],
 			},
 			{ 
-				ingredients = ["sheet", "button"],
-				result = ["keyboard", "plastic_blob"]
+				ingredients = ["keyboard"],
+				result = ["sheet", "button"],
 			},
 			{ 
-				ingredients = ["scrap", "scrap"],
-				result = ["rod"]
+				ingredients = ["rod"],
+				result = ["scrap", "scrap"],
 			},
 			{ 
-				ingredients = ["copper_bit", "copper_bit"],
-				result = ["battery"]
+				ingredients = ["battery"],
+				result = ["copper_bit", "copper_bit"],
 			},
 		]
 
-		var first_ingredient = process_queue[0].identifier
-		var second_ingredient = process_queue[1].identifier
-
 		var result = null
+		var items_consumed = 0
 
 		for recipe in possible_recipes:
-			if recipe.ingredients.has(first_ingredient):
-				recipe.ingredients.remove_at(recipe.ingredients.find(first_ingredient))
+			items_consumed = 0
 
-			if recipe.ingredients.has(second_ingredient):
-				recipe.ingredients.remove_at(recipe.ingredients.find(second_ingredient))
+			var possible_recipe_items = []
+
+			if len(recipe.ingredients) > len(process_queue):
+				continue
+
+			for index in range(len(recipe.ingredients)):
+				possible_recipe_items.push_back(process_queue[index])
+
+			for item in possible_recipe_items:
+				if recipe.ingredients.has(item.identifier):
+					recipe.ingredients.remove_at(recipe.ingredients.find(item.identifier))
+
+					items_consumed += 1
 
 			if len(recipe.ingredients) == 0:
 				result = recipe.result
@@ -117,10 +125,9 @@ func _physics_process(delta: float) -> void:
 				break
 
 		if result != null:
-			process_queue[0].queue_free()
-			process_queue.remove_at(0)
-			process_queue[0].queue_free()
-			process_queue.remove_at(0)
+			for i in range(items_consumed):
+				process_queue[0].queue_free()
+				process_queue.remove_at(0)
 
 			items_to_output = result
 		else:
