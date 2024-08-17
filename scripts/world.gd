@@ -2,26 +2,36 @@ extends Node2D
 class_name World
 
 
+@export var game: Game
 @export var conveyor_scene: PackedScene
 @export var splitter_scene: PackedScene
 @export var constructor_scene: PackedScene
 @export var deconstructor_scene: PackedScene
-@export var spawner_scene: PackedScene
-@export var accepter_scene: PackedScene
-
-@export var level_scene: PackedScene
 
 
 var is_placing = false
 var start_placing_position: Vector2
-
 var tilemap = {}
-
 var preview_tiles = []
-
 var _level: Level
-
 var _selected_tile: PackedScene
+
+
+func _ready() -> void:
+	_selected_tile = conveyor_scene
+
+
+func _process(delta: float) -> void:
+	if is_placing:
+		update_placing()
+
+
+func start(level_scene: PackedScene):
+	_level = level_scene.instantiate()
+
+	add_child(_level)
+
+	return _level
 
 
 func cleanup():
@@ -31,21 +41,12 @@ func cleanup():
 
 	if is_placing:
 		reset_placing()
-
-
-func start():
-	_level = level_scene.instantiate()
-
-	add_child(_level)
-
-	Static.quota = _level.quota
-
-	Static.collected_quota = {}
-	for identifier in Static.quota:
-		Static.collected_quota[identifier] = 0
 	
 
 func _input(event: InputEvent) -> void:
+	if Static.state != "play":
+		return
+
 	if event.is_action_pressed("place"):
 		start_placing()
 
@@ -66,15 +67,6 @@ func reset_placing():
 		tile.place()
 
 	preview_tiles = []
-
-
-func _ready() -> void:
-	_selected_tile = conveyor_scene
-
-
-func _process(delta: float) -> void:
-	if is_placing:
-		update_placing()
 
 
 func update_placing():
@@ -146,3 +138,15 @@ func select_deconstructor():
 
 func select_delete():
 	_selected_tile = null
+
+
+func start_game():
+	game.start()
+
+
+func restart():
+	game.restart()
+
+
+func next():
+	game.next()

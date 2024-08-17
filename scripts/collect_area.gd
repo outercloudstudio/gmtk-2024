@@ -13,7 +13,15 @@ func _physics_process(delta: float) -> void:
 		if item_tile_position != tile_position:
 			continue
 
-		if Static.collected_quota[item.identifier] < Static.quota[item.identifier]:
-			Static.collected_quota[item.identifier] += 1
+		if Static.quota.has(item.identifier):
+			if Static.collected_quota[item.identifier] < Static.quota[item.identifier]:
+				Static.collected_quota[item.identifier] += 1
+
+			Static.score += 100
+		else:
+			Static.score -= 50
+
+		if Static.score < 0:
+			Static.score = 0
 
 		item.queue_free()

@@ -1,13 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=20 format=4 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
 [ext_resource type="PackedScene" uid="uid://dvsr0owx3rnh7" path="res://scenes/conveyer.tscn" id="2_tssqo"]
 [ext_resource type="PackedScene" uid="uid://c1enkdsrxm1q5" path="res://scenes/splitter.tscn" id="3_4yost"]
-[ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="3_a71ki"]
-[ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="4_ac2pr"]
 [ext_resource type="PackedScene" uid="uid://cvd6dr6c3ny7" path="res://scenes/constructor.tscn" id="4_m5fe8"]
-[ext_resource type="PackedScene" uid="uid://dkt44rix7wkpr" path="res://scenes/levels/level_1.tscn" id="5_jsqkt"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="6_ihc8j"]
 [ext_resource type="FontFile" uid="uid://de0tcxurw6m1g" path="res://monogram.ttf" id="10_ajyt0"]
 
@@ -27,6 +24,109 @@ sources/0 = SubResource("TileSetAtlasSource_y8w0j")
 [sub_resource type="LabelSettings" id="LabelSettings_0381h"]
 font = ExtResource("10_ajyt0")
 
+[sub_resource type="Animation" id="Animation_luwcm"]
+resource_name = "show"
+length = 0.5
+step = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-160, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_36yyt"]
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_fxq6c"]
+resource_name = "hide"
+length = 0.5
+step = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -160, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ch30j"]
+_data = {
+"RESET": SubResource("Animation_36yyt"),
+"hide": SubResource("Animation_fxq6c"),
+"show": SubResource("Animation_luwcm")
+}
+
+[sub_resource type="Animation" id="Animation_24c80"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-160, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_k3n4s"]
+resource_name = "hide"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -160, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_oh1ek"]
+resource_name = "RESET"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-160, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jddf2"]
+_data = {
+"RESET": SubResource("Animation_oh1ek"),
+"hide": SubResource("Animation_k3n4s"),
+"show": SubResource("Animation_24c80")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_enl0o"]
 font = ExtResource("10_ajyt0")
 
@@ -36,9 +136,6 @@ script = ExtResource("1_gejag")
 conveyor_scene = ExtResource("2_tssqo")
 splitter_scene = ExtResource("3_4yost")
 constructor_scene = ExtResource("4_m5fe8")
-spawner_scene = ExtResource("3_a71ki")
-accepter_scene = ExtResource("4_ac2pr")
-level_scene = ExtResource("5_jsqkt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_priority = 1
@@ -86,6 +183,7 @@ offset_bottom = 74.0
 text = "DR"
 
 [node name="MenuViewArea" type="Control" parent="."]
+z_index = 10
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -94,8 +192,15 @@ offset_top = -79.0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="ColorRect" type="ColorRect" parent="MenuViewArea"]
-visible = false
+[node name="Main Menu" type="Control" parent="MenuViewArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MenuViewArea/Main Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,32 +209,124 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0235294, 0.0235294, 0.0313726, 1)
 
-[node name="Label" type="Label" parent="MenuViewArea/ColorRect"]
+[node name="Label" type="Label" parent="MenuViewArea/Main Menu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -30.0
+offset_top = 24.0
 offset_right = 30.0
-offset_bottom = 13.0
+offset_bottom = 37.0
 grow_horizontal = 2
-text = "Your Quota:"
+text = "My Game"
 label_settings = SubResource("LabelSettings_0381h")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="QuotaItems" type="HFlowContainer" parent="MenuViewArea/ColorRect"]
+[node name="PlayButton" type="Button" parent="MenuViewArea/Main Menu"]
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -53.5
-offset_bottom = 7.5
+offset_left = -20.5
+offset_top = -15.5
+offset_right = 20.5
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
-last_wrap_alignment = 2
+text = "Play"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuViewArea/Main Menu"]
+libraries = {
+"": SubResource("AnimationLibrary_ch30j")
+}
+
+[node name="Results Menu" type="Control" parent="MenuViewArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0235294, 0.0235294, 0.0313726, 1)
+
+[node name="Label" type="Label" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 24.0
+offset_right = 30.0
+offset_bottom = 37.0
+grow_horizontal = 2
+text = "Results"
+label_settings = SubResource("LabelSettings_0381h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = 39.0
+offset_right = 30.0
+offset_bottom = 52.0
+grow_horizontal = 2
+text = "123"
+label_settings = SubResource("LabelSettings_0381h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -15.5
+offset_right = 20.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="NextButton" type="Button" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -15.5
+offset_right = 20.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuViewArea/Results Menu"]
+libraries = {
+"": SubResource("AnimationLibrary_jddf2")
+}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 offset_left = -70.0
@@ -165,3 +362,6 @@ offset_bottom = 68.0
 [connection signal="pressed" from="SplitterButton" to="." method="select_splitter"]
 [connection signal="pressed" from="ConstructorButton" to="." method="select_constructor"]
 [connection signal="pressed" from="DeconstructorButton" to="." method="select_deconstructor"]
+[connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton" to="." method="start_game"]
+[connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]
+[connection signal="pressed" from="MenuViewArea/Results Menu/NextButton" to="." method="next"]

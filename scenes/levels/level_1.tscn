@@ -9,8 +9,8 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gv3ho")
 quota = {
-"lightbulb": 20,
-"sheet": 40
+"lightbulb": 10,
+"sheet": 20
 }
 
 [node name="Accepter" parent="." instance=ExtResource("1_fhm3t")]

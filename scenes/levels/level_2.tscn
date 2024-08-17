@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdg5y4etjquv3"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_pfp5u"]
+[ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="2_qk600"]
+[ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="3_p4m88"]
+[ext_resource type="PackedScene" uid="uid://b4j40uckcw8c6" path="res://scenes/items/battery.tscn" id="4_an1v2"]
+[ext_resource type="PackedScene" uid="uid://dqyhtuc360avi" path="res://scenes/items/wire.tscn" id="5_lv1cx"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_pfp5u")
+quota = {
+"lightbulb": 10,
+"sheet": 20
+}
+
+[node name="Accepter" parent="." instance=ExtResource("2_qk600")]
+position = Vector2(-16, -32)
+place_on_start = true
+can_be_replaced = false
+
+[node name="Spawner" parent="." instance=ExtResource("3_p4m88")]
+position = Vector2(-48, -48)
+place_on_start = true
+can_be_replaced = false
+
+[node name="Spawner2" parent="." instance=ExtResource("3_p4m88")]
+position = Vector2(16, -48)
+place_on_start = true
+place_on_start_direction = Vector2i(-1, 0)
+can_be_replaced = false
+
+[node name="ItemSpawner" parent="Spawner2" index="0"]
+item_scene = ExtResource("4_an1v2")
+
+[node name="Spawner3" parent="." instance=ExtResource("3_p4m88")]
+position = Vector2(-16, 16)
+place_on_start = true
+place_on_start_direction = Vector2i(0, -1)
+can_be_replaced = false
+
+[node name="ItemSpawner" parent="Spawner3" index="0"]
+item_scene = ExtResource("5_lv1cx")
+
+[editable path="Spawner"]
+[editable path="Spawner2"]
+[editable path="Spawner3"]

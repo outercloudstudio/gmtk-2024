@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq6retbue18cv"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_wtjne"]
+[ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_7251t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ph1tp"]
+size = Vector2(13, 13)
+
+[node name="PlasticBlob" type="CharacterBody2D" groups=["item"]]
+z_index = 1
+collision_layer = 2
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_wtjne")
+identifier = "rod"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ph1tp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["camera_snapping"]]
+texture = ExtResource("2_7251t")
+offset = Vector2(0.5, 0.5)
+region_enabled = true
+region_rect = Rect2(0, 105, 14, 11)
