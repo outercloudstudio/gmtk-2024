@@ -3,34 +3,8 @@ extends Area2D
 
 @export var tile: Node2D
 
-@export var rod_scene: PackedScene
-@export var wire_scene: PackedScene
-@export var battery_scene: PackedScene
-@export var lightbulb_scene: PackedScene
-@export var sheet_scene: PackedScene
-@export var button_scene: PackedScene
-@export var terminal_scene: PackedScene
-@export var keyboard_scene: PackedScene
-
-
 var process_queue = []
 var last_items_to_send = []
-
-
-var items = {}
-
-
-func _ready() -> void:
-	items = {
-		rod = rod_scene,
-		wire = wire_scene,
-		battery = battery_scene,
-		lightbulb = lightbulb_scene,
-		sheet = sheet_scene,
-		button = button_scene,
-		terminal = terminal_scene,
-		keyboard = keyboard_scene,
-	}
 
 
 func rotation_to_vector(rotation: float) -> Vector2:
@@ -138,7 +112,7 @@ func _physics_process(delta: float) -> void:
 			process_queue[0].queue_free()
 			process_queue.remove_at(0)
 
-			var scene = items[result]
+			var scene = Static.items[result]
 
 			var item: Node2D = scene.instantiate()
 

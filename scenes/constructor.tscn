@@ -1,16 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvd6dr6c3ny7"]
+[gd_scene load_steps=5 format=3 uid="uid://cvd6dr6c3ny7"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_tbfce"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_38m13"]
 [ext_resource type="Script" path="res://scenes/constuctor_move_area.gd" id="3_uhan4"]
-[ext_resource type="PackedScene" uid="uid://c7ym0w7fg023r" path="res://scenes/items/rod.tscn" id="4_gw1g7"]
-[ext_resource type="PackedScene" uid="uid://dqyhtuc360avi" path="res://scenes/items/wire.tscn" id="5_xwsv7"]
-[ext_resource type="PackedScene" uid="uid://b4j40uckcw8c6" path="res://scenes/items/battery.tscn" id="6_euuxx"]
-[ext_resource type="PackedScene" uid="uid://brkrslby7c8rj" path="res://scenes/items/light_bulb.tscn" id="7_kvm78"]
-[ext_resource type="PackedScene" uid="uid://dkwsiub2vom3j" path="res://scenes/items/sheet.tscn" id="8_nr4l1"]
-[ext_resource type="PackedScene" uid="uid://cuh04ynvla5pn" path="res://scenes/items/button.tscn" id="9_3o0ys"]
-[ext_resource type="PackedScene" uid="uid://da04sxttxh32p" path="res://scenes/items/terminal.tscn" id="10_w8yu0"]
-[ext_resource type="PackedScene" uid="uid://dcjyrcih86taq" path="res://scenes/items/keyboard.tscn" id="11_ite7c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
 size = Vector2(16, 16)
@@ -34,14 +26,6 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_uhan4")
 tile = NodePath("../..")
-rod_scene = ExtResource("4_gw1g7")
-wire_scene = ExtResource("5_xwsv7")
-battery_scene = ExtResource("6_euuxx")
-lightbulb_scene = ExtResource("7_kvm78")
-sheet_scene = ExtResource("8_nr4l1")
-button_scene = ExtResource("9_3o0ys")
-terminal_scene = ExtResource("10_w8yu0")
-keyboard_scene = ExtResource("11_ite7c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RotationOrigin/MoveArea"]
 shape = SubResource("RectangleShape2D_c2n17")
