@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=18 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dkt44rix7wkpr" path="res://scenes/levels/level_1.tscn" id="3_cwbbo"]
 [ext_resource type="PackedScene" uid="uid://cuh04ynvla5pn" path="res://scenes/items/button.tscn" id="3_mpqfi"]
 [ext_resource type="PackedScene" uid="uid://bdg5y4etjquv3" path="res://scenes/levels/level_2.tscn" id="4_scvax"]
+[ext_resource type="PackedScene" uid="uid://dvj7clp1sgar8" path="res://scenes/levels/level_3.tscn" id="5_0p2e0"]
 [ext_resource type="PackedScene" uid="uid://brkrslby7c8rj" path="res://scenes/items/lightbulb.tscn" id="5_wqxjt"]
 [ext_resource type="PackedScene" uid="uid://dkwsiub2vom3j" path="res://scenes/items/sheet.tscn" id="6_4vqmn"]
 [ext_resource type="PackedScene" uid="uid://da04sxttxh32p" path="res://scenes/items/terminal.tscn" id="8_85gxy"]
@@ -25,7 +26,7 @@ timer_label = NodePath("CanvasLayer/Timer")
 performance_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/Label2")
 quota_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/QuotaItems")
 quota_item_scene = ExtResource("2_qx52i")
-level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax")]
+level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0")]
 main_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Main Menu/AnimationPlayer")
 results_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/AnimationPlayer")
 rod_scene = ExtResource("2_5xd64")

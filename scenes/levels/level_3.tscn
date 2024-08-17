@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvj7clp1sgar8"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_2vxi8"]
+[ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/collector.tscn" id="2_cfw1s"]
+[ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/spawner.tscn" id="3_dy42f"]
+[ext_resource type="PackedScene" uid="uid://b4j40uckcw8c6" path="res://scenes/items/battery.tscn" id="4_lsm30"]
+[ext_resource type="PackedScene" uid="uid://dkwsiub2vom3j" path="res://scenes/items/sheet.tscn" id="4_req1j"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_2vxi8")
+quota = {
+"lightbulb": 10,
+"sheet": 20
+}
+
+[node name="Accepter" parent="." instance=ExtResource("2_cfw1s")]
+position = Vector2(-16, -32)
+place_on_start = true
+can_be_replaced = false
+
+[node name="Spawner" parent="." instance=ExtResource("3_dy42f")]
+position = Vector2(-48, 32)
+place_on_start = true
+place_on_start_direction = Vector2i(0, -1)
+can_be_replaced = false
+
+[node name="ItemSpawner" parent="Spawner" index="0"]
+item_scene = ExtResource("4_req1j")
+
+[node name="Spawner2" parent="." instance=ExtResource("3_dy42f")]
+position = Vector2(16, 32)
+place_on_start = true
+place_on_start_direction = Vector2i(0, -1)
+can_be_replaced = false
+
+[node name="ItemSpawner" parent="Spawner2" index="0"]
+item_scene = ExtResource("4_lsm30")
+
+[editable path="Spawner"]
+[editable path="Spawner2"]

@@ -137,7 +137,7 @@ func _physics_process(delta: float) -> void:
 	produce_timer -= delta
 
 	if produce_timer <= 0 and len(items_to_output) > 0:
-		produce_timer = 0.5
+		produce_timer = 0.25
 
 		var result = items_to_output[0]
 		items_to_output.remove_at(0)
