@@ -33,6 +33,8 @@ func _process(delta: float) -> void:
 
 		spawned_smoke = true
 
+		Static.camera.shake(0.4)
+
 	if time_till_explode <= 0:
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
 		get_parent().get_parent().add_child(explosion)
@@ -42,3 +44,5 @@ func _process(delta: float) -> void:
 		explosion.emitting = true
 
 		get_parent().destroy()
+
+		Static.camera.shake(1.5)

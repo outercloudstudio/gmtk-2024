@@ -14,3 +14,5 @@ var item_levels = [
     [ "sheet", "lightbulb" ],
     [ "terminal", "button", "jeyboard" ],
 ]
+
+var camera: Camera

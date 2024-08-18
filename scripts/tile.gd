@@ -52,6 +52,8 @@ func place():
 func finish_place():
 	is_placing = false
 
+	Static.camera.shake(0.4)
+
 
 func destroy():
 	_world.tilemap.erase(_location)
