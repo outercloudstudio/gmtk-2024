@@ -96,8 +96,7 @@ func update_placing():
 
 		else:
 			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
-				tilemap[tile_location].queue_free()
-				tilemap.erase(tile_location)
+				tilemap[tile_location].destroy()
 
 				Static.camera.shake(0.4)
 

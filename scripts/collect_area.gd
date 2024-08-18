@@ -28,3 +28,10 @@ func _physics_process(delta: float) -> void:
 
 		if tile.has_node("ActivateSquashAndStretch"):
 			tile.get_node("ActivateSquashAndStretch").trigger(Vector2(1.4, 0.6), 8)
+
+		var dust_scene: PackedScene = load("res://scenes/dust.tscn")
+		var dust: GPUParticles2D = dust_scene.instantiate()
+
+		add_child(dust)
+		dust.emitting = true
+		dust.global_position = global_position

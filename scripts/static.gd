@@ -16,3 +16,5 @@ var item_levels = [
 ]
 
 var camera: Camera
+
+var audio: Audio

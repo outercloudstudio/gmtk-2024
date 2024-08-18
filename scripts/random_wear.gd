@@ -11,12 +11,15 @@ var spawned_smoke = false
 var smoke: GPUParticles2D
 
 func _ready() -> void:
-	time_till_explode = randf_range(20, 40)
+	# time_till_explode = randf_range(20, 40)
+	time_till_explode = randf_range(5, 5)
 
 	smoke = smoke_scene.instantiate()
 	get_parent().add_child.call_deferred(smoke)
 
 	smoke.emitting = false
+
+	get_parent().on_destroy.connect(destroy)
 	
 
 func repair():
@@ -31,8 +34,18 @@ func repair():
 	add_child(dust)
 	dust.emitting = true
 
+	Static.audio.stop_fire()
+
+
+func destroy():
+	if spawned_smoke:
+		Static.audio.stop_fire()
+
 
 func _process(delta: float) -> void:
+	if !get_parent().placed:
+		return
+
 	time_till_explode -= delta
 
 	if time_till_explode < 5 && !spawned_smoke:
@@ -43,6 +56,8 @@ func _process(delta: float) -> void:
 		smoke.global_position = global_position
 
 		Static.camera.shake(0.4)
+
+		Static.audio.play_fire()
 
 	if time_till_explode <= 0:
 		var explosion: GPUParticles2D = explosion_scene.instantiate()
@@ -55,3 +70,5 @@ func _process(delta: float) -> void:
 		get_parent().destroy()
 
 		Static.camera.shake(1.5)
+
+		Static.audio.play("explosion")

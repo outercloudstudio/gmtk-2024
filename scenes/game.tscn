@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=24 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
@@ -17,6 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://klr4x8neu77" path="res://scenes/items/scrap.tscn" id="13_e3kum"]
 [ext_resource type="PackedScene" uid="uid://c5cmco0uh1kg5" path="res://scenes/items/copper_bit.tscn" id="14_6we5e"]
 [ext_resource type="PackedScene" uid="uid://cq6retbue18cv" path="res://scenes/items/plastic_blob.tscn" id="15_a2wpi"]
+[ext_resource type="Script" path="res://audio.gd" id="18_mosgn"]
+[ext_resource type="AudioStream" uid="uid://d151h61fk4ea4" path="res://audio/footstep_concrete_000.ogg" id="19_8nlxk"]
+[ext_resource type="AudioStream" uid="uid://bxpp02yniowy0" path="res://audio/footstep_concrete_002.ogg" id="21_6pk84"]
+[ext_resource type="AudioStream" uid="uid://cpebxn2kjjcuu" path="res://audio/explosionCrunch_004.ogg" id="22_af8l2"]
+[ext_resource type="AudioStream" uid="uid://cm2873w31yt83" path="res://audio/thrusterFire_003.ogg" id="23_tebmu"]
+[ext_resource type="AudioStream" uid="uid://qw4jpqukq6l4" path="res://audio/footstep_concrete_004.ogg" id="23_u56pr"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_label", "performance_label", "quota_holder", "main_menu_animation_player", "results_menu_animation_player")]
 texture_filter = 1
@@ -56,6 +62,7 @@ stretch_shrink = 4
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 size = Vector2i(288, 162)
 render_target_update_mode = 4
 
@@ -84,5 +91,15 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "123"
 horizontal_alignment = 1
+
+[node name="Audio" type="Node2D" parent="."]
+script = ExtResource("18_mosgn")
+place_sounds = [ExtResource("19_8nlxk"), ExtResource("21_6pk84"), ExtResource("23_u56pr")]
+explosion_sounds = [ExtResource("22_af8l2")]
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("23_tebmu")
+attenuation = 1e-05
+panning_strength = 0.0
 
 [editable path="CanvasLayer/SubViewportContainer/SubViewport/World"]

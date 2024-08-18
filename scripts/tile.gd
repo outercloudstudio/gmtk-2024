@@ -8,8 +8,9 @@ extends Node2D
 
 
 signal on_setup()
+signal on_destroy()
 
-
+var placed = false
 var direction: Vector2i = Vector2i.RIGHT
 var is_placing = false
 var place_delay = 0
@@ -33,7 +34,7 @@ func place():
 	modulate = Color("#ffffffff")
 
 	if _world.tilemap.has(_location):
-		_world.tilemap[_location].queue_free()
+		_world.tilemap[_location].destroy()
 
 	_world.tilemap[_location] = self
 
@@ -47,6 +48,7 @@ func place():
 			$AnimationPlayer.pause()
 	else:
 		is_placing = false
+		placed = true
 
 
 func finish_place():
@@ -57,8 +59,14 @@ func finish_place():
 	if has_node("SquashAndStretch"):
 		$SquashAndStretch.trigger(Vector2(1.4, 0.6), 8)
 
+	Static.audio.play("place")
+
+	placed = true
+
 
 func destroy():
+	on_destroy.emit()
+
 	_world.tilemap.erase(_location)
 
 	queue_free()
