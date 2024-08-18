@@ -18,6 +18,9 @@ var _selected_tile: PackedScene
 var _selected_repair_tool = false
 
 
+var repair_cooldown = 0
+
+
 func _ready() -> void:
 	_selected_tile = conveyor_scene
 
@@ -25,6 +28,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_placing:
 		update_placing()
+
+	repair_cooldown -= delta
 
 
 func start(level_scene: PackedScene):
@@ -83,9 +88,12 @@ func update_placing():
 
 		if _selected_repair_tool:
 			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
-				tilemap[tile_location].repair()
+				if repair_cooldown <= 0:
+					tilemap[tile_location].repair()
+					repair_cooldown = 0.25
 
 				Static.camera.shake(0.3)
+
 		else:
 			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
 				tilemap[tile_location].queue_free()

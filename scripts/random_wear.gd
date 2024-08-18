@@ -8,30 +8,39 @@ extends Node2D
 var time_till_explode = 0
 var spawned_smoke = false
 
-var smoke: Node2D
+var smoke: GPUParticles2D
 
 func _ready() -> void:
 	time_till_explode = randf_range(20, 40)
+
+	smoke = smoke_scene.instantiate()
+	get_parent().add_child.call_deferred(smoke)
+
+	smoke.emitting = false
 	
 
 func repair():
 	spawned_smoke = false
 	time_till_explode = randf_range(20, 40)
 
-	if smoke != null:
-		smoke.queue_free()
+	smoke.emitting = false
+	
+	var dust_scene: PackedScene = load("res://scenes/dust.tscn")
+	var dust: GPUParticles2D = dust_scene.instantiate()
+
+	add_child(dust)
+	dust.emitting = true
 
 
 func _process(delta: float) -> void:
 	time_till_explode -= delta
 
 	if time_till_explode < 5 && !spawned_smoke:
-		smoke = smoke_scene.instantiate()
-		get_parent().add_child(smoke)
+		spawned_smoke = true
+
+		smoke.emitting = true
 
 		smoke.global_position = global_position
-
-		spawned_smoke = true
 
 		Static.camera.shake(0.4)
 

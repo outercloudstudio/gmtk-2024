@@ -34,6 +34,13 @@ func fixed_lerp(a, b, decay: float, delta: float):
 
 func _physics_process(delta: float) -> void:
 	if get_tile() == null:
+		var dust_scene: PackedScene = load("res://scenes/dust.tscn")
+		var dust: GPUParticles2D = dust_scene.instantiate()
+
+		get_parent().add_child(dust)
+		dust.emitting = true
+		dust.global_position = global_position
+
 		queue_free()
 
 	move_and_slide()
