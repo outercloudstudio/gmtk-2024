@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=30 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -8,7 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://cwksc4ydug47u" path="res://scenes/tiles/deconstructor.tscn" id="5_v7qm3"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="6_ihc8j"]
 [ext_resource type="Shader" path="res://background.gdshader" id="7_pgx5q"]
+[ext_resource type="PackedScene" uid="uid://bvwdris8o6bml" path="res://scenes/tool_button.tscn" id="10_2dx41"]
 [ext_resource type="FontFile" uid="uid://de0tcxurw6m1g" path="res://monogram.ttf" id="10_ajyt0"]
+[ext_resource type="Texture2D" uid="uid://68r25mjjnsiv" path="res://sprites/conveyor.tres" id="11_fxgoa"]
+[ext_resource type="Texture2D" uid="uid://b2c7tv2wqk0uq" path="res://sprites/delete.tres" id="12_u80pu"]
+[ext_resource type="Texture2D" uid="uid://c1vwt52i6vfcv" path="res://sprites/splitter.tres" id="13_cndej"]
+[ext_resource type="Texture2D" uid="uid://qn4gmy6jnjxv" path="res://sprites/wrench.tres" id="14_idjjr"]
+[ext_resource type="Texture2D" uid="uid://0jrtnibjc4tw" path="res://sprites/constructor.tres" id="14_oj5uq"]
+[ext_resource type="Texture2D" uid="uid://cu68niqptjlay" path="res://sprites/deconstructor.tres" id="15_ukf6u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aok1b"]
 shader = ExtResource("7_pgx5q")
@@ -200,32 +207,6 @@ scale = Vector2(1, -1)
 texture = SubResource("GradientTexture2D_enlcp")
 expand_mode = 1
 
-[node name="TileSelection" type="VBoxContainer" parent="."]
-offset_left = 71.0
-offset_top = -89.0
-offset_right = 102.0
-offset_bottom = 82.0
-
-[node name="ConveyorButton" type="Button" parent="TileSelection"]
-layout_mode = 2
-text = "C"
-
-[node name="DeleteButton" type="Button" parent="TileSelection"]
-layout_mode = 2
-text = "X"
-
-[node name="SplitterButton" type="Button" parent="TileSelection"]
-layout_mode = 2
-text = "S"
-
-[node name="ConstructorButton" type="Button" parent="TileSelection"]
-layout_mode = 2
-text = "CR"
-
-[node name="DeconstructorButton" type="Button" parent="TileSelection"]
-layout_mode = 2
-text = "DR"
-
 [node name="QuotaDisplay" type="Node2D" parent="."]
 position = Vector2(-105, -85)
 
@@ -396,11 +377,38 @@ libraries = {
 "": SubResource("AnimationLibrary_jddf2")
 }
 
-[connection signal="pressed" from="TileSelection/ConveyorButton" to="." method="select_conveyor"]
-[connection signal="pressed" from="TileSelection/DeleteButton" to="." method="select_delete"]
-[connection signal="pressed" from="TileSelection/SplitterButton" to="." method="select_splitter"]
-[connection signal="pressed" from="TileSelection/ConstructorButton" to="." method="select_constructor"]
-[connection signal="pressed" from="TileSelection/DeconstructorButton" to="." method="select_deconstructor"]
+[node name="Tools" type="Node2D" parent="."]
+position = Vector2(90, 0)
+
+[node name="ToolButton2" parent="Tools" instance=ExtResource("10_2dx41")]
+position = Vector2(0, -21)
+texture = ExtResource("12_u80pu")
+
+[node name="ToolButton" parent="Tools" instance=ExtResource("10_2dx41")]
+position = Vector2(0, 0)
+texture = ExtResource("11_fxgoa")
+
+[node name="ToolButton3" parent="Tools" instance=ExtResource("10_2dx41")]
+position = Vector2(0, 21)
+texture = ExtResource("13_cndej")
+
+[node name="ToolButton6" parent="Tools" instance=ExtResource("10_2dx41")]
+position = Vector2(22, -21)
+texture = ExtResource("14_idjjr")
+
+[node name="ToolButton4" parent="Tools" instance=ExtResource("10_2dx41")]
+position = Vector2(22, 0)
+texture = ExtResource("14_oj5uq")
+
+[node name="ToolButton5" parent="Tools" instance=ExtResource("10_2dx41")]
+position = Vector2(22, 21)
+texture = ExtResource("15_ukf6u")
+
 [connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton" to="." method="start_game"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/NextButton" to="." method="next"]
+[connection signal="on_clicked" from="Tools/ToolButton2" to="." method="select_delete"]
+[connection signal="on_clicked" from="Tools/ToolButton" to="." method="select_conveyor"]
+[connection signal="on_clicked" from="Tools/ToolButton3" to="." method="select_splitter"]
+[connection signal="on_clicked" from="Tools/ToolButton4" to="." method="select_constructor"]
+[connection signal="on_clicked" from="Tools/ToolButton5" to="." method="select_deconstructor"]

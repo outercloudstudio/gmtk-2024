@@ -21,6 +21,20 @@ height = 128
 fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
 
+[sub_resource type="Animation" id="Animation_tplj0"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedPosition:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_vlcfg"]
 resource_name = "place"
 length = 0.75
@@ -51,20 +65,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_tplj0"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedPosition:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fa1rn"]
 _data = {
 "RESET": SubResource("Animation_tplj0"),
@@ -72,6 +72,7 @@ _data = {
 }
 
 [node name="Constructor" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
+y_sort_enabled = true
 script = ExtResource("1_tbfce")
 rotation_origin = NodePath("AnimatedPosition/RotationOrigin")
 
