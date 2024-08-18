@@ -10,6 +10,9 @@ class_name Game
 @export var level_scenes: Array
 @export var main_menu_animation_player: AnimationPlayer
 @export var results_menu_animation_player: AnimationPlayer
+@export var lower_bound_label: Label
+@export var upper_bound_label: Label
+@export var graph: Control
 
 @export_category("Items")
 @export var rod_scene: PackedScene
@@ -60,11 +63,13 @@ func _process(delta: float) -> void:
 func start_round():
 	Static.state = "play"
 
-	_round_timer = 60
+	# _round_timer = 60
+	_round_timer = 10
 
 	var level = world.start(_level_scene)
 
 	Static.quota = level.quota
+	Static.score = 0
 
 	Static.collected_quota = {}
 	for identifier in Static.quota:
@@ -96,6 +101,8 @@ func end_round():
 	world.cleanup()
 
 	Static.audio.music_state = "finish"
+
+	draw_graph([ 250, 500, 500, 500, 1000, 1002, 2000, Static.score ], Static.score)
 
 
 func start():
@@ -132,3 +139,55 @@ func _update_quota_display():
 		quota_item.setup()
 
 	pass
+
+
+func draw_graph(data: Array, your_score):
+	var lowest = 0
+	var highest = 1000
+
+	var graph_width = floor(graph.size.x / 4)
+
+	for score in data:
+		lowest = min(lowest, score)
+		highest = max(highest, score)
+
+	var bucket_size = (highest - lowest) / (graph_width)
+
+	var buckets = []
+
+	for x in range(graph_width + 1):
+		buckets.push_back(0)
+
+	for score in data:
+		var bucket = floor((score - lowest) / bucket_size)
+
+		buckets[bucket] += 1
+
+	var max_count = 0
+
+	for mode in buckets:
+		max_count = max(max_count, mode)
+
+	for child in graph.get_children():
+		child.queue_free()
+
+	var your_bucket_index = floor((your_score - lowest) / bucket_size)
+
+	print(buckets)
+
+	for bucket_index in range(len(buckets)):
+		var bar = ColorRect.new()
+
+		var height = floor(graph.size.y * buckets[bucket_index] / max_count)
+
+		graph.add_child(bar)
+		bar.position = Vector2(bucket_index * 4, graph.size.y - height)
+		bar.size = Vector2(4, height)
+
+		bar.color = Color("#0085ff")
+
+		if bucket_index == your_bucket_index:
+			bar.color = Color("#ff0034")
+
+	lower_bound_label.text = str(lowest)
+	upper_bound_label.text = str(highest)

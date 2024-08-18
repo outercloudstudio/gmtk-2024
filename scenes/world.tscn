@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=39 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -9,15 +9,20 @@
 [ext_resource type="Script" path="res://scripts/camera.gd" id="6_ihc8j"]
 [ext_resource type="Shader" path="res://background.gdshader" id="7_pgx5q"]
 [ext_resource type="PackedScene" uid="uid://bvwdris8o6bml" path="res://scenes/tool_button.tscn" id="10_2dx41"]
-[ext_resource type="FontFile" uid="uid://de0tcxurw6m1g" path="res://monogram.ttf" id="10_ajyt0"]
+[ext_resource type="FontFile" uid="uid://de0tcxurw6m1g" path="res://fonts/monogram.ttf" id="10_ajyt0"]
 [ext_resource type="Texture2D" uid="uid://bonerjxb8chhy" path="res://sprites/play_button.tres" id="10_sjer4"]
 [ext_resource type="Texture2D" uid="uid://68r25mjjnsiv" path="res://sprites/conveyor.tres" id="11_fxgoa"]
 [ext_resource type="Texture2D" uid="uid://copxgg0y4vk3r" path="res://sprites/play_button_pressed.tres" id="11_o6vgw"]
+[ext_resource type="FontFile" uid="uid://bslyx82ixmfmo" path="res://fonts/Kenney Mini.ttf" id="12_70201"]
+[ext_resource type="Texture2D" uid="uid://celpekbca1yvr" path="res://sprites/next_button.tres" id="12_ew2fj"]
 [ext_resource type="Texture2D" uid="uid://b2c7tv2wqk0uq" path="res://sprites/delete.tres" id="12_u80pu"]
+[ext_resource type="Texture2D" uid="uid://dib0jhn2rsdfy" path="res://sprites/next_button_pressed.tres" id="13_7iket"]
 [ext_resource type="Texture2D" uid="uid://c1vwt52i6vfcv" path="res://sprites/splitter.tres" id="13_cndej"]
 [ext_resource type="Texture2D" uid="uid://qn4gmy6jnjxv" path="res://sprites/wrench.tres" id="14_idjjr"]
+[ext_resource type="Texture2D" uid="uid://cq7720g0d237w" path="res://sprites/retry_button.tres" id="14_ieyjb"]
 [ext_resource type="Texture2D" uid="uid://0jrtnibjc4tw" path="res://sprites/constructor.tres" id="14_oj5uq"]
 [ext_resource type="Texture2D" uid="uid://cu68niqptjlay" path="res://sprites/deconstructor.tres" id="15_ukf6u"]
+[ext_resource type="Texture2D" uid="uid://bx7wvdl58hnn7" path="res://sprites/retry_button_pressed.tres" id="15_x7s1o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aok1b"]
 shader = ExtResource("7_pgx5q")
@@ -91,8 +96,13 @@ _data = {
 atlas = ExtResource("1_03lg1")
 region = Rect2(257, 90, 70, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm67u"]
+atlas = ExtResource("1_03lg1")
+region = Rect2(335, 108, 51, 14)
+
 [sub_resource type="LabelSettings" id="LabelSettings_0381h"]
-font = ExtResource("10_ajyt0")
+font = ExtResource("12_70201")
+font_size = 8
 
 [sub_resource type="Animation" id="Animation_oh1ek"]
 resource_name = "RESET"
@@ -240,7 +250,6 @@ script = ExtResource("6_ihc8j")
 
 [node name="MenuViewArea" type="Control" parent="."]
 z_index = 100
-clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = -64.0
@@ -338,65 +347,186 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0235294, 0.0235294, 0.0313726, 1)
 
-[node name="Label" type="Label" parent="MenuViewArea/Results Menu"]
+[node name="ColorRect2" type="ColorRect" parent="MenuViewArea/Results Menu"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -30.0
-offset_top = 24.0
-offset_right = 30.0
-offset_bottom = 37.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = 116.0
+offset_right = 32.0
+offset_bottom = 1.0
 grow_horizontal = 2
-text = "Results"
-label_settings = SubResource("LabelSettings_0381h")
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+rotation = -0.143086
+color = Color(0.0784314, 0.0627451, 0.0745098, 1)
 
-[node name="Label2" type="Label" parent="MenuViewArea/Results Menu"]
+[node name="TextureRect2" type="TextureRect" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -58.5
+offset_right = 26.0
+offset_bottom = -44.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_pm67u")
+stretch_mode = 2
+
+[node name="Score" type="Label" parent="MenuViewArea/Results Menu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -30.0
-offset_top = 39.0
+offset_top = 34.0
 offset_right = 30.0
-offset_bottom = 52.0
+offset_bottom = 47.0
 grow_horizontal = 2
 text = "123"
 label_settings = SubResource("LabelSettings_0381h")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RetryButton" type="Button" parent="MenuViewArea/Results Menu"]
+[node name="You" type="Label" parent="MenuViewArea/Results Menu"]
+modulate = Color(1, 0, 0.203595, 1)
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.5
-offset_top = -15.5
-offset_right = 20.5
-offset_bottom = 15.5
+offset_left = -30.0
+offset_top = 50.0
+offset_right = -8.0
+offset_bottom = 63.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "Retry"
+text = "You"
+label_settings = SubResource("LabelSettings_0381h")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="NextButton" type="Button" parent="MenuViewArea/Results Menu"]
+[node name="Vs" type="Label" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.0
+offset_top = 60.0
+offset_right = -6.0
+offset_bottom = 73.0
+grow_horizontal = 2
+text = "vs"
+label_settings = SubResource("LabelSettings_0381h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Everyone" type="Label" parent="MenuViewArea/Results Menu"]
+modulate = Color(0, 0.522267, 1, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 70.0
+offset_right = -8.0
+offset_bottom = 83.0
+grow_horizontal = 2
+text = "Everyone"
+label_settings = SubResource("LabelSettings_0381h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LowerBound" type="Label" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = 78.0
+offset_right = 16.0
+offset_bottom = 88.0
+grow_horizontal = 2
+text = "100"
+label_settings = SubResource("LabelSettings_0381h")
+vertical_alignment = 1
+
+[node name="UpperBound" type="Label" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 25.0
+offset_top = 78.0
+offset_right = 51.0
+offset_bottom = 88.0
+grow_horizontal = 2
+text = "23000"
+label_settings = SubResource("LabelSettings_0381h")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Graph" type="ColorRect" parent="MenuViewArea/Results Menu"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 54.0
+offset_right = 114.0
+offset_bottom = 79.0
+color = Color(0.0784314, 0.0627451, 0.0745098, 1)
+
+[node name="Marker" type="ColorRect" parent="MenuViewArea/Results Menu"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 78.0
+offset_right = 55.0
+offset_bottom = 80.0
+
+[node name="Marker2" type="ColorRect" parent="MenuViewArea/Results Menu"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 78.0
+offset_right = 114.0
+offset_bottom = 80.0
+
+[node name="NextButton" type="TextureButton" parent="MenuViewArea/Results Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = 18.5
-offset_right = 20.0
-offset_bottom = 49.5
+offset_left = 2.0
+offset_top = 40.5
+offset_right = 24.0
+offset_bottom = 51.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Next"
+texture_normal = ExtResource("12_ew2fj")
+texture_pressed = ExtResource("13_7iket")
+texture_hover = ExtResource("12_ew2fj")
+texture_disabled = ExtResource("12_ew2fj")
+texture_focused = ExtResource("13_7iket")
+
+[node name="RetryButton" type="TextureButton" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = 40.5
+offset_right = -2.0
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("14_ieyjb")
+texture_pressed = ExtResource("15_x7s1o")
+texture_hover = ExtResource("14_ieyjb")
+texture_disabled = ExtResource("14_ieyjb")
+texture_focused = ExtResource("15_x7s1o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuViewArea/Results Menu"]
 libraries = {
@@ -437,8 +567,8 @@ texture = ExtResource("15_ukf6u")
 is_enabled = false
 
 [connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton2" to="." method="start_game"]
-[connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/NextButton" to="." method="next"]
+[connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]
 [connection signal="on_clicked" from="Tools/ToolButton2" to="." method="select_delete"]
 [connection signal="on_clicked" from="Tools/ToolButton" to="." method="select_conveyor"]
 [connection signal="on_clicked" from="Tools/ToolButton3" to="." method="select_splitter"]
