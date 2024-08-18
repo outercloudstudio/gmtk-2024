@@ -20,6 +20,9 @@ func rotation_to_vector(rotation: float) -> Vector2:
 
 
 func _physics_process(delta: float) -> void:
+	if tile.is_placing:
+		return
+
 	var tile_position = Vector2i(floor(tile.global_position / 16))
 
 	var foward = rotation_to_vector(global_rotation_degrees)

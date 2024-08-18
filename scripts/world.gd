@@ -117,6 +117,8 @@ func update_placing():
 
 		tile.setup(tile_location, direction, self)
 
+		tile.place_delay = index * 0.05
+
 		preview_tiles.push_back(tile)
 
 

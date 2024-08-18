@@ -7,10 +7,15 @@ extends Node2D
 @export var rotation_origin: Node2D
 
 
+signal on_setup()
+
+
 var direction: Vector2i = Vector2i.RIGHT
+var is_placing = false
+var place_delay = 0
+var triggered_place = false
 var _location: Vector2i = Vector2i.ZERO
 var _world: World
-
 
 func setup(location: Vector2i, tile_direction: Vector2i, world: World):
 	_location = location
@@ -21,6 +26,8 @@ func setup(location: Vector2i, tile_direction: Vector2i, world: World):
 
 	modulate = Color("#ffffff88")
 
+	on_setup.emit()
+
 
 func place():
 	modulate = Color("#ffffffff")
@@ -29,6 +36,21 @@ func place():
 		_world.tilemap[_location].queue_free()
 
 	_world.tilemap[_location] = self
+
+	is_placing = true
+
+	if has_node("AnimationPlayer"):
+		$AnimationPlayer.play("place")
+		
+		if place_delay > 0:
+			$AnimationPlayer.seek(0.01, true)
+			$AnimationPlayer.pause()
+	else:
+		is_placing = false
+
+
+func finish_place():
+	is_placing = false
 
 
 func destroy():
@@ -41,3 +63,16 @@ func _ready() -> void:
 	if place_on_start:
 		setup(floor(global_position / 16), place_on_start_direction, get_parent().get_parent())
 		place()
+
+
+func _process(delta: float) -> void:
+	if !is_placing:
+		return
+
+	place_delay -= delta
+
+	if place_delay <= 0:
+		triggered_place = true
+
+		$AnimationPlayer.play()
+
