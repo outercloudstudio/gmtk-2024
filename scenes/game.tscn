@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://audio.gd" id="18_mosgn"]
 [ext_resource type="AudioStream" uid="uid://d151h61fk4ea4" path="res://audio/footstep_concrete_000.ogg" id="19_8nlxk"]
 [ext_resource type="AudioStream" uid="uid://bxpp02yniowy0" path="res://audio/footstep_concrete_002.ogg" id="21_6pk84"]
-[ext_resource type="AudioStream" uid="uid://cpebxn2kjjcuu" path="res://audio/explosionCrunch_004.ogg" id="22_af8l2"]
+[ext_resource type="AudioStream" uid="uid://bqgyw6i543uke" path="res://audio/explode.wav" id="22_gyoq6"]
 [ext_resource type="AudioStream" uid="uid://cm2873w31yt83" path="res://audio/thrusterFire_003.ogg" id="23_tebmu"]
 [ext_resource type="AudioStream" uid="uid://qw4jpqukq6l4" path="res://audio/footstep_concrete_004.ogg" id="23_u56pr"]
 
@@ -95,7 +95,7 @@ horizontal_alignment = 1
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("18_mosgn")
 place_sounds = [ExtResource("19_8nlxk"), ExtResource("21_6pk84"), ExtResource("23_u56pr")]
-explosion_sounds = [ExtResource("22_af8l2")]
+explosion_sounds = [ExtResource("22_gyoq6")]
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("23_tebmu")

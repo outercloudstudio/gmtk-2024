@@ -11,8 +11,7 @@ var spawned_smoke = false
 var smoke: GPUParticles2D
 
 func _ready() -> void:
-	# time_till_explode = randf_range(20, 40)
-	time_till_explode = randf_range(5, 5)
+	time_till_explode = randf_range(20, 40)
 
 	smoke = smoke_scene.instantiate()
 	get_parent().add_child.call_deferred(smoke)
