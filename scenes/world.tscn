@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=33 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -10,7 +10,9 @@
 [ext_resource type="Shader" path="res://background.gdshader" id="7_pgx5q"]
 [ext_resource type="PackedScene" uid="uid://bvwdris8o6bml" path="res://scenes/tool_button.tscn" id="10_2dx41"]
 [ext_resource type="FontFile" uid="uid://de0tcxurw6m1g" path="res://monogram.ttf" id="10_ajyt0"]
+[ext_resource type="Texture2D" uid="uid://bonerjxb8chhy" path="res://sprites/play_button.tres" id="10_sjer4"]
 [ext_resource type="Texture2D" uid="uid://68r25mjjnsiv" path="res://sprites/conveyor.tres" id="11_fxgoa"]
+[ext_resource type="Texture2D" uid="uid://copxgg0y4vk3r" path="res://sprites/play_button_pressed.tres" id="11_o6vgw"]
 [ext_resource type="Texture2D" uid="uid://b2c7tv2wqk0uq" path="res://sprites/delete.tres" id="12_u80pu"]
 [ext_resource type="Texture2D" uid="uid://c1vwt52i6vfcv" path="res://sprites/splitter.tres" id="13_cndej"]
 [ext_resource type="Texture2D" uid="uid://qn4gmy6jnjxv" path="res://sprites/wrench.tres" id="14_idjjr"]
@@ -31,9 +33,6 @@ fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_enl0o"]
-font = ExtResource("10_ajyt0")
-
-[sub_resource type="LabelSettings" id="LabelSettings_0381h"]
 font = ExtResource("10_ajyt0")
 
 [sub_resource type="Animation" id="Animation_36yyt"]
@@ -87,6 +86,13 @@ _data = {
 "hide": SubResource("Animation_fxq6c"),
 "show": SubResource("Animation_luwcm")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7x71"]
+atlas = ExtResource("1_03lg1")
+region = Rect2(257, 90, 70, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0381h"]
+font = ExtResource("10_ajyt0")
 
 [sub_resource type="Animation" id="Animation_oh1ek"]
 resource_name = "RESET"
@@ -258,40 +264,59 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0235294, 0.0235294, 0.0313726, 1)
 
-[node name="Label" type="Label" parent="MenuViewArea/Main Menu"]
+[node name="ColorRect2" type="ColorRect" parent="MenuViewArea/Main Menu"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -30.0
-offset_top = 24.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = 71.0
 offset_right = 30.0
-offset_bottom = 37.0
+offset_bottom = -31.0
 grow_horizontal = 2
-text = "My Game"
-label_settings = SubResource("LabelSettings_0381h")
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+rotation = -0.143086
+color = Color(0.0784314, 0.0627451, 0.0745098, 1)
 
-[node name="PlayButton" type="Button" parent="MenuViewArea/Main Menu"]
+[node name="PlayButton2" type="TextureButton" parent="MenuViewArea/Main Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.5
-offset_top = -15.5
-offset_right = 20.5
-offset_bottom = 15.5
+offset_left = -11.0
+offset_top = 2.5
+offset_right = 10.0
+offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play"
+texture_normal = ExtResource("10_sjer4")
+texture_pressed = ExtResource("11_o6vgw")
+texture_hover = ExtResource("10_sjer4")
+texture_disabled = ExtResource("10_sjer4")
+texture_focused = ExtResource("11_o6vgw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuViewArea/Main Menu"]
 libraries = {
 "": SubResource("AnimationLibrary_ch30j")
 }
+
+[node name="TextureRect" type="TextureRect" parent="MenuViewArea/Main Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -60.5
+offset_right = 35.0
+offset_bottom = -28.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_q7x71")
+stretch_mode = 2
 
 [node name="Results Menu" type="Control" parent="MenuViewArea"]
 layout_mode = 1
@@ -404,7 +429,7 @@ texture = ExtResource("14_oj5uq")
 position = Vector2(22, 13)
 texture = ExtResource("15_ukf6u")
 
-[connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton" to="." method="start_game"]
+[connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton2" to="." method="start_game"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/NextButton" to="." method="next"]
 [connection signal="on_clicked" from="Tools/ToolButton2" to="." method="select_delete"]
