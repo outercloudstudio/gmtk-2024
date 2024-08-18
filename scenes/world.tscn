@@ -381,27 +381,27 @@ libraries = {
 position = Vector2(90, 0)
 
 [node name="ToolButton2" parent="Tools" instance=ExtResource("10_2dx41")]
-position = Vector2(0, -21)
+position = Vector2(0, -29)
 texture = ExtResource("12_u80pu")
 
 [node name="ToolButton" parent="Tools" instance=ExtResource("10_2dx41")]
-position = Vector2(0, 0)
+position = Vector2(0, -8)
 texture = ExtResource("11_fxgoa")
 
 [node name="ToolButton3" parent="Tools" instance=ExtResource("10_2dx41")]
-position = Vector2(0, 21)
+position = Vector2(0, 13)
 texture = ExtResource("13_cndej")
 
 [node name="ToolButton6" parent="Tools" instance=ExtResource("10_2dx41")]
-position = Vector2(22, -21)
+position = Vector2(22, -29)
 texture = ExtResource("14_idjjr")
 
 [node name="ToolButton4" parent="Tools" instance=ExtResource("10_2dx41")]
-position = Vector2(22, 0)
+position = Vector2(22, -8)
 texture = ExtResource("14_oj5uq")
 
 [node name="ToolButton5" parent="Tools" instance=ExtResource("10_2dx41")]
-position = Vector2(22, 21)
+position = Vector2(22, 13)
 texture = ExtResource("15_ukf6u")
 
 [connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton" to="." method="start_game"]
@@ -410,5 +410,6 @@ texture = ExtResource("15_ukf6u")
 [connection signal="on_clicked" from="Tools/ToolButton2" to="." method="select_delete"]
 [connection signal="on_clicked" from="Tools/ToolButton" to="." method="select_conveyor"]
 [connection signal="on_clicked" from="Tools/ToolButton3" to="." method="select_splitter"]
+[connection signal="on_clicked" from="Tools/ToolButton6" to="." method="select_repair"]
 [connection signal="on_clicked" from="Tools/ToolButton4" to="." method="select_constructor"]
 [connection signal="on_clicked" from="Tools/ToolButton5" to="." method="select_deconstructor"]

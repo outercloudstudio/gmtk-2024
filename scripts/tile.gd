@@ -76,3 +76,7 @@ func _process(delta: float) -> void:
 
 		$AnimationPlayer.play()
 
+
+func repair():
+	if has_node("RandomWear"):
+		$RandomWear.repair()

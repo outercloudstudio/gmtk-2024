@@ -15,6 +15,7 @@ var tilemap = {}
 var preview_tiles = []
 var _level: Level
 var _selected_tile: PackedScene
+var _selected_repair_tool = false
 
 
 func _ready() -> void:
@@ -80,9 +81,13 @@ func update_placing():
 	if _selected_tile == null:
 		var tile_location: Vector2i = Vector2i(floor(target / 16))
 
-		if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
-			tilemap[tile_location].queue_free()
-			tilemap.erase(tile_location)
+		if _selected_repair_tool:
+			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
+				tilemap[tile_location].repair()
+		else:
+			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
+				tilemap[tile_location].queue_free()
+				tilemap.erase(tile_location)
 
 		return
 
@@ -124,22 +129,32 @@ func update_placing():
 
 func select_conveyor():
 	_selected_tile = conveyor_scene
+	_selected_repair_tool = false
 
 
 func select_splitter():
 	_selected_tile = splitter_scene
+	_selected_repair_tool = false
 
 
 func select_constructor():
 	_selected_tile = constructor_scene
+	_selected_repair_tool = false
 
 
 func select_deconstructor():
 	_selected_tile = deconstructor_scene
+	_selected_repair_tool = false
 
 
 func select_delete():
 	_selected_tile = null
+	_selected_repair_tool = false
+
+
+func select_repair():
+	_selected_tile = null
+	_selected_repair_tool = true
 
 
 func start_game():
