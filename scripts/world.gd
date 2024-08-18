@@ -84,10 +84,14 @@ func update_placing():
 		if _selected_repair_tool:
 			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
 				tilemap[tile_location].repair()
+
+				Static.camera.shake(0.3)
 		else:
 			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
 				tilemap[tile_location].queue_free()
 				tilemap.erase(tile_location)
+
+				Static.camera.shake(0.4)
 
 		return
 
