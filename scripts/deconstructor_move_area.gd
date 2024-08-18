@@ -151,4 +151,7 @@ func _physics_process(delta: float) -> void:
 
 		items_to_send.push_back(item)
 
+		if tile.has_node("ActivateSquashAndStretch"):
+			tile.get_node("ActivateSquashAndStretch").trigger(Vector2(1.4, 0.6), 8)
+
 	last_items_to_send = items_to_send

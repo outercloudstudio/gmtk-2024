@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://crehmacysesud"]
+[gd_scene load_steps=13 format=3 uid="uid://crehmacysesud"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_jixw1"]
 [ext_resource type="Script" path="res://scripts/item_spawner.gd" id="3_kuivt"]
 [ext_resource type="Script" path="res://scripts/tile.gd" id="3_sw0ft"]
 [ext_resource type="PackedScene" uid="uid://c7ym0w7fg023r" path="res://scenes/items/rod.tscn" id="4_y6yrs"]
 [ext_resource type="Script" path="res://scripts/move_area.gd" id="5_gfjjc"]
+[ext_resource type="Script" path="res://scripts/squash_and_stretch.gd" id="6_2jout"]
 
 [sub_resource type="Animation" id="Animation_podfa"]
 length = 0.001
@@ -142,3 +143,7 @@ offset_bottom = 20.0
 scale = Vector2(1, -1)
 texture = SubResource("GradientTexture2D_jgoko")
 expand_mode = 1
+
+[node name="ActivateSquashAndStretch" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("6_2jout")
+target = NodePath("../Snap")

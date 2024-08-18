@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4j40uckcw8c6"]
+[gd_scene load_steps=7 format=3 uid="uid://b4j40uckcw8c6"]
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_uvvcu"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_momvn"]
+[ext_resource type="Script" path="res://scripts/squash_and_stretch.gd" id="3_y6nkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eiyny"]
 size = Vector2(14, 14)
@@ -38,3 +39,7 @@ show_behind_parent = true
 position = Vector2(0, 5)
 scale = Vector2(0.28125, 0.125)
 texture = SubResource("GradientTexture2D_aa46b")
+
+[node name="SquashAndStretch" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_y6nkq")
+target = NodePath("../Sprite2D")

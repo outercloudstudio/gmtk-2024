@@ -11,6 +11,9 @@ var _target: Vector2
 func _ready() -> void:
 	_world = get_parent().get_parent()
 
+	if has_node("SquashAndStretch"):
+		$SquashAndStretch.trigger(Vector2(1.4, 0.6), 8)
+
 
 func setup():
 	_target = global_position

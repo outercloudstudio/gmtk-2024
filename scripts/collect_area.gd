@@ -25,3 +25,6 @@ func _physics_process(delta: float) -> void:
 			Static.score = 0
 
 		item.queue_free()
+
+		if tile.has_node("ActivateSquashAndStretch"):
+			tile.get_node("ActivateSquashAndStretch").trigger(Vector2(1.4, 0.6), 8)

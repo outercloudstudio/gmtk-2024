@@ -20,3 +20,6 @@ func _process(delta: float) -> void:
 		item.global_position = global_position
 
 		item.setup()
+
+		if get_parent().has_node("ActivateSquashAndStretch"):
+			get_parent().get_node("ActivateSquashAndStretch").trigger(Vector2(1.4, 0.6), 8)

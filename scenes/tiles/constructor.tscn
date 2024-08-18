@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvd6dr6c3ny7"]
+[gd_scene load_steps=15 format=3 uid="uid://cvd6dr6c3ny7"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_tbfce"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_38m13"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/random_wear.gd" id="5_8dyfa"]
 [ext_resource type="PackedScene" uid="uid://hf54qypoaanr" path="res://scenes/smoke.tscn" id="6_8f2i4"]
 [ext_resource type="PackedScene" uid="uid://bdkkpn2spjl74" path="res://scenes/explosion.tscn" id="7_6s2wq"]
+[ext_resource type="Script" path="res://scripts/squash_and_stretch.gd" id="8_igmg0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2n17"]
 size = Vector2(16, 16)
@@ -74,54 +75,57 @@ _data = {
 [node name="Constructor" type="Node2D" node_paths=PackedStringArray("rotation_origin")]
 y_sort_enabled = true
 script = ExtResource("1_tbfce")
-rotation_origin = NodePath("AnimatedPosition/RotationOrigin")
+rotation_origin = NodePath("AnimatedPosition/SquashOrigin/RotationOrigin")
 
 [node name="AnimatedPosition" type="Node2D" parent="."]
 
-[node name="RotationOrigin" type="Node2D" parent="AnimatedPosition"]
+[node name="SquashOrigin" type="Node2D" parent="AnimatedPosition"]
 position = Vector2(8, 8)
 
-[node name="Sprite" type="Sprite2D" parent="AnimatedPosition/RotationOrigin" groups=["camera_snapping"]]
+[node name="RotationOrigin" type="Node2D" parent="AnimatedPosition/SquashOrigin"]
+
+[node name="Sprite" type="Sprite2D" parent="AnimatedPosition/SquashOrigin/RotationOrigin" groups=["camera_snapping"]]
 texture = ExtResource("2_38m13")
 region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
-[node name="MoveArea" type="Area2D" parent="AnimatedPosition/RotationOrigin" node_paths=PackedStringArray("tile")]
+[node name="MoveArea" type="Area2D" parent="AnimatedPosition/SquashOrigin/RotationOrigin" node_paths=PackedStringArray("tile")]
 process_priority = -1
 process_physics_priority = -1
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_uhan4")
-tile = NodePath("../../..")
+tile = NodePath("../../../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedPosition/RotationOrigin/MoveArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedPosition/SquashOrigin/RotationOrigin/MoveArea"]
 shape = SubResource("RectangleShape2D_c2n17")
 debug_color = Color(0, 0.6, 0.701961, 0.113725)
 
-[node name="Border" type="Sprite2D" parent="AnimatedPosition"]
+[node name="Border" type="Sprite2D" parent="AnimatedPosition/SquashOrigin"]
 z_index = -2
-position = Vector2(8, 7)
+position = Vector2(0, -1)
 texture = ExtResource("2_38m13")
 region_enabled = true
 region_rect = Rect2(62, 30, 20, 18)
 
-[node name="Bottom" type="Sprite2D" parent="AnimatedPosition"]
+[node name="Bottom" type="Sprite2D" parent="AnimatedPosition/SquashOrigin"]
 z_index = -1
-position = Vector2(8, 17)
+position = Vector2(0, 9)
 texture = ExtResource("2_38m13")
 region_enabled = true
 region_rect = Rect2(32, 64, 16, 2)
 
-[node name="BorderBottom" type="Sprite2D" parent="AnimatedPosition"]
+[node name="BorderBottom" type="Sprite2D" parent="AnimatedPosition/SquashOrigin"]
 z_index = -3
-position = Vector2(8, 17)
+position = Vector2(0, 9)
 texture = ExtResource("2_38m13")
 region_enabled = true
 region_rect = Rect2(62, 64, 20, 2)
 
-[node name="Shadow" type="Node2D" parent="AnimatedPosition"]
+[node name="Shadow" type="Node2D" parent="AnimatedPosition/SquashOrigin"]
+position = Vector2(-8, -8)
 
-[node name="ColorRect3" type="TextureRect" parent="AnimatedPosition/Shadow"]
+[node name="ColorRect3" type="TextureRect" parent="AnimatedPosition/SquashOrigin/Shadow"]
 z_index = -30
 offset_left = -2.0
 offset_top = 18.0
@@ -129,8 +133,9 @@ offset_right = 18.0
 offset_bottom = 22.0
 texture = SubResource("GradientTexture2D_aiqad")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect4" type="TextureRect" parent="AnimatedPosition/Shadow"]
+[node name="ColorRect4" type="TextureRect" parent="AnimatedPosition/SquashOrigin/Shadow"]
 z_index = -1
 offset_left = -2.0
 offset_top = 18.0
@@ -139,35 +144,36 @@ offset_bottom = 20.0
 scale = Vector2(1, -1)
 texture = SubResource("GradientTexture2D_aiqad")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="RotationVisibility" type="Node2D" parent="AnimatedPosition" node_paths=PackedStringArray("tile")]
-position = Vector2(8, 5)
+[node name="RotationVisibility" type="Node2D" parent="AnimatedPosition/SquashOrigin" node_paths=PackedStringArray("tile")]
+position = Vector2(0, -3)
 script = ExtResource("4_gamep")
-tile = NodePath("../..")
+tile = NodePath("../../..")
 
-[node name="Up" type="Node2D" parent="AnimatedPosition/RotationVisibility"]
+[node name="Up" type="Node2D" parent="AnimatedPosition/SquashOrigin/RotationVisibility"]
 
-[node name="Cover" type="Sprite2D" parent="AnimatedPosition/RotationVisibility/Up" groups=["camera_snapping"]]
+[node name="Cover" type="Sprite2D" parent="AnimatedPosition/SquashOrigin/RotationVisibility/Up" groups=["camera_snapping"]]
 z_index = 5
 texture = ExtResource("2_38m13")
 offset = Vector2(0, 0.5)
 region_enabled = true
 region_rect = Rect2(160, 27, 16, 21)
 
-[node name="Right" type="Node2D" parent="AnimatedPosition/RotationVisibility"]
+[node name="Right" type="Node2D" parent="AnimatedPosition/SquashOrigin/RotationVisibility"]
 visible = false
 
-[node name="Cover" type="Sprite2D" parent="AnimatedPosition/RotationVisibility/Right" groups=["camera_snapping"]]
+[node name="Cover" type="Sprite2D" parent="AnimatedPosition/SquashOrigin/RotationVisibility/Right" groups=["camera_snapping"]]
 z_index = 5
 texture = ExtResource("2_38m13")
 offset = Vector2(0, 0.5)
 region_enabled = true
 region_rect = Rect2(224, 11, 16, 21)
 
-[node name="Left" type="Node2D" parent="AnimatedPosition/RotationVisibility"]
+[node name="Left" type="Node2D" parent="AnimatedPosition/SquashOrigin/RotationVisibility"]
 visible = false
 
-[node name="Cover" type="Sprite2D" parent="AnimatedPosition/RotationVisibility/Left" groups=["camera_snapping"]]
+[node name="Cover" type="Sprite2D" parent="AnimatedPosition/SquashOrigin/RotationVisibility/Left" groups=["camera_snapping"]]
 z_index = 5
 texture = ExtResource("2_38m13")
 offset = Vector2(0, 0.5)
@@ -175,10 +181,10 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(224, 11, 16, 21)
 
-[node name="Down" type="Node2D" parent="AnimatedPosition/RotationVisibility"]
+[node name="Down" type="Node2D" parent="AnimatedPosition/SquashOrigin/RotationVisibility"]
 visible = false
 
-[node name="Cover" type="Sprite2D" parent="AnimatedPosition/RotationVisibility/Down" groups=["camera_snapping"]]
+[node name="Cover" type="Sprite2D" parent="AnimatedPosition/SquashOrigin/RotationVisibility/Down" groups=["camera_snapping"]]
 z_index = 5
 texture = ExtResource("2_38m13")
 offset = Vector2(0, 0.5)
@@ -195,3 +201,11 @@ explosion_scene = ExtResource("7_6s2wq")
 libraries = {
 "": SubResource("AnimationLibrary_fa1rn")
 }
+
+[node name="SquashAndStretch" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("8_igmg0")
+target = NodePath("../AnimatedPosition/SquashOrigin")
+
+[node name="ActivateSquashAndStretch" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("8_igmg0")
+target = NodePath("../AnimatedPosition/SquashOrigin/RotationVisibility")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0i841hejuca6"]
+[gd_scene load_steps=8 format=3 uid="uid://b0i841hejuca6"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_ckrhm"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_oc1xf"]
 [ext_resource type="Script" path="res://scripts/collect_area.gd" id="3_1bf2t"]
+[ext_resource type="Script" path="res://scripts/squash_and_stretch.gd" id="4_ubjeh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agt5h"]
 size = Vector2(16, 16)
@@ -91,3 +92,7 @@ offset_bottom = 20.0
 scale = Vector2(1, -1)
 texture = SubResource("GradientTexture2D_cxis0")
 expand_mode = 1
+
+[node name="ActivateSquashAndStretch" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_ubjeh")
+target = NodePath("../Snap")

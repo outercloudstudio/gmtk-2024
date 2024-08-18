@@ -54,6 +54,9 @@ func finish_place():
 
 	Static.camera.shake(0.4)
 
+	if has_node("SquashAndStretch"):
+		$SquashAndStretch.trigger(Vector2(1.4, 0.6), 8)
+
 
 func destroy():
 	_world.tilemap.erase(_location)
