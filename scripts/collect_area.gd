@@ -35,3 +35,5 @@ func _physics_process(delta: float) -> void:
 		add_child(dust)
 		dust.emitting = true
 		dust.global_position = global_position
+
+		Static.audio.play("spawn")

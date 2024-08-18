@@ -23,3 +23,5 @@ func _process(delta: float) -> void:
 
 		if get_parent().has_node("ActivateSquashAndStretch"):
 			get_parent().get_node("ActivateSquashAndStretch").trigger(Vector2(1.4, 0.6), 8)
+
+		Static.audio.play("spawn")

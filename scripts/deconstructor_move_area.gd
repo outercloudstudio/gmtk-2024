@@ -154,4 +154,6 @@ func _physics_process(delta: float) -> void:
 		if tile.has_node("ActivateSquashAndStretch"):
 			tile.get_node("ActivateSquashAndStretch").trigger(Vector2(1.4, 0.6), 8)
 
+		Static.audio.play("spawn")
+
 	last_items_to_send = items_to_send

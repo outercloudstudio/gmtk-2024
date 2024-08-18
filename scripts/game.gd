@@ -50,6 +50,9 @@ func _process(delta: float) -> void:
 		timer_label.text = str(ceil(_round_timer))
 		_update_quota_display()
 
+		if _round_timer <= 15:
+			Static.audio.music_state = "play_intense"
+
 		if _round_timer <= 0:
 			end_round()
 
@@ -66,6 +69,8 @@ func start_round():
 	Static.collected_quota = {}
 	for identifier in Static.quota:
 		Static.collected_quota[identifier] = 0
+
+	Static.audio.music_state = "play"
 
 
 
@@ -89,6 +94,8 @@ func end_round():
 		performance_label.modulate = Color("#00ff00")
 	
 	world.cleanup()
+
+	Static.audio.music_state = "finish"
 
 
 func start():

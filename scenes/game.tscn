@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=41 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
@@ -21,8 +21,25 @@
 [ext_resource type="AudioStream" uid="uid://d151h61fk4ea4" path="res://audio/footstep_concrete_000.ogg" id="19_8nlxk"]
 [ext_resource type="AudioStream" uid="uid://bxpp02yniowy0" path="res://audio/footstep_concrete_002.ogg" id="21_6pk84"]
 [ext_resource type="AudioStream" uid="uid://bqgyw6i543uke" path="res://audio/explode.wav" id="22_gyoq6"]
+[ext_resource type="AudioStream" uid="uid://t3afmw7m863f" path="res://audio/impactMetal_heavy_001.ogg" id="23_0r1bb"]
 [ext_resource type="AudioStream" uid="uid://cm2873w31yt83" path="res://audio/thrusterFire_003.ogg" id="23_tebmu"]
 [ext_resource type="AudioStream" uid="uid://qw4jpqukq6l4" path="res://audio/footstep_concrete_004.ogg" id="23_u56pr"]
+[ext_resource type="AudioStream" uid="uid://63mcu0dvlh3o" path="res://audio/impactMetal_heavy_002.ogg" id="24_d1pgo"]
+[ext_resource type="AudioStream" uid="uid://in6ad877uf18" path="res://audio/Juhani Junkala [Chiptune Adventures] 1. Stage 1.ogg" id="24_pecu3"]
+[ext_resource type="AudioStream" uid="uid://bf03q2smljj3" path="res://audio/Juhani Junkala [Chiptune Adventures] 2. Stage 2.ogg" id="25_1oe61"]
+[ext_resource type="AudioStream" uid="uid://dnqgqn2t45s1u" path="res://audio/impactPlate_heavy_000.ogg" id="26_3f3k6"]
+[ext_resource type="AudioStream" uid="uid://1tba8pg8ephb" path="res://audio/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.ogg" id="26_35csr"]
+[ext_resource type="AudioStream" uid="uid://do2xxf1jl2msj" path="res://audio/impactMetal_heavy_004.ogg" id="26_tyfv5"]
+[ext_resource type="AudioStream" uid="uid://bnowfydx6atfp" path="res://audio/Juhani Junkala [Chiptune Adventures] 4. Stage Select.ogg" id="27_7mfye"]
+[ext_resource type="AudioStream" uid="uid://bui1c6y0ho4ut" path="res://audio/impactPlate_heavy_001.ogg" id="27_hsjfc"]
+[ext_resource type="AudioStream" uid="uid://cbi5mwmownc63" path="res://audio/impactPlate_heavy_002.ogg" id="28_6wbcs"]
+[ext_resource type="AudioStream" uid="uid://dnmh050tfyehn" path="res://audio/impactPlate_heavy_003.ogg" id="29_dosok"]
+[ext_resource type="AudioStream" uid="uid://c1swp4qgcgjhn" path="res://audio/impactPlate_heavy_004.ogg" id="30_yesl3"]
+[ext_resource type="AudioStream" uid="uid://kdh6kcww5n7t" path="res://audio/footstep_grass_000.ogg" id="31_y1byr"]
+[ext_resource type="AudioStream" uid="uid://doysv07qp8oby" path="res://audio/footstep_grass_001.ogg" id="32_6c6hv"]
+[ext_resource type="AudioStream" uid="uid://bekl6amwdc24x" path="res://audio/footstep_grass_002.ogg" id="33_32upl"]
+[ext_resource type="AudioStream" uid="uid://kiv3ybpsepyk" path="res://audio/footstep_grass_003.ogg" id="34_1cl6s"]
+[ext_resource type="AudioStream" uid="uid://drcyopv3lnwtp" path="res://audio/footstep_grass_004.ogg" id="35_f1rnb"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_label", "performance_label", "quota_holder", "main_menu_animation_player", "results_menu_animation_player")]
 texture_filter = 1
@@ -95,10 +112,41 @@ horizontal_alignment = 1
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("18_mosgn")
 place_sounds = [ExtResource("19_8nlxk"), ExtResource("21_6pk84"), ExtResource("23_u56pr")]
+repair_sounds = [ExtResource("23_0r1bb"), ExtResource("24_d1pgo"), ExtResource("26_tyfv5")]
 explosion_sounds = [ExtResource("22_gyoq6")]
+destroy_sounds = [ExtResource("26_3f3k6"), ExtResource("27_hsjfc"), ExtResource("28_6wbcs"), ExtResource("29_dosok"), ExtResource("30_yesl3")]
+spawn_sounds = [ExtResource("31_y1byr"), ExtResource("32_6c6hv"), ExtResource("33_32upl"), ExtResource("34_1cl6s"), ExtResource("35_f1rnb")]
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("23_tebmu")
+volume_db = 5.0
+attenuation = 1e-05
+panning_strength = 0.0
+
+[node name="Menu" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("24_pecu3")
+autoplay = true
+attenuation = 1e-05
+panning_strength = 0.0
+
+[node name="Play" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("25_1oe61")
+volume_db = -30.0
+autoplay = true
+attenuation = 1e-05
+panning_strength = 0.0
+
+[node name="PlayIntense" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("26_35csr")
+volume_db = -30.0
+autoplay = true
+attenuation = 1e-05
+panning_strength = 0.0
+
+[node name="Finish" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("27_7mfye")
+volume_db = -30.0
+autoplay = true
 attenuation = 1e-05
 panning_strength = 0.0
 

@@ -41,6 +41,9 @@ func start(level_scene: PackedScene):
 
 
 func cleanup():
+	for location in tilemap:
+		tilemap[location].destroy()
+		
 	_level.queue_free()
 
 	tilemap = {}
@@ -90,7 +93,9 @@ func update_placing():
 			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
 				if repair_cooldown <= 0:
 					tilemap[tile_location].repair()
-					repair_cooldown = 0.25
+					repair_cooldown = 0.15
+
+					Static.audio.play("repair")
 
 				Static.camera.shake(0.3)
 
@@ -99,6 +104,8 @@ func update_placing():
 				tilemap[tile_location].destroy()
 
 				Static.camera.shake(0.4)
+
+				Static.audio.play("destroy")
 
 		return
 
