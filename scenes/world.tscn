@@ -163,6 +163,7 @@ offset_right = 500.0
 offset_bottom = 500.0
 
 [node name="Border" type="NinePatchRect" parent="."]
+visible = false
 offset_left = -70.0
 offset_top = -85.0
 offset_right = 70.0
