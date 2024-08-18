@@ -3,6 +3,7 @@ class_name Audio
 
 
 @export var place_sounds: Array = []
+@export var click_sounds: Array = []
 @export var repair_sounds: Array = []
 @export var explosion_sounds: Array = []
 @export var destroy_sounds: Array = []
@@ -74,6 +75,11 @@ func play(sound_name: String):
         player.volume_db = 2
         player.pitch_scale = randf_range(0.9, 1.1)
 
+    if sound_name == "click":
+        sound = click_sounds.pick_random()
+        player.volume_db = 7
+        player.pitch_scale = randf_range(0.9, 1.1)
+
     player.stream = sound
     player.attenuation = 0
     player.panning_strength = 0
@@ -96,6 +102,5 @@ func play_fire():
 func stop_fire():
     fire_play_count -= 1
 
-    
     if fire_play_count == 0:
         $Fire.playing = false

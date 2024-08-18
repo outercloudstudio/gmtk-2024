@@ -10,7 +10,7 @@ signal on_clicked()
 
 
 func _ready() -> void:
-	$TextureRect.texture = texture
+	$SquashTarget/TextureRect.texture = texture
 
 
 func _process(_delta):
@@ -28,4 +28,6 @@ func clicked() -> void:
 		return
 
 	on_clicked.emit()
+
+	$SquashAndStretch.trigger(Vector2(0.6, 0.6), 12)
 	

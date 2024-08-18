@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=42 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://audio.gd" id="18_mosgn"]
 [ext_resource type="AudioStream" uid="uid://d151h61fk4ea4" path="res://audio/footstep_concrete_000.ogg" id="19_8nlxk"]
 [ext_resource type="AudioStream" uid="uid://bxpp02yniowy0" path="res://audio/footstep_concrete_002.ogg" id="21_6pk84"]
+[ext_resource type="AudioStream" uid="uid://ctf1tg8upt1gu" path="res://audio/click_001.ogg" id="22_bj40b"]
 [ext_resource type="AudioStream" uid="uid://bqgyw6i543uke" path="res://audio/explode.wav" id="22_gyoq6"]
 [ext_resource type="AudioStream" uid="uid://t3afmw7m863f" path="res://audio/impactMetal_heavy_001.ogg" id="23_0r1bb"]
 [ext_resource type="AudioStream" uid="uid://cm2873w31yt83" path="res://audio/thrusterFire_003.ogg" id="23_tebmu"]
@@ -112,6 +113,7 @@ horizontal_alignment = 1
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("18_mosgn")
 place_sounds = [ExtResource("19_8nlxk"), ExtResource("21_6pk84"), ExtResource("23_u56pr")]
+click_sounds = [ExtResource("22_bj40b")]
 repair_sounds = [ExtResource("23_0r1bb"), ExtResource("24_d1pgo"), ExtResource("26_tyfv5")]
 explosion_sounds = [ExtResource("22_gyoq6")]
 destroy_sounds = [ExtResource("26_3f3k6"), ExtResource("27_hsjfc"), ExtResource("28_6wbcs"), ExtResource("29_dosok"), ExtResource("30_yesl3")]

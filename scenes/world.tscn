@@ -409,26 +409,32 @@ position = Vector2(90, 0)
 [node name="ToolButton2" parent="Tools" instance=ExtResource("10_2dx41")]
 position = Vector2(0, -29)
 texture = ExtResource("12_u80pu")
+is_enabled = false
 
 [node name="ToolButton" parent="Tools" instance=ExtResource("10_2dx41")]
 position = Vector2(0, -8)
 texture = ExtResource("11_fxgoa")
+is_enabled = false
 
 [node name="ToolButton3" parent="Tools" instance=ExtResource("10_2dx41")]
 position = Vector2(0, 13)
 texture = ExtResource("13_cndej")
+is_enabled = false
 
 [node name="ToolButton6" parent="Tools" instance=ExtResource("10_2dx41")]
 position = Vector2(22, -29)
 texture = ExtResource("14_idjjr")
+is_enabled = false
 
 [node name="ToolButton4" parent="Tools" instance=ExtResource("10_2dx41")]
 position = Vector2(22, -8)
 texture = ExtResource("14_oj5uq")
+is_enabled = false
 
 [node name="ToolButton5" parent="Tools" instance=ExtResource("10_2dx41")]
 position = Vector2(22, 13)
 texture = ExtResource("15_ukf6u")
+is_enabled = false
 
 [connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton2" to="." method="start_game"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]

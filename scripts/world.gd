@@ -37,19 +37,33 @@ func start(level_scene: PackedScene):
 
 	add_child(_level)
 
+	open_tools()
+
 	return _level
+
+
+func open_tools():
+	for tool in $Tools.get_children():
+		await get_tree().create_timer(0.02).timeout
+
+		tool.is_enabled = true
 
 
 func cleanup():
 	for location in tilemap:
 		tilemap[location].destroy()
-		
+
 	_level.queue_free()
 
 	tilemap = {}
 
 	if is_placing:
 		reset_placing()
+
+	for tool in $Tools.get_children():
+		await get_tree().create_timer(0.02).timeout
+
+		tool.is_enabled = false
 	
 
 func _input(event: InputEvent) -> void:
@@ -149,39 +163,57 @@ func select_conveyor():
 	_selected_tile = conveyor_scene
 	_selected_repair_tool = false
 
+	Static.audio.play("click")
+
 
 func select_splitter():
 	_selected_tile = splitter_scene
 	_selected_repair_tool = false
+
+	Static.audio.play("click")
 
 
 func select_constructor():
 	_selected_tile = constructor_scene
 	_selected_repair_tool = false
 
+	Static.audio.play("click")
+
 
 func select_deconstructor():
 	_selected_tile = deconstructor_scene
 	_selected_repair_tool = false
+
+	Static.audio.play("click")
 
 
 func select_delete():
 	_selected_tile = null
 	_selected_repair_tool = false
 
+	Static.audio.play("click")
+
 
 func select_repair():
 	_selected_tile = null
 	_selected_repair_tool = true
 
+	Static.audio.play("click")
+
 
 func start_game():
 	game.start()
+
+	Static.audio.play("click")
 
 
 func restart():
 	game.restart()
 
+	Static.audio.play("click")
+
 
 func next():
 	game.next()
+
+	Static.audio.play("click")

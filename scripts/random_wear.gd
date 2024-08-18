@@ -22,9 +22,6 @@ func _ready() -> void:
 	
 
 func repair():
-	spawned_smoke = false
-	time_till_explode = randf_range(20, 40)
-
 	smoke.emitting = false
 	
 	var dust_scene: PackedScene = load("res://scenes/dust.tscn")
@@ -33,7 +30,18 @@ func repair():
 	add_child(dust)
 	dust.emitting = true
 
+	if !spawned_smoke:
+		return
+
+	spawned_smoke = false
+
+	time_till_explode = randf_range(15, 25)
+
 	Static.audio.stop_fire()
+
+	await get_tree().create_timer(1).timeout
+
+	dust.queue_free()
 
 
 func destroy():
