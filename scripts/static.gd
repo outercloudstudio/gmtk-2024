@@ -11,7 +11,7 @@ var items = {}
 var state = "menu"
 
 var is_tutorial = false
-var tutorial_stage = "start"
+var tutorial_stage = "none"
 var tutorial_repair_count = 0
 
 var item_levels = [

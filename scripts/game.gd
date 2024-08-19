@@ -62,10 +62,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Static.state == "play":
-		if !Static.is_tutorial:
+		if !Static.is_tutorial || Static.tutorial_stage == "finish":
 			_round_timer -= delta
 
 		timer_progress.value = _round_timer / 80 * 100
+
+		if Static.tutorial_stage == "finish":
+			timer_progress.value = _round_timer / 20 * 100
 
 		_update_quota_display()
 
@@ -116,9 +119,11 @@ func start_round():
 	_scores = await fetch_scores(_current_level_identifier)
 
 
-
 func end_round():
 	Static.state = "results"
+
+	Static.is_tutorial = false
+	Static.tutorial_stage = "none"
 
 	performance_label.text = str(Static.score)
 
@@ -229,6 +234,32 @@ func tutorial_repairing_stage():
 	tutorial_animator.play("repairing")
 
 	Static.tutorial_repair_count = 0
+
+
+func tutorial_constructor_stage():
+	Static.tutorial_stage = "constructor"
+
+	tutorial_animator.play("constructor")
+
+
+func tutorial_producing_stage():
+	Static.tutorial_stage = "producing"
+
+	tutorial_animator.play("producing")
+
+
+func tutorial_deleting_stage():
+	Static.tutorial_stage = "deleting"
+
+	tutorial_animator.play("deleting")
+
+
+func tutorial_finish_stage():
+	Static.tutorial_stage = "finish"
+
+	tutorial_animator.play("finish")
+
+	_round_timer = 20
 
 
 func menu():

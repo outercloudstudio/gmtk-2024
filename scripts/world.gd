@@ -316,7 +316,39 @@ func check_tutorial_repairing_complete():
 	if Static.tutorial_repair_count < 5:
 		return
 
-	# game.tutorial_repairing_stage()
+	game.tutorial_constructor_stage()
+
+
+func check_tutorial_constructor_complete():
+	for location in [ Vector2i(0, -2) ]:
+		if !tilemap.has(location):
+			return
+		
+		var tile = tilemap[location]
+
+		if tile.identifier != "constructor":
+			return
+
+		if tile.direction != Vector2i.RIGHT:
+			return
+
+	game.tutorial_producing_stage()
+
+
+func check_tutorial_producing_complete():
+	if Static.collected_quota["sheet"] < 20:
+		return
+
+	game.tutorial_deleting_stage()
+
+
+func check_tutorial_deleting_complete():
+	for location in [ Vector2i(-2, -2), Vector2i(-1, -2), Vector2i(0, -2), Vector2i(1, -2), Vector2i(2, -2) ]:
+		if tilemap.has(location):
+			return
+
+	game.tutorial_finish_stage()
+
 
 func _update_value(value:float) -> void:
 	var master = AudioServer.get_bus_index("Master")

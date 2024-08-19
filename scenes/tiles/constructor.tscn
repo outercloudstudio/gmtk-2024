@@ -76,6 +76,7 @@ _data = {
 y_sort_enabled = true
 script = ExtResource("1_tbfce")
 rotation_origin = NodePath("AnimatedPosition/SquashOrigin/RotationOrigin")
+identifier = "constructor"
 
 [node name="AnimatedPosition" type="Node2D" parent="."]
 

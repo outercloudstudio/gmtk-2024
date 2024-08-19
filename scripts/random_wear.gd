@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 	if !Static.is_tutorial:
 		time_till_explode -= delta
 
-	if Static.is_tutorial && Static.tutorial_stage == "repairing" && !_tiggered_tutorial_repair:
+	if Static.is_tutorial && Static.tutorial_stage == "repairing" && !_tiggered_tutorial_repair && get_parent().can_be_replaced:
 		time_till_explode = 5
 
 		_tiggered_tutorial_repair = true
