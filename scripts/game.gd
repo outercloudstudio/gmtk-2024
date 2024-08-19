@@ -29,6 +29,8 @@ class_name Game
 
 var _round_timer = 60
 var _level_scene = null
+var _scores = []
+var _current_level_identifier = "none"
 
 func _enter_tree() -> void:
 	Static.items = {
@@ -44,6 +46,10 @@ func _enter_tree() -> void:
 		copper_bit = copper_bit_scene,
 		plastic_blob = plastic_blob_bit_scene
 	}
+
+
+func _ready() -> void:
+	Firebase.Auth.login_anonymous()
 
 
 func _process(delta: float) -> void:
@@ -63,8 +69,7 @@ func _process(delta: float) -> void:
 func start_round():
 	Static.state = "play"
 
-	# _round_timer = 60
-	_round_timer = 10
+	_round_timer = 60
 
 	var level = world.start(_level_scene)
 
@@ -76,6 +81,12 @@ func start_round():
 		Static.collected_quota[identifier] = 0
 
 	Static.audio.music_state = "play"
+
+	_current_level_identifier = level.scene_file_path.get_file()
+
+	await get_tree().create_timer(1).timeout
+	
+	_scores = await fetch_scores(_current_level_identifier)
 
 
 
@@ -102,7 +113,17 @@ func end_round():
 
 	Static.audio.music_state = "finish"
 
-	draw_graph([ 250, 500, 500, 500, 1000, 1002, 2000, Static.score ], Static.score)
+	var score_data = []
+
+	for score in _scores:
+		score_data.push_back(score)
+
+	score_data.push_back(Static.score)
+
+	draw_graph(score_data, Static.score)
+
+	if !failed:
+		await submit_score(_current_level_identifier, Static.score)
 
 
 func start():
@@ -138,14 +159,12 @@ func _update_quota_display():
 
 		quota_item.setup()
 
-	pass
-
 
 func draw_graph(data: Array, your_score):
-	var lowest = 0
-	var highest = 1000
+	var lowest = your_score
+	var highest = your_score
 
-	var graph_width = floor(graph.size.x / 4)
+	var graph_width = floor((graph.size.x - 4) / 4)
 
 	for score in data:
 		lowest = min(lowest, score)
@@ -153,13 +172,16 @@ func draw_graph(data: Array, your_score):
 
 	var bucket_size = (highest - lowest) / (graph_width)
 
+	if bucket_size == 0:
+		bucket_size = 1
+
 	var buckets = []
 
 	for x in range(graph_width + 1):
 		buckets.push_back(0)
 
 	for score in data:
-		var bucket = floor((score - lowest) / bucket_size)
+		var bucket = round((score - lowest) / bucket_size)
 
 		buckets[bucket] += 1
 
@@ -171,14 +193,15 @@ func draw_graph(data: Array, your_score):
 	for child in graph.get_children():
 		child.queue_free()
 
-	var your_bucket_index = floor((your_score - lowest) / bucket_size)
-
-	print(buckets)
+	var your_bucket_index = round((your_score - lowest) / bucket_size)
 
 	for bucket_index in range(len(buckets)):
 		var bar = ColorRect.new()
 
-		var height = floor(graph.size.y * buckets[bucket_index] / max_count)
+		var height = graph.size.y
+
+		if max_count != 0:
+			height = floor(graph.size.y * buckets[bucket_index] / max_count)
 
 		graph.add_child(bar)
 		bar.position = Vector2(bucket_index * 4, graph.size.y - height)
@@ -191,3 +214,108 @@ func draw_graph(data: Array, your_score):
 
 	lower_bound_label.text = str(lowest)
 	upper_bound_label.text = str(highest)
+
+
+func fetch_scores(level: String):
+	var scores = []
+
+	var query: FirestoreQuery = FirestoreQuery.new()
+
+	query.from("data")
+	query.limit(10)
+
+	var results = await Firebase.Firestore.query(query)
+	var result = null
+
+	for other_result in results:
+		if other_result.doc_name == level:
+			result = other_result
+
+	if result == null:
+		print("Missing level document")
+
+		return []
+
+	if result.is_null_value("scores"):
+		print("Missing scores")
+
+		return []
+
+	var level_data = result.get_value("scores")
+
+	if !(level_data is Dictionary):
+		print("data is not disctionary")
+
+		return []
+
+	if !level_data.has("values"):
+		print("Missing values")
+
+		return []
+
+	var scores_data = level_data["values"]
+
+	for data in scores_data:
+		if data.has("integerValue"):
+			var value = data["integerValue"]
+
+			if value.is_valid_float():
+				scores.append(float(value))
+
+		if data.has("doubleValue"):
+			scores.append(data["doubleValue"])
+
+	return scores
+
+
+func submit_score(level: String, score):
+	var collection: FirestoreCollection = Firebase.Firestore.collection("data")
+
+	var scores = []
+
+	var query: FirestoreQuery = FirestoreQuery.new()
+
+	query.from("data")
+	query.limit(10)
+
+	var results = await Firebase.Firestore.query(query)
+	var result = null
+
+	for other_result in results:
+		if other_result.doc_name == level:
+			result = other_result
+
+	if result == null:
+		print("Missing level document")
+
+		return
+
+	if result.is_null_value("scores"):
+		print("Missing scores")
+	else:
+		var level_data = result.get_value("scores")
+
+		if !(level_data is Dictionary):
+			print("data is not disctionary")
+		else:
+			if !level_data.has("values"):
+				print("Missing values")
+			else:
+				var scores_data = level_data["values"]
+
+				for data in scores_data:
+					if data.has("integerValue"):
+						var value = data["integerValue"]
+
+						if value.is_valid_float():
+							scores.append(float(value))
+
+					if data.has("doubleValue"):
+						scores.append(data["doubleValue"])
+
+
+	scores.push_back(score)
+
+	result.add_or_update_field("scores", scores)
+	
+	await collection.update(result) 

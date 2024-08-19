@@ -18,10 +18,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 Static="*res://scripts/static.gd"
+Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 [dotnet]
 
 project/assembly_name="GMTK 2024"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")
 
 [global_group]
 
