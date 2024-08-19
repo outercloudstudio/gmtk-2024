@@ -5,7 +5,7 @@ class_name Game
 @export var world: World
 @export var timer_progress: TextureProgressBar
 @export var performance_label: Label
-@export var quota_holder: Control
+@export var quota_holder: Node2D
 @export var quota_item_scene: PackedScene
 @export var level_scenes: Array
 @export var main_menu_animation_player: AnimationPlayer
@@ -145,6 +145,9 @@ func end_round():
 	if !failed:
 		await submit_score(_current_level_identifier, Static.score)
 
+	for child in quota_holder.get_children():
+		child.queue_free()
+
 
 func start():
 	_level_scene = level_scenes.pick_random()
@@ -170,6 +173,8 @@ func _update_quota_display():
 	for child in quota_holder.get_children():
 		child.queue_free()
 
+	var index = 0
+
 	for identifier in Static.quota:
 		var quota_item: QuotaItem = quota_item_scene.instantiate()
 		quota_holder.add_child(quota_item)
@@ -177,7 +182,11 @@ func _update_quota_display():
 		quota_item.identifier = identifier
 		quota_item.amount = Static.quota[identifier] - Static.collected_quota[identifier]
 
+		quota_item.position = Vector2(0, 20 * index)
+
 		quota_item.setup()
+
+		index += 1
 
 
 func draw_graph(data: Array, your_score):
