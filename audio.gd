@@ -9,6 +9,7 @@ class_name Audio
 @export var destroy_sounds: Array = []
 @export var spawn_sounds: Array = []
 @export var ring_sound: AudioStream
+@export var boop_sound: AudioStream
 var fire_play_count = 0
 var music_state = "menu"
 
@@ -84,6 +85,27 @@ func play(sound_name: String):
     if sound_name == "ring":
         sound = ring_sound
         player.volume_db = -3
+
+    player.stream = sound
+    player.attenuation = 0
+    player.panning_strength = 0
+
+    add_child(player)
+    player.play()
+
+    await get_tree().create_timer(1).timeout
+
+    player.queue_free()
+
+
+func play_pitched(sound_name: String, pitch: float):
+    var sound = null
+    var player = AudioStreamPlayer2D.new()
+
+    if sound_name == "boop":
+        sound = boop_sound
+        player.volume_db = -3
+        player.pitch_scale = pitch
 
     player.stream = sound
     player.attenuation = 0

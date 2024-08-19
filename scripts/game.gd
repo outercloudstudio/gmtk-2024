@@ -14,6 +14,8 @@ class_name Game
 @export var upper_bound_label: Label
 @export var graph: Control
 @export var background: ColorRect
+@export var collected_holder: Control
+@export var results_menu_mid_animation_player: AnimationPlayer
 
 @export_category("Items")
 @export var rod_scene: PackedScene
@@ -97,6 +99,8 @@ func start_round():
 	Static.score = 0
 
 	Static.collected_quota = {}
+	Static.all_collected = {}
+
 	for identifier in Static.quota:
 		Static.collected_quota[identifier] = 0
 
@@ -143,10 +147,38 @@ func end_round():
 	draw_graph(score_data, Static.score)
 
 	if !failed:
-		await submit_score(_current_level_identifier, Static.score)
+		submit_score(_current_level_identifier, Static.score)
 
-	for child in quota_holder.get_children():
-		child.queue_free()
+	results_menu_mid_animation_player.play("RESET")
+	results_menu_mid_animation_player.seek(0.1, true)
+
+	for child in collected_holder.get_children():
+		child.free()
+
+	await get_tree().create_timer(0.5).timeout
+
+	for item in Static.all_collected:
+		var quota_item: QuotaItem = quota_item_scene.instantiate()
+
+		collected_holder.add_child(quota_item)
+
+		quota_item.identifier = item
+		quota_item.setup()
+
+		if collected_holder.get_child_count() > 4:
+			collected_holder.get_child(0).free()
+
+		for i in range(Static.all_collected[item]):
+			Static.audio.play_pitched("boop", 0.6 + i * 0.05)
+
+			quota_item.amount = i + 1
+			quota_item.setup()
+
+			await get_tree().create_timer(0.05).timeout
+
+		await get_tree().create_timer(1).timeout
+
+	results_menu_mid_animation_player.play("graph")
 
 
 func start():
@@ -213,6 +245,18 @@ func draw_graph(data: Array, your_score):
 		var bucket = round((score - lowest) / bucket_size)
 
 		buckets[bucket] += 1
+
+		if bucket - 1 >= 0:
+			buckets[bucket - 1] += 0.4
+
+		if bucket - 2 >= 0:
+			buckets[bucket - 2] += 0.1
+
+		if bucket + 1 <= graph_width:
+			buckets[bucket + 1] += 0.4
+
+		if bucket + 2 <= graph_width:
+			buckets[bucket + 2] += 0.1
 
 	var max_count = 0
 

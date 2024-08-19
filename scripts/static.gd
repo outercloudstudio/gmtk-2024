@@ -3,6 +3,7 @@ extends Node
 
 var quota = {}
 var collected_quota = {}
+var all_collected = {}
 var score = 0
 
 var items = {}

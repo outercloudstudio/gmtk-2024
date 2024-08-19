@@ -37,7 +37,7 @@ func repair():
 
 	spawned_smoke = false
 
-	time_till_explode = randf_range(15, 25)
+	time_till_explode = randf_range(20, 30)
 
 	Static.audio.stop_fire()
 

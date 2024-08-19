@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 
 	tile_indicator.visible = mouse_tile_position.x >= -4 && mouse_tile_position.y >= -4 && mouse_tile_position.x < 4 && mouse_tile_position.y < 4 
 
-	tile_indicator.global_position = fixed_lerp(tile_indicator.global_position, mouse_tile_position * 16 + Vector2.ONE * 8, 24, delta)
+	tile_indicator.global_position = fixed_lerp(tile_indicator.global_position, mouse_tile_position * 16 + Vector2.ONE * 8, 32, delta)
 
 
 func fixed_lerp(a, b, decay, delta):
@@ -266,3 +266,8 @@ func toggle_manual():
 		manual_animator.play("show")
 
 	manual_open = !manual_open
+
+
+func _update_value(value:float) -> void:
+	var master = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(master, value)

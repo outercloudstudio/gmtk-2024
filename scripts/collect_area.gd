@@ -13,6 +13,11 @@ func _physics_process(delta: float) -> void:
 		if item_tile_position != tile_position:
 			continue
 
+		if !Static.all_collected.has(item.identifier):
+			Static.all_collected[item.identifier] = 0
+
+		Static.all_collected[item.identifier] += 1
+
 		if Static.quota.has(item.identifier):
 			if Static.collected_quota[item.identifier] < Static.quota[item.identifier]:
 				Static.collected_quota[item.identifier] += 1
