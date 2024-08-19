@@ -28,7 +28,7 @@ class_name Game
 @export var copper_bit_scene: PackedScene
 @export var plastic_blob_bit_scene: PackedScene
 
-var _round_timer = 60
+var _round_timer = 0
 var _level_scene = null
 var _scores = []
 var _current_level_identifier = "none"
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 	if Static.state == "play":
 		_round_timer -= delta
 
-		timer_progress.value = _round_timer / 60 * 100
+		timer_progress.value = _round_timer / 80 * 100
 
 		_update_quota_display()
 
@@ -88,7 +88,7 @@ func fixed_lerp(a, b, decay, delta):
 func start_round():
 	Static.state = "play"
 
-	_round_timer = 60
+	_round_timer = 80
 	_rung = false
 
 	var level = world.start(_level_scene)
@@ -193,7 +193,7 @@ func draw_graph(data: Array, your_score):
 	var lowest = your_score
 	var highest = your_score
 
-	var graph_width = floor((graph.size.x - 4) / 4)
+	var graph_width = floor(graph.size.x / 4 - 1)
 
 	for score in data:
 		lowest = min(lowest, score)

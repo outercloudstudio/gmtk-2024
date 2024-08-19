@@ -11,18 +11,20 @@ var spawned_smoke = false
 var smoke: GPUParticles2D
 
 func _ready() -> void:
-	time_till_explode = randf_range(20, 40)
+	time_till_explode = randf_range(20, 60)
 
 	smoke = smoke_scene.instantiate()
 	get_parent().add_child.call_deferred(smoke)
 
 	smoke.emitting = false
+	smoke.get_node("Sparks").emitting = false
 
 	get_parent().on_destroy.connect(destroy)
 	
 
 func repair():
 	smoke.emitting = false
+	smoke.get_node("Sparks").emitting = false
 	
 	var dust_scene: PackedScene = load("res://scenes/dust.tscn")
 	var dust: GPUParticles2D = dust_scene.instantiate()
@@ -55,10 +57,11 @@ func _process(delta: float) -> void:
 
 	time_till_explode -= delta
 
-	if time_till_explode < 5 && !spawned_smoke:
+	if time_till_explode < 8 && !spawned_smoke:
 		spawned_smoke = true
 
 		smoke.emitting = true
+		smoke.get_node("Sparks").emitting = true
 
 		smoke.global_position = global_position
 

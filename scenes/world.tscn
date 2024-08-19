@@ -169,7 +169,7 @@ region = Rect2(336, 94, 64, 2)
 atlas = ExtResource("1_03lg1")
 region = Rect2(334, 78, 68, 6)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("tile_indicator")]
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_gejag")
@@ -177,6 +177,7 @@ conveyor_scene = ExtResource("2_tssqo")
 splitter_scene = ExtResource("3_4yost")
 constructor_scene = ExtResource("4_m5fe8")
 deconstructor_scene = ExtResource("5_v7qm3")
+tile_indicator = NodePath("TileIndicator")
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -100
@@ -592,6 +593,13 @@ offset_right = 34.0
 offset_bottom = -80.0
 texture = SubResource("AtlasTexture_vd580")
 stretch_mode = 2
+
+[node name="TileIndicator" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0196078)
+z_index = 10
+texture = ExtResource("1_03lg1")
+region_enabled = true
+region_rect = Rect2(336, 32, 16, 16)
 
 [connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton2" to="." method="start_game"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/NextButton" to="." method="next"]

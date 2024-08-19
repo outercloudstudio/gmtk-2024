@@ -7,6 +7,7 @@ class_name World
 @export var splitter_scene: PackedScene
 @export var constructor_scene: PackedScene
 @export var deconstructor_scene: PackedScene
+@export var tile_indicator: Sprite2D
 
 
 var is_placing = false
@@ -30,6 +31,16 @@ func _process(delta: float) -> void:
 		update_placing()
 
 	repair_cooldown -= delta
+
+	var mouse_tile_position = floor(get_global_mouse_position() / 16)
+
+	tile_indicator.visible = mouse_tile_position.x >= -4 && mouse_tile_position.y >= -4 && mouse_tile_position.x < 4 && mouse_tile_position.y < 4 
+
+	tile_indicator.global_position = fixed_lerp(tile_indicator.global_position, mouse_tile_position * 16 + Vector2.ONE * 8, 24, delta)
+
+
+func fixed_lerp(a, b, decay, delta):
+	return b + (a - b) * exp(-decay * delta)
 
 
 func start(level_scene: PackedScene):
