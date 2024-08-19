@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=43 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
@@ -41,12 +41,13 @@
 [ext_resource type="AudioStream" uid="uid://bekl6amwdc24x" path="res://audio/footstep_grass_002.ogg" id="33_32upl"]
 [ext_resource type="AudioStream" uid="uid://kiv3ybpsepyk" path="res://audio/footstep_grass_003.ogg" id="34_1cl6s"]
 [ext_resource type="AudioStream" uid="uid://drcyopv3lnwtp" path="res://audio/footstep_grass_004.ogg" id="35_f1rnb"]
+[ext_resource type="AudioStream" uid="uid://244uprvuip6r" path="res://audio/ring.wav" id="37_qw44w"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_label", "performance_label", "quota_holder", "main_menu_animation_player", "results_menu_animation_player", "lower_bound_label", "upper_bound_label", "graph")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_progress", "performance_label", "quota_holder", "main_menu_animation_player", "results_menu_animation_player", "lower_bound_label", "upper_bound_label", "graph", "background")]
 texture_filter = 1
 script = ExtResource("1_kd6lh")
 world = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World")
-timer_label = NodePath("CanvasLayer/Timer")
+timer_progress = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/TimeProgress")
 performance_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/Score")
 quota_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/QuotaDisplay/QuotaItems")
 quota_item_scene = ExtResource("2_qx52i")
@@ -56,6 +57,7 @@ results_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubVi
 lower_bound_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/LowerBound")
 upper_bound_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/UpperBound")
 graph = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/Graph")
+background = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Background")
 rod_scene = ExtResource("2_5xd64")
 wire_scene = ExtResource("3_bim1w")
 battery_scene = ExtResource("2_527w3")
@@ -102,17 +104,6 @@ offset_top = 0.0
 offset_right = 40.0
 offset_bottom = 135.0
 
-[node name="Timer" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.0
-offset_right = 105.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "123"
-horizontal_alignment = 1
-
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("18_mosgn")
 place_sounds = [ExtResource("19_8nlxk"), ExtResource("21_6pk84"), ExtResource("23_u56pr")]
@@ -121,6 +112,7 @@ repair_sounds = [ExtResource("23_0r1bb"), ExtResource("24_d1pgo"), ExtResource("
 explosion_sounds = [ExtResource("22_gyoq6")]
 destroy_sounds = [ExtResource("26_3f3k6"), ExtResource("27_hsjfc"), ExtResource("28_6wbcs"), ExtResource("29_dosok"), ExtResource("30_yesl3")]
 spawn_sounds = [ExtResource("31_y1byr"), ExtResource("32_6c6hv"), ExtResource("33_32upl"), ExtResource("34_1cl6s"), ExtResource("35_f1rnb")]
+ring_sound = ExtResource("37_qw44w")
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("23_tebmu")

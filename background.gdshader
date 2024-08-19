@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform float danger = 0;
+
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
@@ -8,7 +10,9 @@ void fragment() {
 	// Called for every pixel the material is visible on.
 	
 	vec4 light = vec4(20.0 / 255.0, 16.0 / 255.0, 19.0 / 255.0, 1.0);
+	vec4 light_danger = vec4(115.0 / 255.0, 23.0 / 255.0, 45.0 / 255.0, 1.0);
 	vec4 dark = vec4(6.0 / 255.0, 6.0 / 255.0, 8.0 / 255.0, 1.0);
+	vec4 dark_danger = vec4(59.0 / 255.0, 23.0 / 255.0, 37.0 / 255.0, 1.0);
 	
 	//vec2 grid_position = vec2(UV.x * cos(PI / 4.0), UV.y * sin(PI / 4.0)) * 1000.0 / 4.0;
 	//vec2 grid_position = vec2(UV.x, UV.y) * 1000.0 / 4.0;
@@ -32,9 +36,9 @@ void fragment() {
 	bool odd = mod_grid_position.x != mod_grid_position.y;
 	
 	if(odd) {
-		COLOR = dark;
+		COLOR = mix(dark, dark_danger, danger);
 	} else {
-		COLOR = light;
+		COLOR = mix(light, light_danger, danger);
 	}
 }
 

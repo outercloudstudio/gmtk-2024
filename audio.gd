@@ -8,6 +8,7 @@ class_name Audio
 @export var explosion_sounds: Array = []
 @export var destroy_sounds: Array = []
 @export var spawn_sounds: Array = []
+@export var ring_sound: AudioStream
 var fire_play_count = 0
 var music_state = "menu"
 
@@ -72,13 +73,17 @@ func play(sound_name: String):
 
     if sound_name == "spawn":
         sound = spawn_sounds.pick_random()
-        player.volume_db = 2
+        player.volume_db = 0
         player.pitch_scale = randf_range(0.9, 1.1)
 
     if sound_name == "click":
         sound = click_sounds.pick_random()
         player.volume_db = 7
         player.pitch_scale = randf_range(0.9, 1.1)
+
+    if sound_name == "ring":
+        sound = ring_sound
+        player.volume_db = -3
 
     player.stream = sound
     player.attenuation = 0

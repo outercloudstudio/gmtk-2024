@@ -3,7 +3,7 @@ class_name Game
 
 
 @export var world: World
-@export var timer_label: Label
+@export var timer_progress: TextureProgressBar
 @export var performance_label: Label
 @export var quota_holder: Control
 @export var quota_item_scene: PackedScene
@@ -13,6 +13,7 @@ class_name Game
 @export var lower_bound_label: Label
 @export var upper_bound_label: Label
 @export var graph: Control
+@export var background: ColorRect
 
 @export_category("Items")
 @export var rod_scene: PackedScene
@@ -31,6 +32,7 @@ var _round_timer = 60
 var _level_scene = null
 var _scores = []
 var _current_level_identifier = "none"
+var _rung = false
 
 func _enter_tree() -> void:
 	Static.items = {
@@ -51,25 +53,43 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Firebase.Auth.login_anonymous()
 
+	timer_progress.value = 0
+
 
 func _process(delta: float) -> void:
 	if Static.state == "play":
 		_round_timer -= delta
 
-		timer_label.text = str(ceil(_round_timer))
+		timer_progress.value = _round_timer / 60 * 100
+
 		_update_quota_display()
 
 		if _round_timer <= 15:
 			Static.audio.music_state = "play_intense"
 
+			if !_rung:
+				_rung = true
+
+				Static.audio.play("ring")
+
 		if _round_timer <= 0:
 			end_round()
+
+	if Static.state == "play" && _round_timer <= 15:
+		background.material.set_shader_parameter("danger", fixed_lerp(background.material.get_shader_parameter("danger"), 1, 2, delta))
+	else:
+		background.material.set_shader_parameter("danger", fixed_lerp(background.material.get_shader_parameter("danger"), 0, 2, delta))
+
+
+func fixed_lerp(a, b, decay, delta):
+	return b + (a - b) * exp(-decay * delta)
 
 
 func start_round():
 	Static.state = "play"
 
 	_round_timer = 60
+	_rung = false
 
 	var level = world.start(_level_scene)
 

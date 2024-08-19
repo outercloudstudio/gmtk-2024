@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=42 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -26,6 +26,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aok1b"]
 shader = ExtResource("7_pgx5q")
+shader_parameter/danger = 0.0
 
 [sub_resource type="Gradient" id="Gradient_osxht"]
 colors = PackedColorArray(0, 0, 0, 0.596078, 0, 0, 0, 0)
@@ -154,6 +155,18 @@ _data = {
 "hide": SubResource("Animation_k3n4s"),
 "show": SubResource("Animation_24c80")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcr1x"]
+atlas = ExtResource("1_03lg1")
+region = Rect2(336, 90, 64, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpex5"]
+atlas = ExtResource("1_03lg1")
+region = Rect2(336, 94, 64, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd580"]
+atlas = ExtResource("1_03lg1")
+region = Rect2(334, 78, 68, 6)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -566,6 +579,24 @@ is_enabled = false
 position = Vector2(22, 13)
 texture = ExtResource("15_ukf6u")
 is_enabled = false
+
+[node name="TimeProgress" type="TextureProgressBar" parent="."]
+z_index = 2000
+offset_left = -32.0
+offset_top = -84.0
+offset_right = 32.0
+offset_bottom = -82.0
+value = 58.0
+texture_under = SubResource("AtlasTexture_xcr1x")
+texture_progress = SubResource("AtlasTexture_vpex5")
+
+[node name="TimeBorder" type="TextureRect" parent="."]
+offset_left = -34.0
+offset_top = -86.0
+offset_right = 34.0
+offset_bottom = -80.0
+texture = SubResource("AtlasTexture_vd580")
+stretch_mode = 2
 
 [connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton2" to="." method="start_game"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/NextButton" to="." method="next"]
