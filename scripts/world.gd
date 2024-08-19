@@ -8,6 +8,7 @@ class_name World
 @export var constructor_scene: PackedScene
 @export var deconstructor_scene: PackedScene
 @export var tile_indicator: Sprite2D
+@export var manual_animator: AnimationPlayer
 
 
 var is_placing = false
@@ -18,6 +19,7 @@ var _level: Level
 var _selected_tile: PackedScene
 var _selected_repair_tool = false
 var selected_tool_identifier = "none"
+var manual_open = false
 
 
 var repair_cooldown = 0
@@ -51,6 +53,8 @@ func start(level_scene: PackedScene):
 
 	open_tools()
 
+	selected_tool_identifier = "conveyor"
+
 	return _level
 
 
@@ -78,10 +82,18 @@ func cleanup():
 		tool.is_enabled = false
 
 	selected_tool_identifier = "none"
+
+	if manual_open:
+		manual_open = false
+
+		manual_animator.play("hide")
 	
 
 func _input(event: InputEvent) -> void:
 	if Static.state != "play":
+		return
+
+	if manual_open:
 		return
 
 	if event.is_action_pressed("place"):
@@ -243,3 +255,14 @@ func next():
 	game.next()
 
 	Static.audio.play("click")
+
+
+func toggle_manual():
+	Static.audio.play("click")
+
+	if manual_open:
+		manual_animator.play("hide")
+	else:
+		manual_animator.play("show")
+
+	manual_open = !manual_open

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=72 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -23,6 +23,21 @@
 [ext_resource type="Texture2D" uid="uid://0jrtnibjc4tw" path="res://sprites/constructor.tres" id="14_oj5uq"]
 [ext_resource type="Texture2D" uid="uid://cu68niqptjlay" path="res://sprites/deconstructor.tres" id="15_ukf6u"]
 [ext_resource type="Texture2D" uid="uid://bx7wvdl58hnn7" path="res://sprites/retry_button_pressed.tres" id="15_x7s1o"]
+[ext_resource type="Texture2D" uid="uid://b5uqc580anpl4" path="res://sprites/sprite_rod.tres" id="17_gcyje"]
+[ext_resource type="Texture2D" uid="uid://c6flqsnw5pesv" path="res://sprites/sprite_wire.tres" id="18_4g6y3"]
+[ext_resource type="Texture2D" uid="uid://bw2x1b3i22hns" path="res://sprites/sprite_sheet.tres" id="19_34rdl"]
+[ext_resource type="Texture2D" uid="uid://clwhdr3pbv7e5" path="res://sprites/sprite_scrap.tres" id="20_jasa0"]
+[ext_resource type="Texture2D" uid="uid://cg32p761wm13u" path="res://sprites/sprite_battery.tres" id="21_tum5u"]
+[ext_resource type="Texture2D" uid="uid://cy761bw4rwjov" path="res://sprites/sprite_lightbulb.tres" id="22_c1tv5"]
+[ext_resource type="Texture2D" uid="uid://bnbdkcfjiilrk" path="res://sprites/sprite_copper_bit.tres" id="23_tyvxn"]
+[ext_resource type="Texture2D" uid="uid://bpxc1oynhdw5d" path="res://sprites/sprite_button.tres" id="24_2l746"]
+[ext_resource type="Texture2D" uid="uid://badv1yqi5k5g1" path="res://sprites/help_button.tres" id="24_svrmd"]
+[ext_resource type="Texture2D" uid="uid://cu1j4fcndqbrw" path="res://sprites/help_button_pressed.tres" id="25_ivvqo"]
+[ext_resource type="Texture2D" uid="uid://dlb7nv028m0m7" path="res://sprites/sprite_terminal.tres" id="25_jptgt"]
+[ext_resource type="Texture2D" uid="uid://4gf8b8e4b08f" path="res://sprites/sprite_plastic_blob.tres" id="26_o31ve"]
+[ext_resource type="Texture2D" uid="uid://coj0pm1twvlmh" path="res://sprites/sprite_keyboard.tres" id="27_gcjff"]
+[ext_resource type="Texture2D" uid="uid://nuqw6jkv3v2x" path="res://sprites/close_button.tres" id="28_3r1vs"]
+[ext_resource type="Texture2D" uid="uid://df32p3utnvtuf" path="res://sprites/close_button_pressed.tres" id="29_k0p6x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aok1b"]
 shader = ExtResource("7_pgx5q")
@@ -157,6 +172,99 @@ _data = {
 "show": SubResource("Animation_24c80")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpewd"]
+bg_color = Color(0.0784314, 0.0627451, 0.0745098, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mm0yc"]
+bg_color = Color(0.137938, 0.116141, 0.132489, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syarb"]
+bg_color = Color(0.137938, 0.116141, 0.132489, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo7sf"]
+content_margin_left = 2.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.0235294, 0.0235294, 0.0313726, 1)
+
+[sub_resource type="Theme" id="Theme_b4iy0"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_mpewd")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_mm0yc")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_syarb")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_wo7sf")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_mpewd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltwvl"]
+atlas = ExtResource("1_03lg1")
+region = Rect2(372, 55, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf1uh"]
+atlas = ExtResource("1_03lg1")
+region = Rect2(381, 56, 4, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtj5n"]
+atlas = ExtResource("1_03lg1")
+region = Rect2(393, 106, 52, 17)
+
+[sub_resource type="Animation" id="Animation_muyl5"]
+resource_name = "RESET"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-160, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_m1a1t"]
+resource_name = "hide"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -160, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_1s4hy"]
+resource_name = "show"
+length = 0.5
+step = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-160, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mvlya"]
+_data = {
+"RESET": SubResource("Animation_muyl5"),
+"hide": SubResource("Animation_m1a1t"),
+"show": SubResource("Animation_1s4hy")
+}
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcr1x"]
 atlas = ExtResource("1_03lg1")
 region = Rect2(336, 90, 64, 2)
@@ -169,7 +277,45 @@ region = Rect2(336, 94, 64, 2)
 atlas = ExtResource("1_03lg1")
 region = Rect2(334, 78, 68, 6)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("tile_indicator")]
+[sub_resource type="Animation" id="Animation_celnx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_axour"]
+resource_name = "shake"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.261799, 0.261799]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ogua"]
+_data = {
+"RESET": SubResource("Animation_celnx"),
+"shake": SubResource("Animation_axour")
+}
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("tile_indicator", "manual_animator")]
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_gejag")
@@ -178,6 +324,7 @@ splitter_scene = ExtResource("3_4yost")
 constructor_scene = ExtResource("4_m5fe8")
 deconstructor_scene = ExtResource("5_v7qm3")
 tile_indicator = NodePath("TileIndicator")
+manual_animator = NodePath("MenuViewArea/Manual/AnimationPlayer")
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -100
@@ -240,9 +387,9 @@ texture = SubResource("GradientTexture2D_enlcp")
 expand_mode = 1
 
 [node name="Quota" type="Label" parent="."]
-offset_left = -98.0
+offset_left = -104.0
 offset_top = -79.0
-offset_right = -72.0
+offset_right = -78.0
 offset_bottom = -69.0
 text = "Quota"
 label_settings = SubResource("LabelSettings_enl0o")
@@ -543,6 +690,513 @@ libraries = {
 "": SubResource("AnimationLibrary_jddf2")
 }
 
+[node name="Manual" type="Control" parent="MenuViewArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_right = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="MenuViewArea/Manual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0235294, 0.0235294, 0.0313726, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MenuViewArea/Manual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 158.0
+offset_right = 66.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.51952
+color = Color(0.0784314, 0.0627451, 0.0745098, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuViewArea/Manual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 29.0
+offset_right = -19.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_b4iy0")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuViewArea/Manual/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Entry" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 18)
+layout_mode = 2
+
+[node name="Rod" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 11.0
+offset_bottom = 14.0
+texture = ExtResource("17_gcyje")
+stretch_mode = 2
+
+[node name="+" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 6.0
+offset_right = 18.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="+2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 6.0
+offset_right = 66.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="Wire" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 15.0
+texture = ExtResource("18_4g6y3")
+stretch_mode = 2
+
+[node name="=" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 7.0
+offset_right = 39.0
+offset_bottom = 10.0
+texture = SubResource("AtlasTexture_mf1uh")
+stretch_mode = 2
+
+[node name="Sheet" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry"]
+layout_mode = 0
+offset_left = 41.0
+offset_right = 59.0
+offset_bottom = 18.0
+texture = ExtResource("19_34rdl")
+stretch_mode = 2
+
+[node name="Scrap" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 3.0
+offset_right = 81.0
+offset_bottom = 14.0
+texture = ExtResource("20_jasa0")
+stretch_mode = 2
+
+[node name="Entry2" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 15)
+layout_mode = 2
+
+[node name="Input1" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry2"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 11.0
+offset_bottom = 14.0
+texture = ExtResource("17_gcyje")
+stretch_mode = 2
+
+[node name="Input2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry2"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 33.0
+offset_bottom = 15.0
+texture = ExtResource("21_tum5u")
+stretch_mode = 2
+
+[node name="Result1" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry2"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 15.0
+texture = ExtResource("22_c1tv5")
+stretch_mode = 2
+
+[node name="Result2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry2"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 3.0
+offset_right = 81.0
+offset_bottom = 14.0
+texture = ExtResource("23_tyvxn")
+stretch_mode = 2
+
+[node name="+" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry2"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 6.0
+offset_right = 18.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="+2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry2"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 6.0
+offset_right = 66.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="=" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry2"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 7.0
+offset_right = 39.0
+offset_bottom = 10.0
+texture = SubResource("AtlasTexture_mf1uh")
+stretch_mode = 2
+
+[node name="Entry3" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 22)
+layout_mode = 2
+
+[node name="Input1" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry3"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 11.0
+offset_bottom = 14.0
+texture = ExtResource("19_34rdl")
+stretch_mode = 2
+
+[node name="Input2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry3"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 5.0
+offset_right = 41.0
+offset_bottom = 18.0
+texture = ExtResource("21_tum5u")
+stretch_mode = 2
+
+[node name="Result1" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry3"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 5.0
+offset_right = 64.0
+offset_bottom = 19.0
+texture = ExtResource("24_2l746")
+stretch_mode = 2
+
+[node name="Result2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry3"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 6.0
+offset_right = 86.0
+offset_bottom = 17.0
+texture = ExtResource("20_jasa0")
+stretch_mode = 2
+
+[node name="+" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry3"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 9.0
+offset_right = 26.0
+offset_bottom = 14.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="+2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry3"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 9.0
+offset_right = 71.0
+offset_bottom = 14.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="=" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry3"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 10.0
+offset_right = 47.0
+offset_bottom = 13.0
+texture = SubResource("AtlasTexture_mf1uh")
+stretch_mode = 2
+
+[node name="Entry4" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 25)
+layout_mode = 2
+
+[node name="Input1" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry4"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 11.0
+offset_bottom = 14.0
+texture = ExtResource("19_34rdl")
+stretch_mode = 2
+
+[node name="Input2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry4"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 6.0
+offset_right = 34.0
+offset_bottom = 18.0
+texture = ExtResource("22_c1tv5")
+stretch_mode = 2
+
+[node name="Result1" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry4"]
+layout_mode = 0
+offset_left = 44.0
+offset_right = 63.0
+offset_bottom = 22.0
+texture = ExtResource("25_jptgt")
+stretch_mode = 2
+
+[node name="Result2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry4"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 6.0
+offset_right = 85.0
+offset_bottom = 17.0
+texture = ExtResource("26_o31ve")
+stretch_mode = 2
+
+[node name="+" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry4"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 9.0
+offset_right = 24.0
+offset_bottom = 14.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="+2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry4"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 9.0
+offset_right = 70.0
+offset_bottom = 14.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="=" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry4"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 10.0
+offset_right = 41.0
+offset_bottom = 13.0
+texture = SubResource("AtlasTexture_mf1uh")
+stretch_mode = 2
+
+[node name="Entry5" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 27)
+layout_mode = 2
+
+[node name="Input1" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry5"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 11.0
+offset_bottom = 14.0
+texture = ExtResource("19_34rdl")
+stretch_mode = 2
+
+[node name="Input2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry5"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 19.0
+texture = ExtResource("24_2l746")
+stretch_mode = 2
+
+[node name="Result1" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry5"]
+layout_mode = 0
+offset_left = 44.0
+offset_right = 63.0
+offset_bottom = 22.0
+texture = ExtResource("27_gcjff")
+stretch_mode = 2
+
+[node name="Result2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry5"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 6.0
+offset_right = 85.0
+offset_bottom = 17.0
+texture = ExtResource("26_o31ve")
+stretch_mode = 2
+
+[node name="+" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry5"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 9.0
+offset_right = 24.0
+offset_bottom = 14.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="+2" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry5"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 9.0
+offset_right = 71.0
+offset_bottom = 14.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="=" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry5"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 10.0
+offset_right = 43.0
+offset_bottom = 13.0
+texture = SubResource("AtlasTexture_mf1uh")
+stretch_mode = 2
+
+[node name="Entry6" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 16)
+layout_mode = 2
+
+[node name="Rod" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry6"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 11.0
+offset_bottom = 14.0
+texture = ExtResource("20_jasa0")
+stretch_mode = 2
+
+[node name="+" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry6"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 6.0
+offset_right = 20.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="Wire" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry6"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 17.0
+texture = ExtResource("20_jasa0")
+stretch_mode = 2
+
+[node name="=" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry6"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 10.0
+texture = SubResource("AtlasTexture_mf1uh")
+stretch_mode = 2
+
+[node name="Sheet" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry6"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 14.0
+texture = ExtResource("17_gcyje")
+stretch_mode = 2
+
+[node name="Entry7" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 18)
+layout_mode = 2
+
+[node name="Rod" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry7"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 11.0
+offset_bottom = 14.0
+texture = ExtResource("23_tyvxn")
+stretch_mode = 2
+
+[node name="+" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry7"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 6.0
+offset_right = 18.0
+offset_bottom = 11.0
+texture = SubResource("AtlasTexture_ltwvl")
+stretch_mode = 2
+
+[node name="Wire" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry7"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 3.0
+offset_right = 34.0
+offset_bottom = 17.0
+texture = ExtResource("23_tyvxn")
+stretch_mode = 2
+
+[node name="=" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry7"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 7.0
+offset_right = 39.0
+offset_bottom = 10.0
+texture = SubResource("AtlasTexture_mf1uh")
+stretch_mode = 2
+
+[node name="Sheet" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Entry7"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 2.0
+offset_right = 55.0
+offset_bottom = 15.0
+texture = ExtResource("21_tum5u")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuViewArea/Manual"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -66.5
+offset_right = 26.0
+offset_bottom = -49.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_xtj5n")
+stretch_mode = 2
+
+[node name="CloseButton" type="TextureButton" parent="MenuViewArea/Manual"]
+offset_left = 116.0
+offset_top = 3.0
+offset_right = 125.0
+offset_bottom = 14.0
+pivot_offset = Vector2(5, 7)
+texture_normal = ExtResource("28_3r1vs")
+texture_pressed = ExtResource("29_k0p6x")
+texture_hover = ExtResource("28_3r1vs")
+texture_disabled = ExtResource("28_3r1vs")
+texture_focused = ExtResource("29_k0p6x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuViewArea/Manual"]
+libraries = {
+"": SubResource("AnimationLibrary_mvlya")
+}
+
 [node name="Tools" type="Node2D" parent="."]
 position = Vector2(90, 0)
 
@@ -613,12 +1267,32 @@ texture = ExtResource("1_03lg1")
 region_enabled = true
 region_rect = Rect2(336, 32, 16, 16)
 
+[node name="HelpButton" type="TextureButton" parent="."]
+offset_left = -77.0
+offset_top = -80.0
+offset_right = -67.0
+offset_bottom = -67.0
+pivot_offset = Vector2(5, 7)
+texture_normal = ExtResource("24_svrmd")
+texture_pressed = ExtResource("25_ivvqo")
+texture_hover = ExtResource("24_svrmd")
+texture_disabled = ExtResource("24_svrmd")
+texture_focused = ExtResource("25_ivvqo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HelpButton"]
+libraries = {
+"": SubResource("AnimationLibrary_0ogua")
+}
+autoplay = "shake"
+
 [connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton2" to="." method="start_game"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/NextButton" to="." method="next"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]
+[connection signal="pressed" from="MenuViewArea/Manual/CloseButton" to="." method="toggle_manual"]
 [connection signal="on_clicked" from="Tools/ToolButton2" to="." method="select_delete"]
 [connection signal="on_clicked" from="Tools/ToolButton" to="." method="select_conveyor"]
 [connection signal="on_clicked" from="Tools/ToolButton3" to="." method="select_splitter"]
 [connection signal="on_clicked" from="Tools/ToolButton6" to="." method="select_repair"]
 [connection signal="on_clicked" from="Tools/ToolButton4" to="." method="select_constructor"]
 [connection signal="on_clicked" from="Tools/ToolButton5" to="." method="select_deconstructor"]
+[connection signal="pressed" from="HelpButton" to="." method="toggle_manual"]
