@@ -122,6 +122,8 @@ func start_round():
 func end_round():
 	Static.state = "results"
 
+	var just_tutorial = Static.is_tutorial
+
 	Static.is_tutorial = false
 	Static.tutorial_stage = "none"
 
@@ -186,7 +188,8 @@ func end_round():
 
 		await get_tree().create_timer(1).timeout
 
-	results_menu_mid_animation_player.play("graph")
+	if !just_tutorial:
+		results_menu_mid_animation_player.play("graph")
 
 
 func start():
@@ -268,6 +271,8 @@ func menu():
 	main_menu_animation_player.play("show")
 
 	Static.state = "menu"
+
+	Static.audio.music_state = "menu"
 
 
 func _update_quota_display():

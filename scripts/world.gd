@@ -51,7 +51,8 @@ func start(level_scene: PackedScene):
 
 	add_child(_level)
 
-	open_tools()
+	if !Static.is_tutorial:
+		open_tools()
 
 	selected_tool_identifier = "conveyor"
 

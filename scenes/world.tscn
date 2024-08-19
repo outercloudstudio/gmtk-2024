@@ -550,6 +550,66 @@ tracks/11/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Tools/ToolButtonConveyor:is_enabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Tools/ToolButtonSplitter:is_enabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Tools/ToolButtonWrench:is_enabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Tools/ToolButtonRemove:is_enabled")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Tools/ToolButtonConstructor:is_enabled")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ve1cq"]
 resource_name = "splitter"
@@ -690,6 +750,18 @@ tracks/11/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "values": []
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Tools/ToolButtonSplitter:is_enabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_yfyhb"]
@@ -987,6 +1059,18 @@ tracks/10/keys = {
 "method": &"play"
 }]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Tools/ToolButtonConveyor:is_enabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_r6322"]
 resource_name = "start_loop"
@@ -1270,6 +1354,18 @@ tracks/11/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "values": []
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Tools/ToolButtonWrench:is_enabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_1007o"]
@@ -1576,6 +1672,18 @@ tracks/11/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "values": []
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Tools/ToolButtonConstructor:is_enabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_dh7si"]
@@ -1886,6 +1994,7 @@ tracks/11/keys = {
 
 [sub_resource type="Animation" id="Animation_dsl2d"]
 resource_name = "producing_loop"
+length = 3.0
 loop_mode = 1
 step = 0.1
 tracks/0/type = "bezier"
@@ -1994,11 +2103,13 @@ tracks/9/path = NodePath("Message:text")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": ["COLLECT 20
-METAL SHEETS!"]
+"values": ["REPLACE THE
+SPLITTER WITH", "A CONVEYOR TO
+COLLECT SHEETS", "            AND
+FILL THE QUOTA!"]
 }
 tracks/10/type = "method"
 tracks/10/imported = false
@@ -2018,7 +2129,7 @@ tracks/11/path = NodePath("..")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(3),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -2187,6 +2298,18 @@ tracks/11/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "values": []
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Tools/ToolButtonRemove:is_enabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_pttkq"]
@@ -3466,42 +3589,42 @@ libraries = {
 [node name="Tools" type="Node2D" parent="."]
 position = Vector2(90, 0)
 
-[node name="ToolButton2" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
+[node name="ToolButtonRemove" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(0, -29)
 texture = ExtResource("12_u80pu")
 is_enabled = false
 world = NodePath("../..")
 identifier = "remove"
 
-[node name="ToolButton" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
+[node name="ToolButtonConveyor" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(0, -8)
 texture = ExtResource("11_fxgoa")
 is_enabled = false
 world = NodePath("../..")
 identifier = "conveyor"
 
-[node name="ToolButton3" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
+[node name="ToolButtonSplitter" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(0, 13)
 texture = ExtResource("13_cndej")
 is_enabled = false
 world = NodePath("../..")
 identifier = "splitter"
 
-[node name="ToolButton6" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
+[node name="ToolButtonWrench" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(22, -29)
 texture = ExtResource("14_idjjr")
 is_enabled = false
 world = NodePath("../..")
 identifier = "wrench"
 
-[node name="ToolButton4" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
+[node name="ToolButtonConstructor" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(22, -8)
 texture = ExtResource("14_oj5uq")
 is_enabled = false
 world = NodePath("../..")
 identifier = "constructor"
 
-[node name="ToolButton5" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
+[node name="ToolButtonDeconstructor" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(22, 13)
 texture = ExtResource("15_ukf6u")
 is_enabled = false
@@ -3590,10 +3713,10 @@ libraries = {
 [connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/MenuButton" to="." method="menu"]
 [connection signal="pressed" from="MenuViewArea/Manual/CloseButton2" to="." method="toggle_manual"]
-[connection signal="on_clicked" from="Tools/ToolButton2" to="." method="select_delete"]
-[connection signal="on_clicked" from="Tools/ToolButton" to="." method="select_conveyor"]
-[connection signal="on_clicked" from="Tools/ToolButton3" to="." method="select_splitter"]
-[connection signal="on_clicked" from="Tools/ToolButton6" to="." method="select_repair"]
-[connection signal="on_clicked" from="Tools/ToolButton4" to="." method="select_constructor"]
-[connection signal="on_clicked" from="Tools/ToolButton5" to="." method="select_deconstructor"]
+[connection signal="on_clicked" from="Tools/ToolButtonRemove" to="." method="select_delete"]
+[connection signal="on_clicked" from="Tools/ToolButtonConveyor" to="." method="select_conveyor"]
+[connection signal="on_clicked" from="Tools/ToolButtonSplitter" to="." method="select_splitter"]
+[connection signal="on_clicked" from="Tools/ToolButtonWrench" to="." method="select_repair"]
+[connection signal="on_clicked" from="Tools/ToolButtonConstructor" to="." method="select_constructor"]
+[connection signal="on_clicked" from="Tools/ToolButtonDeconstructor" to="." method="select_deconstructor"]
 [connection signal="pressed" from="HelpButton" to="." method="toggle_manual"]
