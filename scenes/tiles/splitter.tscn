@@ -75,6 +75,7 @@ _data = {
 y_sort_enabled = true
 script = ExtResource("1_8boq8")
 rotation_origin = NodePath("AnimatedPosition/SquashOrigin/RotationOrigin")
+identifier = "splitter"
 
 [node name="AnimatedPosition" type="Node2D" parent="."]
 

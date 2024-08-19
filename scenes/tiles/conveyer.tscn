@@ -114,6 +114,7 @@ _data = {
 y_sort_enabled = true
 script = ExtResource("1_iqbqg")
 rotation_origin = NodePath("AnimatedPosition/SquashTarget/RotationOrigin")
+identifier = "conveyor"
 
 [node name="AnimatedPosition" type="Node2D" parent="."]
 

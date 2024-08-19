@@ -17,6 +17,7 @@ class_name Game
 @export var background: ColorRect
 @export var collected_holder: Control
 @export var results_menu_mid_animation_player: AnimationPlayer
+@export var tutorial_animator: AnimationPlayer
 
 @export_category("Items")
 @export var rod_scene: PackedScene
@@ -61,7 +62,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Static.state == "play":
-		_round_timer -= delta
+		if !Static.is_tutorial:
+			_round_timer -= delta
 
 		timer_progress.value = _round_timer / 80 * 100
 
@@ -210,7 +212,21 @@ func tutorial():
 	_level_scene = tutorial_level_scene
 	main_menu_animation_player.play("hide")
 
+	tutorial_animator.play("start")
+
 	start_round()
+
+
+func tutorial_splitter_stage():
+	Static.tutorial_stage = "splitter"
+
+	tutorial_animator.play("splitter")
+
+
+func tutorial_repairing_stage():
+	Static.tutorial_stage = "repairing"
+
+	# tutorial_animator.play("repairing")
 
 
 func menu():

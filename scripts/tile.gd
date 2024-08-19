@@ -5,6 +5,7 @@ extends Node2D
 @export var place_on_start_direction: Vector2i = Vector2i.RIGHT
 @export var can_be_replaced = true
 @export var rotation_origin: Node2D
+@export var identifier: String
 
 
 signal on_setup()

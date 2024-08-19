@@ -55,7 +55,8 @@ func _process(delta: float) -> void:
 	if !get_parent().placed:
 		return
 
-	time_till_explode -= delta
+	if !Static.is_tutorial:
+		time_till_explode -= delta
 
 	if time_till_explode < 8 && !spawned_smoke:
 		spawned_smoke = true

@@ -280,6 +280,37 @@ func toggle_manual():
 	manual_open = !manual_open
 
 
+func check_tutorial_dragging_conveyors_complete():
+	for location in [ Vector2i(-2, -2), Vector2i(-1, -2), Vector2i(0, -2), Vector2i(1, -2) ]:
+		if !tilemap.has(location):
+			return
+		
+		var tile = tilemap[location]
+
+		if tile.identifier != "conveyor":
+			return
+
+		if tile.direction != Vector2i.RIGHT:
+			return
+
+	game.tutorial_splitter_stage()
+
+
+func check_tutorial_splitter_complete():
+	for location in [ Vector2i(2, -2) ]:
+		if !tilemap.has(location):
+			return
+		
+		var tile = tilemap[location]
+
+		if tile.identifier != "splitter":
+			return
+
+		if tile.direction != Vector2i.RIGHT:
+			return
+
+	game.tutorial_repairing_stage()
+
 func _update_value(value:float) -> void:
 	var master = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(master, value)
