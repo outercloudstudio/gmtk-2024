@@ -3,6 +3,11 @@ extends Node2D
 
 @export var texture: Texture2D
 @export var is_enabled = false
+@export var world: World
+@export var identifier: String
+@export var border_texture: Texture2D
+@export var selected_border_texture: Texture2D
+@export var border: Sprite2D
 var _is_enabled_cache = false
 
 
@@ -21,6 +26,11 @@ func _process(_delta):
 			$AnimationPlayer.play("hide")
 
 		_is_enabled_cache = is_enabled
+
+	if world.selected_tool_identifier == identifier:
+		border.texture = selected_border_texture
+	else:
+		border.texture = border_texture
 
 
 func clicked() -> void:

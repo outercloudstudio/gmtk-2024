@@ -546,35 +546,47 @@ libraries = {
 [node name="Tools" type="Node2D" parent="."]
 position = Vector2(90, 0)
 
-[node name="ToolButton2" parent="Tools" instance=ExtResource("10_2dx41")]
+[node name="ToolButton2" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(0, -29)
 texture = ExtResource("12_u80pu")
 is_enabled = false
+world = NodePath("../..")
+identifier = "remove"
 
-[node name="ToolButton" parent="Tools" instance=ExtResource("10_2dx41")]
+[node name="ToolButton" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(0, -8)
 texture = ExtResource("11_fxgoa")
 is_enabled = false
+world = NodePath("../..")
+identifier = "conveyor"
 
-[node name="ToolButton3" parent="Tools" instance=ExtResource("10_2dx41")]
+[node name="ToolButton3" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(0, 13)
 texture = ExtResource("13_cndej")
 is_enabled = false
+world = NodePath("../..")
+identifier = "splitter"
 
-[node name="ToolButton6" parent="Tools" instance=ExtResource("10_2dx41")]
+[node name="ToolButton6" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(22, -29)
 texture = ExtResource("14_idjjr")
 is_enabled = false
+world = NodePath("../..")
+identifier = "wrench"
 
-[node name="ToolButton4" parent="Tools" instance=ExtResource("10_2dx41")]
+[node name="ToolButton4" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(22, -8)
 texture = ExtResource("14_oj5uq")
 is_enabled = false
+world = NodePath("../..")
+identifier = "constructor"
 
-[node name="ToolButton5" parent="Tools" instance=ExtResource("10_2dx41")]
+[node name="ToolButton5" parent="Tools" node_paths=PackedStringArray("world") instance=ExtResource("10_2dx41")]
 position = Vector2(22, 13)
 texture = ExtResource("15_ukf6u")
 is_enabled = false
+world = NodePath("../..")
+identifier = "deconstructor"
 
 [node name="TimeProgress" type="TextureProgressBar" parent="."]
 z_index = 2000

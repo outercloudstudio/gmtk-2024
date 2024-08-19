@@ -17,6 +17,7 @@ var preview_tiles = []
 var _level: Level
 var _selected_tile: PackedScene
 var _selected_repair_tool = false
+var selected_tool_identifier = "none"
 
 
 var repair_cooldown = 0
@@ -75,6 +76,8 @@ func cleanup():
 		await get_tree().create_timer(0.02).timeout
 
 		tool.is_enabled = false
+
+	selected_tool_identifier = "none"
 	
 
 func _input(event: InputEvent) -> void:
@@ -115,7 +118,7 @@ func update_placing():
 		var tile_location: Vector2i = Vector2i(floor(target / 16))
 
 		if _selected_repair_tool:
-			if tilemap.has(tile_location) && tilemap[tile_location].can_be_replaced:
+			if tilemap.has(tile_location):
 				if repair_cooldown <= 0:
 					tilemap[tile_location].repair()
 					repair_cooldown = 0.15
@@ -176,12 +179,16 @@ func select_conveyor():
 
 	Static.audio.play("click")
 
+	selected_tool_identifier = "conveyor"
+
 
 func select_splitter():
 	_selected_tile = splitter_scene
 	_selected_repair_tool = false
 
 	Static.audio.play("click")
+
+	selected_tool_identifier = "splitter"
 
 
 func select_constructor():
@@ -190,12 +197,16 @@ func select_constructor():
 
 	Static.audio.play("click")
 
+	selected_tool_identifier = "constructor"
+
 
 func select_deconstructor():
 	_selected_tile = deconstructor_scene
 	_selected_repair_tool = false
 
 	Static.audio.play("click")
+
+	selected_tool_identifier = "deconstructor"
 
 
 func select_delete():
@@ -204,12 +215,16 @@ func select_delete():
 
 	Static.audio.play("click")
 
+	selected_tool_identifier = "remove"
+
 
 func select_repair():
 	_selected_tile = null
 	_selected_repair_tool = true
 
 	Static.audio.play("click")
+
+	selected_tool_identifier = "wrench"
 
 
 func start_game():

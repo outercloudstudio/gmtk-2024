@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvwdris8o6bml"]
+[gd_scene load_steps=11 format=3 uid="uid://bvwdris8o6bml"]
 
 [ext_resource type="Script" path="res://scenes/tool_button.gd" id="1_wm40i"]
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="2_akskw"]
+[ext_resource type="Texture2D" uid="uid://6pq8oqxo7boh" path="res://scripts/tool_button_border_selected.tres" id="3_5wqgo"]
+[ext_resource type="Texture2D" uid="uid://p5gca5rt4u7w" path="res://scripts/tool_button_border.tres" id="3_7bpr0"]
 [ext_resource type="Texture2D" uid="uid://68r25mjjnsiv" path="res://sprites/conveyor.tres" id="3_nsku8"]
 [ext_resource type="Script" path="res://scripts/squash_and_stretch.gd" id="4_bc6sr"]
 
@@ -56,10 +58,13 @@ _data = {
 "show": SubResource("Animation_bt5tn")
 }
 
-[node name="ToolButton" type="Node2D"]
+[node name="ToolButton" type="Node2D" node_paths=PackedStringArray("border")]
 position = Vector2(0, -9)
 script = ExtResource("1_wm40i")
 is_enabled = true
+border_texture = ExtResource("3_7bpr0")
+selected_border_texture = ExtResource("3_5wqgo")
+border = NodePath("Border")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -8.0
@@ -80,8 +85,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Border" type="Sprite2D" parent="."]
-texture = ExtResource("2_akskw")
-region_enabled = true
+texture = ExtResource("3_7bpr0")
 region_rect = Rect2(174, 78, 20, 19)
 
 [node name="CoverMask" type="Sprite2D" parent="."]
