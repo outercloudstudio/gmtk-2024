@@ -311,6 +311,13 @@ func check_tutorial_splitter_complete():
 
 	game.tutorial_repairing_stage()
 
+
+func check_tutorial_repairing_complete():
+	if Static.tutorial_repair_count < 5:
+		return
+
+	# game.tutorial_repairing_stage()
+
 func _update_value(value:float) -> void:
 	var master = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(master, value)

@@ -10,6 +10,8 @@ var spawned_smoke = false
 
 var smoke: GPUParticles2D
 
+var _tiggered_tutorial_repair = false
+
 func _ready() -> void:
 	time_till_explode = randf_range(20, 60)
 
@@ -35,6 +37,9 @@ func repair():
 	if !spawned_smoke:
 		return
 
+	if Static.is_tutorial && Static.tutorial_stage == "repairing":
+		Static.tutorial_repair_count += 1
+
 	spawned_smoke = false
 
 	time_till_explode = randf_range(20, 30)
@@ -57,6 +62,11 @@ func _process(delta: float) -> void:
 
 	if !Static.is_tutorial:
 		time_till_explode -= delta
+
+	if Static.is_tutorial && Static.tutorial_stage == "repairing" && !_tiggered_tutorial_repair:
+		time_till_explode = 5
+
+		_tiggered_tutorial_repair = true
 
 	if time_till_explode < 8 && !spawned_smoke:
 		spawned_smoke = true

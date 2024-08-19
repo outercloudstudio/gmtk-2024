@@ -226,7 +226,9 @@ func tutorial_splitter_stage():
 func tutorial_repairing_stage():
 	Static.tutorial_stage = "repairing"
 
-	# tutorial_animator.play("repairing")
+	tutorial_animator.play("repairing")
+
+	Static.tutorial_repair_count = 0
 
 
 func menu():

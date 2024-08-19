@@ -43,6 +43,9 @@ func place():
 
 	if has_node("AnimationPlayer"):
 		$AnimationPlayer.play("place")
+
+		if place_on_start:
+			$AnimationPlayer.seek(1, true)
 		
 		if place_delay > 0:
 			$AnimationPlayer.seek(0.01, true)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6urosymxyipy"]
+[gd_scene load_steps=6 format=3 uid="uid://c6urosymxyipy"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ps44m"]
 [ext_resource type="PackedScene" uid="uid://b0i841hejuca6" path="res://scenes/tiles/collector.tscn" id="2_v30w6"]
 [ext_resource type="PackedScene" uid="uid://crehmacysesud" path="res://scenes/tiles/spawner.tscn" id="3_vcsoa"]
+[ext_resource type="PackedScene" uid="uid://dvsr0owx3rnh7" path="res://scenes/tiles/conveyer.tscn" id="5_cvtc1"]
 [ext_resource type="PackedScene" uid="uid://dqyhtuc360avi" path="res://scenes/items/wire.tscn" id="5_ebmhb"]
 
 [node name="Level" type="Node2D"]
@@ -18,17 +19,24 @@ place_on_start = true
 can_be_replaced = false
 
 [node name="Spawner" parent="." instance=ExtResource("3_vcsoa")]
-position = Vector2(-48, -32)
+position = Vector2(-48, -48)
 place_on_start = true
+place_on_start_direction = Vector2i(0, 1)
 can_be_replaced = false
 
 [node name="Spawner2" parent="." instance=ExtResource("3_vcsoa")]
-position = Vector2(-48, 0)
+position = Vector2(-48, -16)
 place_on_start = true
+place_on_start_direction = Vector2i(0, -1)
 can_be_replaced = false
 
 [node name="ItemSpawner" parent="Spawner2" index="0"]
 item_scene = ExtResource("5_ebmhb")
+
+[node name="Conveyer" parent="." instance=ExtResource("5_cvtc1")]
+position = Vector2(-48, -32)
+place_on_start = true
+can_be_replaced = false
 
 [editable path="Spawner"]
 [editable path="Spawner2"]
