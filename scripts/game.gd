@@ -8,6 +8,7 @@ class_name Game
 @export var quota_holder: Node2D
 @export var quota_item_scene: PackedScene
 @export var level_scenes: Array
+@export var tutorial_level_scene: PackedScene
 @export var main_menu_animation_player: AnimationPlayer
 @export var results_menu_animation_player: AnimationPlayer
 @export var lower_bound_label: Label
@@ -199,6 +200,25 @@ func next():
 	results_menu_animation_player.play("hide")
 
 	start_round()
+
+
+func tutorial():
+	Static.is_tutorial = true
+
+	Static.tutorial_stage = "start"
+
+	_level_scene = tutorial_level_scene
+	main_menu_animation_player.play("hide")
+
+	start_round()
+
+
+func menu():
+	results_menu_animation_player.play("hide")
+
+	main_menu_animation_player.play("show")
+
+	Static.state = "menu"
 
 
 func _update_quota_display():

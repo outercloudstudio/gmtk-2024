@@ -239,6 +239,12 @@ func select_repair():
 	selected_tool_identifier = "wrench"
 
 
+func tutorial():
+	game.tutorial()
+
+	Static.audio.play("click")
+
+
 func start_game():
 	game.start()
 
@@ -253,6 +259,12 @@ func restart():
 
 func next():
 	game.next()
+
+	Static.audio.play("click")
+
+
+func menu():
+	game.menu()
 
 	Static.audio.play("click")
 

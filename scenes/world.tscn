@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=82 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -10,7 +10,9 @@
 [ext_resource type="Shader" path="res://background.gdshader" id="7_pgx5q"]
 [ext_resource type="FontFile" uid="uid://b3c30dpp6bqam" path="res://fonts/Kenney Mini Square.ttf" id="8_8nue1"]
 [ext_resource type="PackedScene" uid="uid://bvwdris8o6bml" path="res://scenes/tool_button.tscn" id="10_2dx41"]
+[ext_resource type="Texture2D" uid="uid://p74v0w8r04mc" path="res://sprites/tutorial_button.tres" id="10_8mrug"]
 [ext_resource type="Texture2D" uid="uid://bonerjxb8chhy" path="res://sprites/play_button.tres" id="10_sjer4"]
+[ext_resource type="Texture2D" uid="uid://di702flw27mfu" path="res://sprites/tutorial_button_pressed.tres" id="11_7ldkb"]
 [ext_resource type="Texture2D" uid="uid://68r25mjjnsiv" path="res://sprites/conveyor.tres" id="11_fxgoa"]
 [ext_resource type="Texture2D" uid="uid://copxgg0y4vk3r" path="res://sprites/play_button_pressed.tres" id="11_o6vgw"]
 [ext_resource type="FontFile" uid="uid://bslyx82ixmfmo" path="res://fonts/Kenney Mini.ttf" id="12_70201"]
@@ -26,7 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://b5uqc580anpl4" path="res://sprites/sprite_rod.tres" id="17_gcyje"]
 [ext_resource type="Texture2D" uid="uid://c6flqsnw5pesv" path="res://sprites/sprite_wire.tres" id="18_4g6y3"]
 [ext_resource type="Texture2D" uid="uid://bw2x1b3i22hns" path="res://sprites/sprite_sheet.tres" id="19_34rdl"]
+[ext_resource type="Texture2D" uid="uid://dw3spufpqvpis" path="res://sprites/menu_button.tres" id="19_yg1jj"]
 [ext_resource type="Texture2D" uid="uid://clwhdr3pbv7e5" path="res://sprites/sprite_scrap.tres" id="20_jasa0"]
+[ext_resource type="Texture2D" uid="uid://bqa1ce4dwkav8" path="res://sprites/menu_button_pressed.tres" id="20_vtyww"]
 [ext_resource type="Texture2D" uid="uid://cg32p761wm13u" path="res://sprites/sprite_battery.tres" id="21_tum5u"]
 [ext_resource type="Texture2D" uid="uid://cy761bw4rwjov" path="res://sprites/sprite_lightbulb.tres" id="22_c1tv5"]
 [ext_resource type="Texture2D" uid="uid://bnbdkcfjiilrk" path="res://sprites/sprite_copper_bit.tres" id="23_tyvxn"]
@@ -484,7 +488,6 @@ script = ExtResource("6_ihc8j")
 
 [node name="MenuViewArea" type="Control" parent="."]
 z_index = 100
-clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = -64.0
@@ -523,7 +526,27 @@ grow_vertical = 2
 rotation = -0.143086
 color = Color(0.0784314, 0.0627451, 0.0745098, 1)
 
-[node name="PlayButton2" type="TextureButton" parent="MenuViewArea/Main Menu"]
+[node name="TutorialButton" type="TextureButton" parent="MenuViewArea/Main Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -5.5
+offset_right = 19.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("10_8mrug")
+texture_pressed = ExtResource("11_7ldkb")
+texture_hover = ExtResource("10_8mrug")
+texture_disabled = ExtResource("10_8mrug")
+texture_focused = ExtResource("11_7ldkb")
+
+[node name="PlayButton" type="TextureButton" parent="MenuViewArea/Main Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -531,9 +554,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -11.0
-offset_top = 2.5
+offset_top = 9.5
 offset_right = 10.0
-offset_bottom = 13.5
+offset_bottom = 20.5
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -763,9 +786,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 2.0
-offset_top = 45.5
+offset_top = 39.5
 offset_right = 24.0
-offset_bottom = 56.5
+offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -783,9 +806,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -27.0
-offset_top = 45.5
+offset_top = 39.5
 offset_right = -2.0
-offset_bottom = 56.5
+offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -794,6 +817,26 @@ texture_pressed = ExtResource("15_x7s1o")
 texture_hover = ExtResource("14_ieyjb")
 texture_disabled = ExtResource("14_ieyjb")
 texture_focused = ExtResource("15_x7s1o")
+
+[node name="MenuButton" type="TextureButton" parent="MenuViewArea/Results Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = 52.5
+offset_right = 11.0
+offset_bottom = 63.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("19_yg1jj")
+texture_pressed = ExtResource("20_vtyww")
+texture_hover = ExtResource("19_yg1jj")
+texture_disabled = ExtResource("19_yg1jj")
+texture_focused = ExtResource("20_vtyww")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuViewArea/Results Menu"]
 libraries = {
@@ -1406,10 +1449,12 @@ libraries = {
 }
 autoplay = "shake"
 
-[connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton2" to="." method="start_game"]
+[connection signal="pressed" from="MenuViewArea/Main Menu/TutorialButton" to="." method="tutorial"]
+[connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton" to="." method="start_game"]
 [connection signal="value_changed" from="MenuViewArea/Main Menu/VolumeSlider" to="." method="_update_value"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/NextButton" to="." method="next"]
 [connection signal="pressed" from="MenuViewArea/Results Menu/RetryButton" to="." method="restart"]
+[connection signal="pressed" from="MenuViewArea/Results Menu/MenuButton" to="." method="menu"]
 [connection signal="pressed" from="MenuViewArea/Manual/CloseButton2" to="." method="toggle_manual"]
 [connection signal="on_clicked" from="Tools/ToolButton2" to="." method="select_delete"]
 [connection signal="on_clicked" from="Tools/ToolButton" to="." method="select_conveyor"]

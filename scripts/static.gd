@@ -10,6 +10,9 @@ var items = {}
 
 var state = "menu"
 
+var is_tutorial = false
+var tutorial_stage = "start"
+
 var item_levels = [
     [ "rod", "wire" ],
     [ "sheet", "lightbulb" ],

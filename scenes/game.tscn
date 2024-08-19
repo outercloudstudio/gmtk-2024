@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=45 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dvj7clp1sgar8" path="res://scenes/levels/level_3.tscn" id="5_0p2e0"]
 [ext_resource type="PackedScene" uid="uid://brkrslby7c8rj" path="res://scenes/items/lightbulb.tscn" id="5_wqxjt"]
 [ext_resource type="PackedScene" uid="uid://dkwsiub2vom3j" path="res://scenes/items/sheet.tscn" id="6_4vqmn"]
+[ext_resource type="PackedScene" uid="uid://c6urosymxyipy" path="res://scenes/levels/tutorial.tscn" id="6_m4d1r"]
 [ext_resource type="PackedScene" uid="uid://da04sxttxh32p" path="res://scenes/items/terminal.tscn" id="8_85gxy"]
 [ext_resource type="PackedScene" uid="uid://dcjyrcih86taq" path="res://scenes/items/keyboard.tscn" id="9_nhx82"]
 [ext_resource type="PackedScene" uid="uid://klr4x8neu77" path="res://scenes/items/scrap.tscn" id="13_e3kum"]
@@ -53,6 +54,7 @@ performance_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World
 quota_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Quota Holder")
 quota_item_scene = ExtResource("2_qx52i")
 level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0")]
+tutorial_level_scene = ExtResource("6_m4d1r")
 main_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Main Menu/AnimationPlayer")
 results_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/AnimationPlayer")
 lower_bound_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/GraphContainer/LowerBound")
