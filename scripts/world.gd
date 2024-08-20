@@ -55,6 +55,8 @@ func start(level_scene: PackedScene):
 		open_tools()
 
 	selected_tool_identifier = "conveyor"
+	_selected_tile = conveyor_scene
+	_selected_repair_tool = false
 
 	return _level
 

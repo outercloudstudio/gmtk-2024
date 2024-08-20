@@ -19,6 +19,7 @@ class_name Game
 @export var collected_holder: Control
 @export var results_menu_mid_animation_player: AnimationPlayer
 @export var tutorial_animator: AnimationPlayer
+@export var quota_label: Label
 
 @export_category("Items")
 @export var rod_scene: PackedScene
@@ -38,6 +39,8 @@ var _level_scene = null
 var _scores = []
 var _current_level_identifier = "none"
 var _rung = false
+var _hiding_quota = false
+var _show_quota_label = false
 
 func _enter_tree() -> void:
 	Static.items = {
@@ -62,6 +65,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if _show_quota_label:
+		quota_label.modulate = Color(quota_label.modulate.r, quota_label.modulate.g, quota_label.modulate.b, fixed_lerp(quota_label.modulate.a, 1, 4, delta))
+	else:
+		quota_label.modulate = Color(quota_label.modulate.r, quota_label.modulate.g, quota_label.modulate.b, fixed_lerp(quota_label.modulate.a, 0, 4, delta))
+
 	if Static.state == "play":
 		if !Static.is_tutorial || Static.tutorial_stage == "finish":
 			_round_timer -= delta
@@ -97,9 +105,9 @@ func fixed_lerp(a, b, decay, delta):
 func start_round():
 	Static.state = "play"
 
-	# _round_timer = 80
-	_round_timer = 20
+	_round_timer = 80
 	_rung = false
+	_show_quota_label = true
 
 	var level = world.start(_level_scene)
 
@@ -115,6 +123,8 @@ func start_round():
 	Static.audio.music_state = "play"
 
 	_current_level_identifier = level.scene_file_path.get_file()
+
+	_start_quota_display()
 
 	await get_tree().create_timer(1).timeout
 	
@@ -219,12 +229,16 @@ func start():
 
 
 func restart():
+	_hide_quota_display()
+
 	results_menu_animation_player.play("hide")
 
 	start_round()
 
 
 func next():
+	_hide_quota_display()
+
 	if len(ordered_level_scenes) > 0:
 		_level_scene = ordered_level_scenes[0]
 		ordered_level_scenes.remove_at(0)
@@ -290,6 +304,9 @@ func tutorial_finish_stage():
 
 
 func menu():
+	_hide_quota_display()
+	_show_quota_label = false
+
 	results_menu_animation_player.play("hide")
 
 	main_menu_animation_player.play("show")
@@ -299,9 +316,9 @@ func menu():
 	Static.audio.music_state = "menu"
 
 
-func _update_quota_display():
-	for child in quota_holder.get_children():
-		child.queue_free()
+func _start_quota_display():
+	while _hiding_quota:
+		await get_tree().create_timer(0.1).timeout
 
 	var index = 0
 
@@ -317,6 +334,43 @@ func _update_quota_display():
 		quota_item.setup()
 
 		index += 1
+
+		await get_tree().create_timer(0.1).timeout
+
+
+func _update_quota_display():
+	if _hiding_quota:
+		return
+
+	var index = 0
+
+	for identifier in Static.quota:
+		if quota_holder.get_child_count() <= index:
+			return
+
+		var quota_item: QuotaItem = quota_holder.get_child(index)
+
+		quota_item.amount = Static.quota[identifier] - Static.collected_quota[identifier]
+
+		quota_item.setup()
+
+		index += 1
+
+
+func _hide_quota_display():
+	_hiding_quota = true
+
+	for child in quota_holder.get_children():
+		child.get_node("AnimationPlayer").play("hide")
+
+		await get_tree().create_timer(0.1).timeout
+
+	await get_tree().create_timer(0.4).timeout
+
+	for child in quota_holder.get_children():
+		child.free()
+
+	_hiding_quota = false
 
 
 func draw_graph(data: Array, your_score):

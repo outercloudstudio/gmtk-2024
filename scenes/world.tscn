@@ -2694,6 +2694,7 @@ texture = SubResource("GradientTexture2D_enlcp")
 expand_mode = 1
 
 [node name="Quota" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_left = -104.0
 offset_top = -79.0
 offset_right = -78.0

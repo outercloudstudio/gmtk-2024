@@ -45,7 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://244uprvuip6r" path="res://audio/ring.wav" id="37_qw44w"]
 [ext_resource type="AudioStream" uid="uid://co1d33q45rqih" path="res://audio/drop_003.ogg" id="38_r7y82"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_progress", "performance_label", "quota_holder", "main_menu_animation_player", "results_menu_animation_player", "lower_bound_label", "upper_bound_label", "graph", "background", "collected_holder", "results_menu_mid_animation_player", "tutorial_animator")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_progress", "performance_label", "quota_holder", "main_menu_animation_player", "results_menu_animation_player", "lower_bound_label", "upper_bound_label", "graph", "background", "collected_holder", "results_menu_mid_animation_player", "tutorial_animator", "quota_label")]
 texture_filter = 1
 script = ExtResource("1_kd6lh")
 world = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World")
@@ -65,6 +65,7 @@ background = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Backgr
 collected_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/CollectedContainer")
 results_menu_mid_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/MidAnimationPlayer")
 tutorial_animator = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Tutorial/AnimationPlayer")
+quota_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Quota")
 rod_scene = ExtResource("2_5xd64")
 wire_scene = ExtResource("3_bim1w")
 battery_scene = ExtResource("2_527w3")
