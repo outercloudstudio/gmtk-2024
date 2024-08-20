@@ -20,6 +20,9 @@ class_name Game
 @export var results_menu_mid_animation_player: AnimationPlayer
 @export var tutorial_animator: AnimationPlayer
 @export var quota_label: Label
+@export var quota_failed: TextureRect
+@export var quota_passed: TextureRect
+@export var quota_state_aniamtor: AnimationPlayer
 
 @export_category("Items")
 @export var rod_scene: PackedScene
@@ -108,7 +111,7 @@ func fixed_lerp(a, b, decay, delta):
 func start_round():
 	Static.state = "play"
 
-	_round_timer = 80
+	_round_timer = 10
 	_rung = false
 	_show_quota_label = true
 
@@ -176,6 +179,9 @@ func end_round():
 
 	draw_graph(score_data, Static.score)
 
+	quota_failed.visible = failed
+	quota_passed.visible = !failed
+
 	if !failed:
 		submit_score(_current_level_identifier, Static.score)
 
@@ -186,6 +192,10 @@ func end_round():
 		child.free()
 
 	await get_tree().create_timer(0.5).timeout
+
+	quota_state_aniamtor.play("show")
+
+	await get_tree().create_timer(2).timeout
 
 	var totaled_score = 0
 

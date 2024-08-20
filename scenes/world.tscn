@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=114 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -118,8 +118,11 @@ _data = {
 "show": SubResource("Animation_luwcm")
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_205e4"]
+load_path = "res://.godot/imported/sprites.png-4ccbd8259ebc1e8488fec7711c8727a8.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q7x71"]
-atlas = ExtResource("1_03lg1")
+atlas = SubResource("CompressedTexture2D_205e4")
 region = Rect2(257, 90, 70, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pcbf"]
@@ -258,6 +261,244 @@ _data = {
 "RESET": SubResource("Animation_yr88a"),
 "graph": SubResource("Animation_y4rt7")
 }
+
+[sub_resource type="Animation" id="Animation_xqvv7"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../QuotaFailed:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../QuotaFailed:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../QuotaFailed:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../QuotaFailed:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../QuotaPassed:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../QuotaPassed:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../QuotaPassed:scale:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../QuotaPassed:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ycrfx"]
+resource_name = "show"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../QuotaFailed:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(23, -0.25, 0, 0.0666667, -0.66522, 53, -0.1, -27.5531, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../QuotaFailed:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.166667, 0.0127478, 1, -0.0666667, 1.28234, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../QuotaFailed:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.166667, -0.0868535, 1, -0.1, 1.61434, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../QuotaFailed:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.1, -0.925491, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(23, -0.25, 0, 0.0666667, -0.66522, 54, -0.1, -27.5531, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.166667, 0.0127478, 1, -0.0666667, 1.28234, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:scale:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.166667, -0.0868535, 1, -0.1, 1.61434, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.1, -0.925491, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../QuotaStateAnimator")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"show_end"],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7qvri"]
+resource_name = "show_end"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../QuotaFailed:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.1, -0.925491, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.1, -0.925491, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gefgu"]
+_data = {
+"RESET": SubResource("Animation_xqvv7"),
+"show": SubResource("Animation_ycrfx"),
+"show_end": SubResource("Animation_7qvri")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwo7q"]
+atlas = SubResource("CompressedTexture2D_205e4")
+region = Rect2(449, 65, 60, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdjwe"]
+atlas = SubResource("CompressedTexture2D_205e4")
+region = Rect2(459, 98, 58, 29)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpewd"]
 bg_color = Color(0.0784314, 0.0627451, 0.0745098, 1)
@@ -2724,7 +2965,6 @@ script = ExtResource("6_ihc8j")
 
 [node name="MenuViewArea" type="Control" parent="."]
 z_index = 100
-clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = -64.0
@@ -3085,6 +3325,48 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_o2n13")
 }
+
+[node name="QuotaStateAnimator" type="AnimationPlayer" parent="MenuViewArea/Results Menu"]
+root_node = NodePath("../QuotaPassed")
+libraries = {
+"": SubResource("AnimationLibrary_gefgu")
+}
+
+[node name="QuotaFailed" type="TextureRect" parent="MenuViewArea/Results Menu"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -71.5
+offset_right = 35.0
+offset_bottom = -39.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(35, 18.5)
+texture = SubResource("AtlasTexture_hwo7q")
+stretch_mode = 2
+
+[node name="QuotaPassed" type="TextureRect" parent="MenuViewArea/Results Menu"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -71.5
+offset_right = 27.0
+offset_bottom = -42.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(31, 17.5)
+texture = SubResource("AtlasTexture_wdjwe")
+stretch_mode = 2
 
 [node name="Manual" type="Control" parent="MenuViewArea"]
 layout_mode = 1
