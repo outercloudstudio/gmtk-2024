@@ -53,6 +53,7 @@ timer_progress = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Ti
 performance_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/Score")
 quota_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Quota Holder")
 quota_item_scene = ExtResource("2_qx52i")
+ordered_level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0")]
 level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0")]
 tutorial_level_scene = ExtResource("6_m4d1r")
 main_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Main Menu/AnimationPlayer")

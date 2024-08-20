@@ -13,7 +13,7 @@ var smoke: GPUParticles2D
 var _tiggered_tutorial_repair = false
 
 func _ready() -> void:
-	time_till_explode = randf_range(20, 60)
+	time_till_explode = randf_range(20, 70)
 
 	smoke = smoke_scene.instantiate()
 	get_parent().add_child.call_deferred(smoke)

@@ -7,6 +7,7 @@ class_name Game
 @export var performance_label: Label
 @export var quota_holder: Node2D
 @export var quota_item_scene: PackedScene
+@export var ordered_level_scenes: Array
 @export var level_scenes: Array
 @export var tutorial_level_scene: PackedScene
 @export var main_menu_animation_player: AnimationPlayer
@@ -96,7 +97,8 @@ func fixed_lerp(a, b, decay, delta):
 func start_round():
 	Static.state = "play"
 
-	_round_timer = 80
+	# _round_timer = 80
+	_round_timer = 20
 	_rung = false
 
 	var level = world.start(_level_scene)
@@ -173,6 +175,11 @@ func end_round():
 		collected_holder.add_child(quota_item)
 
 		quota_item.identifier = item
+		quota_item.color = Color("#00ff00")
+
+		if !Static.quota.has(item):
+			quota_item.color = Color("#ff0000")
+
 		quota_item.setup()
 
 		if collected_holder.get_child_count() > 4:
@@ -182,18 +189,30 @@ func end_round():
 			Static.audio.play_pitched("boop", 0.6 + i * 0.05)
 
 			quota_item.amount = i + 1
+			quota_item.color = Color("#00ff00")
+
+			if !Static.quota.has(item):
+				quota_item.color = Color("#ff0000")
+
 			quota_item.setup()
 
-			await get_tree().create_timer(0.05).timeout
+			await get_tree().create_timer(0.02).timeout
 
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.75).timeout
+
+	await get_tree().create_timer(1).timeout
 
 	if !just_tutorial:
 		results_menu_mid_animation_player.play("graph")
 
 
 func start():
-	_level_scene = level_scenes.pick_random()
+	if len(ordered_level_scenes) > 0:
+		_level_scene = ordered_level_scenes[0]
+		ordered_level_scenes.remove_at(0)
+	else:
+		_level_scene = level_scenes.pick_random()
+
 	main_menu_animation_player.play("hide")
 
 	start_round()
@@ -206,7 +225,12 @@ func restart():
 
 
 func next():
-	_level_scene = level_scenes.pick_random()
+	if len(ordered_level_scenes) > 0:
+		_level_scene = ordered_level_scenes[0]
+		ordered_level_scenes.remove_at(0)
+	else:
+		_level_scene = level_scenes.pick_random()
+
 	results_menu_animation_player.play("hide")
 
 	start_round()
