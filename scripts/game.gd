@@ -111,7 +111,7 @@ func fixed_lerp(a, b, decay, delta):
 func start_round():
 	Static.state = "play"
 
-	_round_timer = 10
+	_round_timer = 80
 	_rung = false
 	_show_quota_label = true
 
@@ -179,9 +179,6 @@ func end_round():
 
 	draw_graph(score_data, Static.score)
 
-	quota_failed.visible = failed
-	quota_passed.visible = !failed
-
 	if !failed:
 		submit_score(_current_level_identifier, Static.score)
 
@@ -191,11 +188,18 @@ func end_round():
 	for child in collected_holder.get_children():
 		child.free()
 
+	quota_failed.visible = failed
+	quota_passed.visible = !failed
+
 	await get_tree().create_timer(0.5).timeout
 
 	quota_state_aniamtor.play("show")
 
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(0.4 - 0.368 - 0.08).timeout
+
+	Static.audio.play("land")
+
+	await get_tree().create_timer(2 - (0.4 - 0.368 - 0.08)).timeout
 
 	var totaled_score = 0
 

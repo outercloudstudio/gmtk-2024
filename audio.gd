@@ -10,6 +10,7 @@ class_name Audio
 @export var spawn_sounds: Array = []
 @export var ring_sound: AudioStream
 @export var boop_sound: AudioStream
+@export var land_sound: AudioStream
 var fire_play_count = 0
 var music_state = "menu"
 
@@ -85,6 +86,10 @@ func play(sound_name: String):
     if sound_name == "ring":
         sound = ring_sound
         player.volume_db = -3
+
+    if sound_name == "land":
+        sound = land_sound
+        player.volume_db = 8
 
     player.stream = sound
     player.attenuation = 0

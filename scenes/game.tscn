@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=48 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
@@ -46,6 +46,7 @@
 [ext_resource type="AudioStream" uid="uid://drcyopv3lnwtp" path="res://audio/footstep_grass_004.ogg" id="35_f1rnb"]
 [ext_resource type="AudioStream" uid="uid://244uprvuip6r" path="res://audio/ring.wav" id="37_qw44w"]
 [ext_resource type="AudioStream" uid="uid://co1d33q45rqih" path="res://audio/drop_003.ogg" id="38_r7y82"]
+[ext_resource type="AudioStream" uid="uid://h1h6areonxnk" path="res://audio/land.wav" id="42_oqbp3"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("world", "timer_progress", "performance_label", "quota_holder", "main_menu_animation_player", "results_menu_animation_player", "lower_bound_label", "upper_bound_label", "graph", "background", "collected_holder", "results_menu_mid_animation_player", "tutorial_animator", "quota_label", "quota_failed", "quota_passed", "quota_state_aniamtor")]
 texture_filter = 1
@@ -115,6 +116,7 @@ destroy_sounds = [ExtResource("26_3f3k6"), ExtResource("27_hsjfc"), ExtResource(
 spawn_sounds = [ExtResource("31_y1byr"), ExtResource("32_6c6hv"), ExtResource("33_32upl"), ExtResource("34_1cl6s"), ExtResource("35_f1rnb")]
 ring_sound = ExtResource("37_qw44w")
 boop_sound = ExtResource("38_r7y82")
+land_sound = ExtResource("42_oqbp3")
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("23_tebmu")

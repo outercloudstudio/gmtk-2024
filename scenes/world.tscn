@@ -2965,6 +2965,7 @@ script = ExtResource("6_ihc8j")
 
 [node name="MenuViewArea" type="Control" parent="."]
 z_index = 100
+clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = -64.0
