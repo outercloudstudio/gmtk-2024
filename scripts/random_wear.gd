@@ -37,6 +37,12 @@ func repair():
 	if !spawned_smoke:
 		return
 
+	var repair_confirm_scene: PackedScene = load("res://scenes/repair.tscn")
+	var repair_confirm: GPUParticles2D = repair_confirm_scene.instantiate()	
+
+	add_child(repair_confirm)
+	repair_confirm.emitting = true
+
 	if Static.is_tutorial && Static.tutorial_stage == "repairing":
 		Static.tutorial_repair_count += 1
 
@@ -49,6 +55,7 @@ func repair():
 	await get_tree().create_timer(1).timeout
 
 	dust.queue_free()
+	repair_confirm.queue_free()
 
 
 func destroy():

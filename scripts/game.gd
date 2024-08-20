@@ -97,6 +97,9 @@ func _process(delta: float) -> void:
 	else:
 		background.material.set_shader_parameter("danger", fixed_lerp(background.material.get_shader_parameter("danger"), 0, 2, delta))
 
+	performance_label.scale = fixed_lerp(performance_label.scale, Vector2.ONE, 8, delta)
+	performance_label.modulate = fixed_lerp(performance_label.modulate, Color("#ffffff"), 8, delta)
+
 
 func fixed_lerp(a, b, decay, delta):
 	return b + (a - b) * exp(-decay * delta)
@@ -139,21 +142,26 @@ func end_round():
 	Static.is_tutorial = false
 	Static.tutorial_stage = "none"
 
-	performance_label.text = str(Static.score)
+	performance_label.text = "0"
 
 	results_menu_animation_player.play("show")
+
+	for item in Static.all_collected:
+		if Static.quota.has(item):
+			Static.score += 100 * Static.all_collected[item]
+		else:
+			Static.score -= 50 * Static.all_collected[item]
+
+	if Static.score < 0:
+		Static.score = 0
 
 	var failed = false
 
 	for item in Static.quota:
 		if Static.quota[item] - Static.collected_quota[item] > 0:
 			failed = true
+			
 			break
-
-	if failed:
-		performance_label.modulate = Color("#ff0000")
-	else:
-		performance_label.modulate = Color("#00ff00")
 	
 	world.cleanup()
 
@@ -179,6 +187,8 @@ func end_round():
 
 	await get_tree().create_timer(0.5).timeout
 
+	var totaled_score = 0
+
 	for item in Static.all_collected:
 		var quota_item: QuotaItem = quota_item_scene.instantiate()
 
@@ -195,16 +205,38 @@ func end_round():
 		if collected_holder.get_child_count() > 4:
 			collected_holder.get_child(0).free()
 
+		var index = 0
+
 		for i in range(Static.all_collected[item]):
 			Static.audio.play_pitched("boop", 0.6 + i * 0.05)
 
 			quota_item.amount = i + 1
 			quota_item.color = Color("#00ff00")
 
+			if index % 5 == 0:
+				performance_label.modulate = Color("#00ff00")
+
 			if !Static.quota.has(item):
 				quota_item.color = Color("#ff0000")
 
+				if index % 5 == 0:
+					performance_label.modulate = Color("#ff0000")
+
+				totaled_score -= 50
+			else:
+				totaled_score += 100
+
+			performance_label.text = str(totaled_score)
+
+			if totaled_score < 0:
+				performance_label.text = "0"
+
+			if index % 5 == 0:
+				performance_label.scale = Vector2(1.5, 1.5)
+
 			quota_item.setup()
+
+			index += 1
 
 			await get_tree().create_timer(0.02).timeout
 
