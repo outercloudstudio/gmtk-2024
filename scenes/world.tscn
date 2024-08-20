@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=107 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -42,6 +42,11 @@
 [ext_resource type="Texture2D" uid="uid://coj0pm1twvlmh" path="res://sprites/sprite_keyboard.tres" id="27_gcjff"]
 [ext_resource type="Texture2D" uid="uid://nuqw6jkv3v2x" path="res://sprites/close_button.tres" id="28_3r1vs"]
 [ext_resource type="Texture2D" uid="uid://df32p3utnvtuf" path="res://sprites/close_button_pressed.tres" id="29_k0p6x"]
+[ext_resource type="Script" path="res://scenes/load_shaders.gd" id="43_gmi4p"]
+[ext_resource type="PackedScene" uid="uid://bxx8c5s3als5b" path="res://scenes/dust.tscn" id="44_ac5jy"]
+[ext_resource type="PackedScene" uid="uid://bdkkpn2spjl74" path="res://scenes/explosion.tscn" id="45_3o5kn"]
+[ext_resource type="PackedScene" uid="uid://c13sxcp03bmkj" path="res://scenes/repair.tscn" id="46_mkpnt"]
+[ext_resource type="PackedScene" uid="uid://hf54qypoaanr" path="res://scenes/smoke.tscn" id="47_uo3be"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aok1b"]
 shader = ExtResource("7_pgx5q")
@@ -3867,6 +3872,10 @@ texture = SubResource("AtlasTexture_oucbb")
 libraries = {
 "": SubResource("AnimationLibrary_oikve")
 }
+
+[node name="LoadShaders" type="Node2D" parent="."]
+script = ExtResource("43_gmi4p")
+scenes = [ExtResource("44_ac5jy"), ExtResource("45_3o5kn"), ExtResource("46_mkpnt"), ExtResource("47_uo3be")]
 
 [connection signal="pressed" from="MenuViewArea/Main Menu/TutorialButton" to="." method="tutorial"]
 [connection signal="pressed" from="MenuViewArea/Main Menu/PlayButton" to="." method="start_game"]

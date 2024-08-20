@@ -24,6 +24,10 @@ Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 project/assembly_name="GMTK 2024"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/liamh/Desktop/Godot/Projects/gmtk-2024/screenshots.png"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")
