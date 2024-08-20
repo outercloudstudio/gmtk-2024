@@ -54,7 +54,7 @@ func play(sound_name: String):
 
     if sound_name == "place":
         sound = place_sounds.pick_random()
-        player.volume_db = 18
+        player.volume_db = 23
         player.pitch_scale = randf_range(0.9, 1.1)
 
     if sound_name == "repair":
