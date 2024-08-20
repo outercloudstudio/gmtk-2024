@@ -1,12 +1,14 @@
-[gd_scene load_steps=45 format=3 uid="uid://bxr5gdfq0hexh"]
+[gd_scene load_steps=47 format=3 uid="uid://bxr5gdfq0hexh"]
 
 [ext_resource type="PackedScene" uid="uid://br8dswv6ug16q" path="res://scenes/world.tscn" id="1_i4p5l"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_kd6lh"]
 [ext_resource type="PackedScene" uid="uid://c7ym0w7fg023r" path="res://scenes/items/rod.tscn" id="2_5xd64"]
 [ext_resource type="PackedScene" uid="uid://b4j40uckcw8c6" path="res://scenes/items/battery.tscn" id="2_527w3"]
 [ext_resource type="PackedScene" uid="uid://dg1h01f2r2skm" path="res://scenes/quota_item.tscn" id="2_qx52i"]
+[ext_resource type="PackedScene" uid="uid://bfvkt2d7qamby" path="res://scenes/levels/level_4.tscn" id="3_2u2s6"]
 [ext_resource type="PackedScene" uid="uid://dqyhtuc360avi" path="res://scenes/items/wire.tscn" id="3_bim1w"]
 [ext_resource type="PackedScene" uid="uid://dkt44rix7wkpr" path="res://scenes/levels/level_1.tscn" id="3_cwbbo"]
+[ext_resource type="PackedScene" uid="uid://bxfnqtcd475ip" path="res://scenes/levels/level_5.tscn" id="3_k06dg"]
 [ext_resource type="PackedScene" uid="uid://cuh04ynvla5pn" path="res://scenes/items/button.tscn" id="3_mpqfi"]
 [ext_resource type="PackedScene" uid="uid://bdg5y4etjquv3" path="res://scenes/levels/level_2.tscn" id="4_scvax"]
 [ext_resource type="PackedScene" uid="uid://dvj7clp1sgar8" path="res://scenes/levels/level_3.tscn" id="5_0p2e0"]
@@ -53,8 +55,8 @@ timer_progress = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Ti
 performance_label = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/Score")
 quota_holder = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/Quota Holder")
 quota_item_scene = ExtResource("2_qx52i")
-ordered_level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0")]
-level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0")]
+ordered_level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0"), ExtResource("3_2u2s6"), ExtResource("3_k06dg")]
+level_scenes = [ExtResource("3_cwbbo"), ExtResource("4_scvax"), ExtResource("5_0p2e0"), ExtResource("3_2u2s6"), ExtResource("3_k06dg")]
 tutorial_level_scene = ExtResource("6_m4d1r")
 main_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Main Menu/AnimationPlayer")
 results_menu_animation_player = NodePath("CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea/Results Menu/AnimationPlayer")
@@ -99,6 +101,10 @@ render_target_update_mode = 4
 
 [node name="World" parent="CanvasLayer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("game") instance=ExtResource("1_i4p5l")]
 game = NodePath("../../../..")
+
+[node name="Manual" parent="CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea" index="2"]
+offset_left = -160.0
+offset_right = -160.0
 
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("18_mosgn")
