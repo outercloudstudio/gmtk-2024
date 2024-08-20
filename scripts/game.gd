@@ -208,7 +208,10 @@ func end_round():
 		var index = 0
 
 		for i in range(Static.all_collected[item]):
-			Static.audio.play_pitched("boop", 0.6 + i * 0.05)
+			if Static.quota.has(item):
+				Static.audio.play_pitched("boop", 0.6 + i * 0.05)
+			else:
+				Static.audio.play_pitched("boop", 1.6 - i * 0.015)
 
 			quota_item.amount = i + 1
 			quota_item.color = Color("#00ff00")
