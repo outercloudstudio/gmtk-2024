@@ -102,10 +102,6 @@ render_target_update_mode = 4
 [node name="World" parent="CanvasLayer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("game") instance=ExtResource("1_i4p5l")]
 game = NodePath("../../../..")
 
-[node name="Manual" parent="CanvasLayer/SubViewportContainer/SubViewport/World/MenuViewArea" index="2"]
-offset_left = -160.0
-offset_right = -160.0
-
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("18_mosgn")
 place_sounds = [ExtResource("19_8nlxk"), ExtResource("21_6pk84"), ExtResource("23_u56pr")]

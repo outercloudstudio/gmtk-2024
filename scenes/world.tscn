@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://br8dswv6ug16q"]
+[gd_scene load_steps=102 format=3 uid="uid://br8dswv6ug16q"]
 
 [ext_resource type="Texture2D" uid="uid://2wvotbf5sand" path="res://sprites.png" id="1_03lg1"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gejag"]
@@ -274,14 +274,14 @@ content_margin_left = 2.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.0235294, 0.0235294, 0.0313726, 1)
+bg_color = Color(0.0434834, 0.0370452, 0.0628809, 1)
 
 [sub_resource type="Theme" id="Theme_b4iy0"]
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_mpewd")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_mm0yc")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_syarb")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_wo7sf")
-VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_mpewd")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_wo7sf")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ltwvl"]
 atlas = ExtResource("1_03lg1")
@@ -290,6 +290,11 @@ region = Rect2(372, 55, 5, 5)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mf1uh"]
 atlas = ExtResource("1_03lg1")
 region = Rect2(381, 56, 4, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m5hbc"]
+line_spacing = -3.0
+font = ExtResource("8_8nue1")
+font_size = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xtj5n"]
 atlas = ExtResource("1_03lg1")
@@ -3080,8 +3085,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -128.0
-offset_right = -128.0
+offset_left = -160.0
+offset_right = -160.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -3548,6 +3553,141 @@ offset_right = 55.0
 offset_bottom = 15.0
 texture = ExtResource("21_tum5u")
 stretch_mode = 2
+
+[node name="Tile" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 18)
+layout_mode = 2
+
+[node name="Tile" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 15.0
+texture = ExtResource("11_fxgoa")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile"]
+layout_mode = 0
+offset_left = 17.0
+offset_right = 65.0
+offset_bottom = 17.0
+text = "Transports
+items"
+label_settings = SubResource("LabelSettings_m5hbc")
+
+[node name="Tile2" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 25)
+layout_mode = 2
+
+[node name="Tile" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile2"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 15.0
+texture = ExtResource("13_cndej")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile2"]
+layout_mode = 0
+offset_left = 17.0
+offset_right = 69.0
+offset_bottom = 24.0
+text = "Splits Items
+Between Two
+Directions"
+label_settings = SubResource("LabelSettings_m5hbc")
+
+[node name="Tile3" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 25)
+layout_mode = 2
+
+[node name="Tile" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile3"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 15.0
+texture = ExtResource("14_oj5uq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile3"]
+layout_mode = 0
+offset_left = 17.0
+offset_right = 69.0
+offset_bottom = 24.0
+text = "Combines Two
+Items To Produce
+New Items"
+label_settings = SubResource("LabelSettings_m5hbc")
+
+[node name="Tile4" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 25)
+layout_mode = 2
+
+[node name="Tile" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile4"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 15.0
+texture = ExtResource("15_ukf6u")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile4"]
+layout_mode = 0
+offset_left = 17.0
+offset_right = 81.0
+offset_bottom = 17.0
+text = "Deconstructs
+An Item Into Two
+Components"
+label_settings = SubResource("LabelSettings_m5hbc")
+
+[node name="Tile5" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 18)
+layout_mode = 2
+
+[node name="Tile" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile5"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 15.0
+texture = ExtResource("12_u80pu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile5"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 3.0
+offset_right = 81.0
+offset_bottom = 13.0
+text = "Delets Tiles"
+label_settings = SubResource("LabelSettings_m5hbc")
+
+[node name="Tile6" type="Control" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(85, 18)
+layout_mode = 2
+
+[node name="Tile" type="TextureRect" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile6"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 15.0
+texture = ExtResource("14_idjjr")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MenuViewArea/Manual/ScrollContainer/VBoxContainer/Tile6"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 3.0
+offset_right = 81.0
+offset_bottom = 13.0
+text = "Fixes Fires"
+label_settings = SubResource("LabelSettings_m5hbc")
 
 [node name="TextureRect" type="TextureRect" parent="MenuViewArea/Manual"]
 layout_mode = 1
